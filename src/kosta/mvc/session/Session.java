@@ -51,7 +51,7 @@ public class Session {
 	
 	@Override
 	public String toString() {
-		return "Session [sessionId=" + sessionId + ", attributes=" + attributes + "]"+"\n";
+		return sessionId + "님 로그인" + attributes;
 	}
 	
 	

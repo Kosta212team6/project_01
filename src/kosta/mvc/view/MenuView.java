@@ -3,6 +3,7 @@ package kosta.mvc.view;
 import java.util.Scanner;
 
 import kosta.mvc.controller.MemberController;
+import kosta.mvc.session.SessionSet;
 
 public class MenuView {
 
@@ -79,7 +80,9 @@ public class MenuView {
 	 */
 	public static void printUserMenu(String mID) {
 		while(true) {
-			System.out.println("mID님 로그인 하셨습니다.");
+			SessionSet ss = SessionSet.getInstance();
+			System.out.println(ss.getSet());
+			System.out.println(mID+"님 로그인 하셨습니다.");
 			System.out.println("1. 로그아웃   2. 검색하기   3. 책바구니 담기   4. 책바구니 보기   5. 마이서재");
 			
 			try {
@@ -108,6 +111,20 @@ public class MenuView {
 			} catch (NumberFormatException e) {
 				System.out.println("숫자만 입력해주세요");
 			}
+		}
+	}
+	
+	/**
+	 * 관리자용 메뉴
+	 */
+	public static void printAdminMenu(String mID) {
+		while(true) {
+			SessionSet ss = SessionSet.getInstance();
+			System.out.println(ss.getSet());
+			System.out.println(mID+"님 관리자로 로그인 하셨습니다.");
+			System.out.println("메뉴출력");
+			int menu = Integer.parseInt(sc.nextLine());
+			
 		}
 	}
 
