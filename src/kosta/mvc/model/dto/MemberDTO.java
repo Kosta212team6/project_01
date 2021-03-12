@@ -1,23 +1,25 @@
 package kosta.mvc.model.dto;
 
 public class MemberDTO {
-	private String mID;
+	private String mID; // pk
 	private String mName;
 	private String mPhone;
 	private String mPwd;
 	private String mAble;
 	private int mStatus;
-	private int nCode;
+	private int nCode; // fk
 	
 	public MemberDTO() {}
-	public MemberDTO(String mID, String mName, String mPhone, String mPwd, String mAble, int mStatus, int nCode) {
-		super();
+	public MemberDTO(String mID, String mPwd, int mStatus) {
 		this.mID = mID;
+		this.mPwd = mPwd;
+		this.mStatus = mStatus;
+	}
+	public MemberDTO(String mID, String mName, String mPhone, String mPwd, String mAble, int mStatus, int nCode) {
+		this(mID, mPwd, mStatus);
 		this.mName = mName;
 		this.mPhone = mPhone;
-		this.mPwd = mPwd;
 		this.mAble = mAble;
-		this.mStatus = mStatus;
 		this.nCode = nCode;
 	}
 	public String getmID() {
