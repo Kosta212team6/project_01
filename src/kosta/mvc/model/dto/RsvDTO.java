@@ -1,10 +1,10 @@
 package kosta.mvc.model.dto;
 
 public class RsvDTO {
-	private int rsvNum; //pk
+	private int rsvNum; //  pk
 	private String rsvDate;
-	private String mID; //fk
-	private int bIsbn; //fk
+	private String mID; //  fk
+	private int bIsbn; //  fk
 	
 	public RsvDTO () {}
 

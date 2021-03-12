@@ -1,5 +1,9 @@
 package kosta.mvc.model.dto;
-
+/**
+ * 
+ * @author Lee SeungHyun
+ *
+ */
 public class SortDTO {
 	private int sCode; //pk
 	private String sName;
