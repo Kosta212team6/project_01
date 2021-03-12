@@ -1,31 +1,38 @@
 package kosta.mvc.model.dto;
-
+/**
+ * 
+ * @author Lee SeungHyun
+ *
+ */
 public class SortDTO {
-	private int scode;
-	private String sname;
+	private int sCode; //pk
+	private String sName;
 	
 	public SortDTO () {}
-	public SortDTO (int scode, String sname) {
+	public SortDTO (int sCode, String sName) {
 		super();
-		this.scode = scode;
-		this.sname = sname;
+		this.sCode = sCode;
+		this.sName = sName;
 	}
-	public int getScode() {
-		return scode;
+	public int getsCode() {
+		return sCode;
 	}
-	public void setScode(int scode) {
-		this.scode = scode;
+	public void setsCode(int sCode) {
+		this.sCode = sCode;
 	}
-	public String getSname() {
-		return sname;
+	public String getsName() {
+		return sName;
 	}
-	public void setSname(String sname) {
-		this.sname = sname;
+	public void setsName(String sName) {
+		this.sName = sName;
 	}
 	
 	@Override
 	public String toString() {
-		return scode + " | " + sname;
+		return sCode + " | " + sName;
 	}
 	
-}
+}	
+	
+	
+	
