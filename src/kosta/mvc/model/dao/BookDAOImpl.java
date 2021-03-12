@@ -2,6 +2,7 @@ package kosta.mvc.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -39,6 +40,29 @@ public class BookDAOImpl implements BookDAO {
 		}
 		
 		return result;
+	}
+	
+	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BookDTO bookDTO = null;
+		String sql = "select * from book where bisbn = ?";
+				
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bISBN);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				bookDTO = new BookDTO(rs.getInt(1));
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		
+		return bookDTO;
 	}
 
 }

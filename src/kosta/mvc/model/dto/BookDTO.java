@@ -11,9 +11,13 @@ public class BookDTO {
 	
 	public BookDTO() {}
 	
-	public BookDTO(int bISBN, String bName, String bWrite, String bPub, String bDate, int bStatus, int sCode) {
+	public BookDTO(int bISBN) {
 		super();
 		this.bISBN = bISBN;
+	}
+	
+	public BookDTO(int bISBN, String bName, String bWrite, String bPub, String bDate, int bStatus, int sCode) {
+		this(bISBN);
 		this.bName = bName;
 		this.bWrite = bWrite;
 		this.bPub = bPub;
