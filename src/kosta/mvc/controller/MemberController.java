@@ -15,11 +15,13 @@ public class MemberController {
 	public static void login(String mID, String mPwd) {
 		try {
 			MemberDTO memberDTO = memberService.login(mID, mPwd);
-			if(memberDTO.getmStatus()==2) {
+			if(memberDTO.getmStatus()==2)
 				// 관리자 메뉴 진입
 				TestView.printAdminMenu(mID);
-			}
-			TestView.printUserMenu(mID);
+			else
+				// 일반회원 메뉴 진입
+				TestView.printUserMenu(mID);
+
 		} catch (Exception e) {
 //			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());

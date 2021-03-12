@@ -34,7 +34,7 @@ public class MemberDAOImpl implements MemberDAO {
 			}
 			
 		} finally {
-			DBUtil.close(con, ps, rs);
+			DBUtil.dbClose(con, ps, rs);
 		}
 		
 		return memberDTO;
