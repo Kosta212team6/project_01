@@ -3,6 +3,7 @@ package kosta.mvc.view;
 import java.util.Scanner;
 
 import kosta.mvc.controller.MemberController;
+import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 
 public class MenuView {
@@ -56,7 +57,10 @@ public class MenuView {
 	 * 로그아웃 메뉴
 	 */
 	public static void logout(String mID) {
+		Session session = new Session(mID);
 		
+		SessionSet ss = SessionSet.getInstance();
+		ss.remove(session);
 	}
 	
 	/**
@@ -90,8 +94,8 @@ public class MenuView {
 				switch (menu) {
 				case 1:
 					System.out.println("로그아웃 합니다");
-					//logout(mID);
-					break;
+					logout(mID);
+					return;
 				case 2:
 					System.out.println("책을 검색합니다");
 					break;
