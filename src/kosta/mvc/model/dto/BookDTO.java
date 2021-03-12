@@ -1,7 +1,7 @@
 package kosta.mvc.model.dto;
 
 public class BookDTO {
-	private int bIsbn; //pk
+	private int bISBN; //pk
 	private String bName;
 	private String bWrite;
 	private String bPub;
@@ -11,9 +11,9 @@ public class BookDTO {
 	
 	public BookDTO() {}
 	
-	public BookDTO(int bIsbn, String bName, String bWrite, String bPub, String bDate, int bStatus, int sCode) {
+	public BookDTO(int bISBN, String bName, String bWrite, String bPub, String bDate, int bStatus, int sCode) {
 		super();
-		this.bIsbn = bIsbn;
+		this.bISBN = bISBN;
 		this.bName = bName;
 		this.bWrite = bWrite;
 		this.bPub = bPub;
@@ -23,11 +23,11 @@ public class BookDTO {
 	}
 
 	public int getbIsbn() {
-		return bIsbn;
+		return bISBN;
 	}
 
-	public void setbIsbn(int bIsbn) {
-		this.bIsbn = bIsbn;
+	public void setbIsbn(int bISBN) {
+		this.bISBN = bISBN;
 	}
 
 	public String getbName() {
@@ -80,7 +80,7 @@ public class BookDTO {
 	
 	@Override
 	public String toString() {
-		return bIsbn + " | " + bName + " | " +  bWrite + " | " +  bPub + " | " +  bDate + " | " +  bStatus + " | " +  sCode;
+		return bISBN + " | " + bName + " | " +  bWrite + " | " +  bPub + " | " +  bDate + " | " +  bStatus + " | " +  sCode;
 	}
 	
 }

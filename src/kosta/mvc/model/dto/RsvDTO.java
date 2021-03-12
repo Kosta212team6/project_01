@@ -4,16 +4,16 @@ public class RsvDTO {
 	private int rsvNum; //  pk
 	private String rsvDate;
 	private String mID; //  fk
-	private int bIsbn; //  fk
+	private int bISBN; //  fk
 	
 	public RsvDTO () {}
 
-	public RsvDTO(int rsvNum, String rsvDate, String mID, int bIsbn) {
+	public RsvDTO(int rsvNum, String rsvDate, String mID, int bISBN) {
 		super();
 		this.rsvNum = rsvNum;
 		this.rsvDate = rsvDate;
 		this.mID = mID;
-		this.bIsbn = bIsbn;
+		this.bISBN = bISBN;
 	}
 
 	public int getRsvNum() {
@@ -41,16 +41,16 @@ public class RsvDTO {
 	}
 
 	public int getbIsbn() {
-		return bIsbn;
+		return bISBN;
 	}
 
 	public void setbIsbn(int bIsbn) {
-		this.bIsbn = bIsbn;
+		this.bISBN = bIsbn;
 	}
 	
 	@Override
 	public String toString() {
-		return rsvNum + " | " + rsvDate + " | " + mID + " | " + bIsbn;
+		return rsvNum + " | " + rsvDate + " | " + mID + " | " + bISBN;
 	}
 	
 }
