@@ -124,6 +124,7 @@ public class MenuView {
 			System.out.println(mID+"님 관리자로 로그인 하셨습니다.");
 			System.out.println("메뉴출력");
 			int menu = Integer.parseInt(sc.nextLine());
+			System.out.println("What?????????");
 			
 		}
 	}
