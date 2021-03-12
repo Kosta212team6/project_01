@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.util.DBUtil;
@@ -38,6 +40,39 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		
 		return memberDTO;
+	}
+
+	@Override
+	public List<MemberDTO> memberSelectAll() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+		String sql = "select * from member";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String mID = rs.getString("mid");
+				String mName = rs.getString("mname");
+				String mPhone = rs.getString("mphone");
+				String mAble = rs.getString("mable");
+				int mStatus = rs.getInt("mstatus");
+				int nCode = rs.getInt("ncode");
+				
+				MemberDTO memberDTO = new MemberDTO(mID, mName, mPhone, null, mAble, mStatus, nCode);
+				list.add(memberDTO);
+			}
+			
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		
+		return list;
 	}
 
 }

@@ -1,13 +1,17 @@
 package kosta.mvc.controller;
 
+import java.sql.SQLException;
+import java.util.List;
+
 import kosta.mvc.model.dto.MemberDTO;
-import kosta.mvc.model.service.MemberService;
+import kosta.mvc.model.service.MemberServiceImpl;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.MenuView;
+import kosta.mvc.view.SuccessView;
 import kosta.mvc.view.TestView;
 
 public class MemberController {
-	static MemberService memberService = new MemberService();
+	static MemberServiceImpl memberService = new MemberServiceImpl();
 
 	/**
 	 * 로그인
@@ -17,13 +21,23 @@ public class MemberController {
 			MemberDTO memberDTO = memberService.login(mID, mPwd);
 			if(memberDTO.getmStatus()==2)
 				// 관리자 메뉴 진입
-				TestView.printAdminMenu(mID);
+				MenuView.printAdminMenu(mID);
 			else
 				// 일반회원 메뉴 진입
-				TestView.printUserMenu(mID);
+				MenuView.printUserMenu(mID);
 
 		} catch (Exception e) {
 //			e.printStackTrace();
+			FailView.errorMessage(e.getMessage());
+		}
+	}
+	
+	public static void memberSelectAll() {
+		
+		try {
+			List<MemberDTO> list = memberService.memberSelectAll();
+			SuccessView.selectPrintAll(list);
+		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
