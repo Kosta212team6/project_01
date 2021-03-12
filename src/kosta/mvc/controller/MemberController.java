@@ -4,6 +4,7 @@ import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.service.MemberService;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.MenuView;
+import kosta.mvc.view.TestView;
 
 public class MemberController {
 	static MemberService memberService = new MemberService();
@@ -16,9 +17,9 @@ public class MemberController {
 			MemberDTO memberDTO = memberService.login(mID, mPwd);
 			if(memberDTO.getmStatus()==2) {
 				// 관리자 메뉴 진입
-				MenuView.printAdminMenu(mID);
+				TestView.printAdminMenu(mID);
 			}
-			MenuView.printUserMenu(mID);
+			TestView.printUserMenu(mID);
 		} catch (Exception e) {
 //			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
