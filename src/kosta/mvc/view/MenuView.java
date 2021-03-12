@@ -77,7 +77,7 @@ public class MenuView {
 	/**
 	 * 회원용 메뉴
 	 */
-	public static void printUserMenu() {
+	public static void printUserMenu(String mID) {
 		while(true) {
 			System.out.println("mID님 로그인 하셨습니다.");
 			System.out.println("1. 로그아웃   2. 검색하기   3. 책바구니 담기   4. 책바구니 보기   5. 마이서재");
@@ -110,4 +110,5 @@ public class MenuView {
 			}
 		}
 	}
+
 }
