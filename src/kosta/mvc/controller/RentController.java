@@ -18,5 +18,7 @@ public class RentController {
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
-	} 
+	}
+	
+	
 }
