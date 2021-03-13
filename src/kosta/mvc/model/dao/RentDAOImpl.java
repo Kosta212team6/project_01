@@ -14,8 +14,8 @@ import kosta.mvc.model.dto.RentDTO;
 import kosta.mvc.util.DBUtil;
 
 public class RentDAOImpl implements RentDAO {
-	private static CartController cartController = new CartController();
-	private static BookDTO bookDTO = new BookDTO();
+	//private static CartController cartController = new CartController();
+	//private static BookDTO bookDTO = new BookDTO();
 	/**
 	 * 대여테이블에 insert
 	 * connection 유지한채로
@@ -33,7 +33,7 @@ public class RentDAOImpl implements RentDAO {
 			ps.setInt(1, rentDTO.getbISBN());
 			ps.setString(2, rentDTO.getmID());
 			
-			List<BookDTO> booksInCart = cartController.getBookDTOInCart(rentDTO.getmID());
+			List<BookDTO> booksInCart = CartController.getBookDTOInCart(rentDTO.getmID());
 				if(booksInCart == null) {
 					throw new SQLException("책바구니에 책을 담고 다시 시도해주세요.");
 				} else {

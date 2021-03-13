@@ -142,7 +142,7 @@ public class MenuView {
 		
 		int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
 		
-		CartController.putCart(mID, bISBN, bStatus);
+		CartController.putCart(mID, bISBN);
 	}
 	
 	/**
