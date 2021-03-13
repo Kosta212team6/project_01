@@ -77,9 +77,9 @@ public class MenuView {
 	 * 메인메뉴
 	 */
 	public static void printMenu() {
-		System.out.println("┌──── 도서관프로그램 ─────┐");
+		System.out.println("┌──── 도서관프로그램 ──────────┐");
 		System.out.println("│ 1. 가입하기   2. 로그인  9. 종료 │");
-		System.out.println("└─────────────────┘");
+		System.out.println("└─────────────────────────┘");
 	}
 
 	/**
@@ -101,11 +101,7 @@ public class MenuView {
 					return;
 				case 2:
 					System.out.println("책을 검색합니다");
-					printSelectByBname();
-					//printSelectBySname();
-					// printSelectByPublisher();
-					// printSelectByWriter();
-					// printSelectByISBN();
+					printBookSearchMenu(mID);
 					break;
 				case 3:
 					System.out.println("책바구니에 책을 담습니다");
@@ -131,9 +127,11 @@ public class MenuView {
 	/**
 	 * 도서 검색 메뉴
 	 */
-	/*public static void printBookSearchMenu() {
+	public static void printBookSearchMenu(String mID) {
 		while (true) {
-			System.out.println("1. 분야별 검색  2. 도서명 검색  3. 저자검색  4. 출판사 검색 ");
+			SessionSet ss = SessionSet.getInstance();
+			//System.out.println(ss.getSet());
+			System.out.println("1. 분야별 검색  2. 도서명 검색  3. 저자검색  4. 출판사 검색   5. 뒤로가기");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -143,7 +141,7 @@ public class MenuView {
 					break;
 				case 2:
 					System.out.println("도서명 검색합니다.");
-					printSelectBySname();
+					printSelectByBname();
 
 					break;
 				case 3:
@@ -154,6 +152,11 @@ public class MenuView {
 					System.out.println("출판사 검색합니다.");
 					printSelectByPublisher();
 					break;
+					
+				case 5:
+					System.out.println("뒤로가기...");
+					return;
+	
 
 				default:
 					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
@@ -166,7 +169,7 @@ public class MenuView {
 			}
 		}
 	}
-*/
+
 	
 	
 	/**
