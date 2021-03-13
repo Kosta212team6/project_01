@@ -15,6 +15,9 @@ public class MenuView {
 
 	private static Scanner sc = new Scanner(System.in);
 
+	/**
+	 * 외않돼!!!
+	 */
 	public static void menu() {
 		while (true) {
 			MenuView.printMenu();
