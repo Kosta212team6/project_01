@@ -81,7 +81,7 @@ public class BookController {
 	public static void deleteBook(int bISBN) {
 		try {
 			bookService.DeleteBook(bISBN);
-			SuccessView.printMessage("도서정보가 삭제되었습니다");
+			SuccessView.printMessage("도서정보가 삭제되었습니다 !");
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
