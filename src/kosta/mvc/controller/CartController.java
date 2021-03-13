@@ -41,6 +41,7 @@ public class CartController {
 			//세션에서 책바구니 찾기
 			Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
 			
+			
 			//책바구니가 없으면 책바구니 생성해주기
 			// 중복된 도서 추가하지 않기
 
@@ -52,13 +53,21 @@ public class CartController {
 			// 4. 카트에 같은게 존재하면 추가하지 않는다
 			
 			// 중복된 도서 추가하지 않기
-				Integer qty = cart.get(bookDTO);
+//				Integer qty = cart.get(bookDTO);
 //				if(bookDTO != null) {
 //					throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
 //				}
-
+			if(cart == null) { 
+				cart = new HashMap<>(); 
+				session.setAttribute("cart", cart); // String, Object 두개를 파라미터로 전달
+			}
+			
+			if(!cart.containsValue(bISBN) ) {
 				cart.put(bookDTO, bISBN);
 				SuccessView.printMessage("책바구니에 책을 담았습니다.");
+			} else {
+				FailView.errorMessage("이미 책바구니에 책이 있습니다.");
+			}
 			
 		} 
 //		catch (DuplicatedException e) {

@@ -25,6 +25,7 @@ public class BookController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+	
 	public static void UpdateBookISBN(int bISBN, int newISBN) {
 		
 		try {
