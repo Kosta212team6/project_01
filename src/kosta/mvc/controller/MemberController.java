@@ -8,7 +8,7 @@ import kosta.mvc.model.service.MemberServiceImpl;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.MenuView;
 import kosta.mvc.view.SuccessView;
-//
+
 
 public class MemberController {
 	static MemberServiceImpl memberService = new MemberServiceImpl();
