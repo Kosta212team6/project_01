@@ -2,6 +2,7 @@ package kosta.mvc.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -40,6 +41,8 @@ public class BookDAOImpl implements BookDAO {
 		
 		return result;
 	}
+	
+	
 
 	@Override
 	public int UpdateBookISBN(int bISBN, int newISBN) throws SQLException {

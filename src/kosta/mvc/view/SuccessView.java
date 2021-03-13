@@ -1,7 +1,9 @@
 package kosta.mvc.view;
 
 import java.util.List;
+import java.util.Map;
 
+import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.dto.MemberDTO;
 
 
@@ -24,6 +26,21 @@ public class SuccessView {
 			System.out.println(memberDTO);
 		}
 		System.out.println();
+	}
+	/**
+	 * 책바구니 보기 (전체출력)
+	 * @param mID
+	 * @param cart
+	 */
+	public static void printViewCart(String mID, Map<BookDTO, Integer> cart) {
+		System.out.println("------책바구니 내용------");
+		
+		for(BookDTO bookDTO : cart.keySet()) {
+			int bISBN = bookDTO.getbIsbn(); //ISBN
+			String bName = bookDTO.getbName(); //책 이름
+			
+			System.out.println(bISBN + " : " + bName); //ISBA : 책이름 출력
+		}
 	}
 	
 }
