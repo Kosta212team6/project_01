@@ -47,15 +47,15 @@ public class CartController {
 			
 			// 중복된 도서 추가하지 않기
 			Integer OldISBN = cart.get(bookDTO);
-			if(OldISBN != null) {
-				throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
-			}
+//			if(OldISBN =) {
+//				System.out.println("이미 책바구니에 있는 책입니다.");
+//			}
 			
 			cart.put(bookDTO, bISBN);
 			SuccessView.printMessage("책바구니에 책을 담았습니다.");
 			
-		} catch (DuplicatedException e) {
-			FailView.errorMessage(e.getMessage());
+//		} catch (DuplicatedException e) {
+//			FailView.errorMessage(e.getMessage());
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
