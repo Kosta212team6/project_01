@@ -99,7 +99,7 @@ public class CartController {
 			FailView.errorMessage("책바구니가 비었습니다.");
 		} else {
 			SuccessView.printViewCart(mID, cart);
-			MenuView.rentForSure(mID);
+//			MenuView.rentForSure(mID);
 			//getBookDTOInCart(mID);
 		}	
 			//try {

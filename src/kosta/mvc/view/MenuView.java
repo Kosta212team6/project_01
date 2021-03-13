@@ -166,11 +166,12 @@ public class MenuView {
 					break;
 				case 4:
 					System.out.println("책바구니에 담은 책을 봅니다");
-					try {
-						CartController.viewCart(mID);
-					} catch (StringFormatException e) {
-						FailView.errorMessage(e.getMessage());
-					}
+					printBookCartMenu(mID);
+//					try {
+//						CartController.viewCart(mID);
+//					} catch (StringFormatException e) {
+//						FailView.errorMessage(e.getMessage());
+//					}
 					break;
 				case 5:
 					System.out.println("마이서재를 엽니다");
@@ -182,6 +183,36 @@ public class MenuView {
 
 			} catch (NumberFormatException e) {
 				System.out.println("숫자만 입력해주세요!");
+			}
+		}
+	}
+	
+	/**
+	 * 책바구니 담기 메뉴
+	 */
+	public static void printBookCartMenu(String mId) {
+		while(true) {
+			SessionSet ss = SessionSet.getInstance();
+			System.out.println(ss.getSet());
+			
+			System.out.println("메뉴 목록 적으세요");
+			
+			try {
+				int menu = Integer.parseInt(sc.nextLine());
+				switch (menu) {
+				case 1:
+					try {
+						rentForSure(mId);
+					} catch (StringFormatException e) {
+						System.out.println("y 또는 n만 입력하세요");
+					}
+					break;
+
+				default:
+					break;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력해주세요");
 			}
 		}
 	}
