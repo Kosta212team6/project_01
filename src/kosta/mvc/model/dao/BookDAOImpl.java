@@ -240,4 +240,154 @@ public class BookDAOImpl implements BookDAO {
 		}
 		return bookDTO;
 	}
+	
+	/**
+	 * bWrite으로 도서 검색
+	 * */
+	@Override
+	public BookDTO bookSelectByWriter(String bWrite) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BookDTO bookDTO = null;
+		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bWrite=?";
+				
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, bWrite);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				bookDTO = new BookDTO(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getString(7)
+						);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return bookDTO;
+	}
+	
+	/**
+	 * bPub으로 도서 검색
+	 * */
+	public BookDTO bookSelectByPublisher(String bPub) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BookDTO bookDTO = null;
+		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bPub=?";
+				
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, bPub);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				bookDTO = new BookDTO(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getString(7)
+						);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return bookDTO;
+	}
+	
+	
+	/**
+	 * sName으로 도서 검색
+	 * */
+
+	@Override
+	public BookDTO bookSelectBySname(String sName) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BookDTO bookDTO = null;
+		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE sName=?";
+				
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, sName);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				bookDTO = new BookDTO(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getString(7)
+						);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return bookDTO;
+	}
+
+
+
+	/**
+	 * bName으로 도서 검색
+	 * */
+	
+	@Override
+	public BookDTO bookSelectByBname(String bName) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BookDTO bookDTO = null;
+		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bName=?";
+				
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, bName);
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				bookDTO = new BookDTO(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getString(7)
+						);
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return bookDTO;
+	}
+
+
+
+
+	
+	
 }

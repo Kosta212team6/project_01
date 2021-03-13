@@ -56,4 +56,26 @@ public interface BookService {
 	 */
 	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException, NotFoundException;
 	
+	
+	/**
+	 *bWrite으로 도서검색
+	 */
+	public BookDTO bookSelectByWriter(String bWrite) throws SQLException, NotFoundException;
+	
+	/**
+	 *bPub으로 도서검색
+	 */
+	public BookDTO bookSelectByPublisher(String bPub) throws SQLException, NotFoundException;
+	/**
+	 *sName으로 도서검색
+	 */
+	public BookDTO bookSelectBySname(String sName) throws SQLException, NotFoundException;
+	/**
+	 *bName으로 도서검색
+	 */
+
+	public BookDTO bookSelectByBname(String bName) throws SQLException, NotFoundException;
+	
+
+	
 }
