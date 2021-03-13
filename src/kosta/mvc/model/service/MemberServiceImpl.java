@@ -55,5 +55,18 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return list;
 	}
+
+	public boolean checkIDMember(String NowID) throws SQLException{
+		boolean result = memberDAO.checkIDMember(NowID);
+		return result;
+	}
+
+	public void createMember(MemberDTO memberDTO) throws SQLException {
+		int result = memberDAO.createMember(memberDTO);
+		if(result==0) {
+			throw new SQLException("오류 : 회원가입이 실패하였습니다");
+		}
+		
+	}
 	
 }

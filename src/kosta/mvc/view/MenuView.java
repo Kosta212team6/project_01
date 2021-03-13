@@ -6,6 +6,8 @@ import kosta.mvc.controller.BookController;
 import kosta.mvc.controller.CartController;
 import kosta.mvc.controller.MemberController;
 import kosta.mvc.model.dto.BookDTO;
+import kosta.mvc.model.dto.MemberDTO;
+import kosta.mvc.model.service.MemberService;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 
@@ -13,6 +15,9 @@ public class MenuView {
 
 	private static Scanner sc = new Scanner(System.in);
 
+	/**
+	 * 외않돼!!!
+	 */
 	public static void menu() {
 		while (true) {
 			MenuView.printMenu();
@@ -70,16 +75,65 @@ public class MenuView {
 	 * 가입하기 메뉴
 	 */
 	public static void register() {
-
+		System.out.println("회원가입을 시작합니다");
+		System.out.print("ID > ");
+		String mId = sc.nextLine();
+		printCheckIDMember(mId);
+		System.out.print("Password > ");
+		String mPwd = sc.nextLine();
+		System.out.print("Password를 다시 입력해주세요 > ");
+		String mPwd2 = sc.nextLine();
+		printCheckPwd(mPwd, mPwd2);
+		System.out.print("name > ");
+		String mName = sc.nextLine();
+		System.out.print("phone > ");
+		String mPhone = sc.nextLine();
+		
+		MemberDTO memberDTO = new MemberDTO(mId, mName, mPhone, mPwd, "sysdate", 1, 10);
+		MemberController.createMember(memberDTO);
+		System.out.println("\""+memberDTO.getmID()+"\" 아이디로 가입되었습니다");
+	}
+	
+	/**
+	 * 아이디 유효성체크
+	 */
+	public static void printCheckIDMember(String NowID) {
+		boolean result = MemberController.checkIDMember(NowID);
+		if(result==true) {
+			// 아이디 중복체크
+			System.out.println("다른 아이디를 입력해주세요");
+			register();
+		}
+		else if (NowID.length() < 3) {
+			// 아이디 자릿수체크
+			System.out.println("아이디는 3자 이상 입력해주세요");
+			register();
+		}
+		else {
+			System.out.println("사용 가능한 아이디입니다");
+		}
+	}
+	
+	/**
+	 * 비밀번호 재확인
+	 */
+	public static void printCheckPwd(String pwd, String pwd2) {
+		if(pwd.equals(pwd2)) {
+			System.out.println("비밀번호가 일치합니다");
+		}
+		else {
+			System.out.println("비밀번호가 일치하지 않습니다. 처음부터 다시 작성해주세요");
+			register();
+		}
 	}
 
 	/**
 	 * 메인메뉴
 	 */
 	public static void printMenu() {
-		System.out.println("┌──── 도서관프로그램 ──────────┐");
+		System.out.println("┌──── 도서관프로그램 ─────┐");
 		System.out.println("│ 1. 가입하기   2. 로그인  9. 종료 │");
-		System.out.println("└─────────────────────────┘");
+		System.out.println("└─────────────────┘");
 	}
 
 	/**

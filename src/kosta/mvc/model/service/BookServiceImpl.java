@@ -93,7 +93,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<BookDTO> bookSelectByWriter(String bWrite) throws SQLException, NotFoundException {
 		List<BookDTO> list = bookDAO.bookSelectByWriter(bWrite);
-		if(list==null) {
+		if(list==null||list.isEmpty()) {
 			throw new NotFoundException("해당 저자에 해당하는 책이 없습니다");
 		}
 		return list;
@@ -102,10 +102,10 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<BookDTO> bookSelectByPublisher(String bPub) throws SQLException, NotFoundException {
 		List<BookDTO> list = bookDAO.bookSelectByPublisher(bPub);
-	
 		if(list==null || list.isEmpty()) {
 			throw new NotFoundException("해당 출판사에 해당하는 책이 없습니다");
 		}
+	
 		return list;
 	}
 
@@ -117,12 +117,12 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public BookDTO bookSelectByBname(String bName) throws SQLException, NotFoundException {
-		BookDTO bookDTO = bookDAO.bookSelectByBname(bName);
-		if(bookDTO==null) {
+	public List<BookDTO> bookSelectByBname(String bName) throws SQLException, NotFoundException {
+		List<BookDTO> list = bookDAO.bookSelectByBname(bName);
+		if(list==null||list.isEmpty()) {
 			throw new NotFoundException("해당 도서명에 해당하는 책이 없습니다");
 		}
-		return bookDTO;
+		return list;
 	}
 
 

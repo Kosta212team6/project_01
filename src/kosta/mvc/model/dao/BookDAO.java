@@ -31,7 +31,7 @@ public interface BookDAO {
 	
 	public List<BookDTO> bookSelectBySname(String sName) throws SQLException;
 
-	public BookDTO bookSelectByBname(String bName) throws SQLException;
+	public List<BookDTO> bookSelectByBname(String bName) throws SQLException;
 
 	
 }

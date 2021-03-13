@@ -21,8 +21,9 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "INSERT INTO BOOK(BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SCODE) "
-				+ "VALUES(?, ?, ?, ?, ?, 1, ?)";
+		String sql = proFile.getProperty("book.InsertBook"); 
+				//"INSERT INTO BOOK(BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SCODE) "
+				//+ "VALUES(?, ?, ?, ?, ?, 1, ?)";
 		int result = 0;
 		
 		try {
@@ -52,7 +53,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "UPDATE BOOK SET BISBN=? WHERE BISBN=?";
+		String sql = proFile.getProperty("book.UpdateBookISBN");
 		int result = 0;
 		
 		try {
@@ -76,7 +77,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "UPDATE BOOK SET BNAME=? WHERE BISBN=?";
+		String sql = proFile.getProperty("book.UpdateBookName");
 		int result = 0;
 		
 		try {
@@ -100,7 +101,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "UPDATE BOOK SET BWRITE=? WHERE BISBN=?";
+		String sql =proFile.getProperty("book.UpdateBookWrite"); 
 		int result = 0;
 		
 		try {
@@ -123,7 +124,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "UPDATE BOOK SET BPUB=? WHERE BISBN=?";
+		String sql =proFile.getProperty("book.UpdateBookPub");
 		int result = 0;
 		
 		try {
@@ -146,7 +147,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "UPDATE BOOK SET BDATE=? WHERE BISBN=?";
+		String sql = proFile.getProperty("book.UpdateBookDate");
 		int result = 0;
 		
 		try {
@@ -169,7 +170,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "UPDATE BOOK SET SCODE=? WHERE BISBN=?";
+		String sql = proFile.getProperty("book.UpdateBookCode");
 		int result = 0;
 		
 		try {
@@ -192,7 +193,7 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		
-		String sql = "DELETE FROM BOOK WHERE BISBN=?";
+		String sql = proFile.getProperty("book.DeleteBook");
 		int result = 0;
 		
 		try {
@@ -218,8 +219,7 @@ public class BookDAOImpl implements BookDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		BookDTO bookDTO = null;
-		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
-				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE BISBN=?";
+		String sql = proFile.getProperty("book.SelectByBisbn");
 				
 		try {
 			con = DBUtil.getConnection();
@@ -252,10 +252,8 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		BookDTO bookDTO = null;
 		List<BookDTO> list = new ArrayList<BookDTO>();
-		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
-				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bWrite=?";
+		String sql = proFile.getProperty("book.SelectByWriter");
 				
 		try {
 			con = DBUtil.getConnection();
@@ -288,10 +286,10 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		BookDTO bookDTO = null;
 		List<BookDTO> list = new ArrayList<BookDTO>();
-		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
-				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bPub like %?%";
+		String sql = proFile.getProperty("book.SelectByPublisher"); 
+				//"SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+				//+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bPub like '%' ||? ||'%'";
 				
 		try {
 			con = DBUtil.getConnection();
@@ -327,7 +325,6 @@ public class BookDAOImpl implements BookDAO {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		BookDTO bookDTO = null;
 		List<BookDTO> list = new ArrayList<BookDTO>();
 		String sql = proFile.getProperty("book.SelectBySname");
 		
@@ -376,11 +373,11 @@ public class BookDAOImpl implements BookDAO {
 	 * */
 	
 	@Override
-	public BookDTO bookSelectByBname(String bName) throws SQLException {
+	public List<BookDTO> bookSelectByBname(String bName) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		BookDTO bookDTO = null;
+		List<BookDTO> list = new ArrayList<BookDTO>();
 		String sql = proFile.getProperty("book.selectBybName");
 		//String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
 		//		+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bName=?";
@@ -391,13 +388,16 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(1, bName);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				 rs.getInt(1);
-				 rs.getString(2);
-				rs.getString(3);
-				rs.getString(4);
-				rs.getString(5);
-				rs.getInt(6);
-				rs.getString(7);
+				int bISBN = rs.getInt(1);
+				String bNAME = rs.getString(2);
+				String bWRITE =rs.getString(3);
+				String bPUB = rs.getString(4);
+				String bDATE = rs.getString(5);
+				int bSTATUS = rs.getInt(6);
+				String sNAME =rs.getString(7);
+				
+				BookDTO dto = new BookDTO(bISBN, bNAME, bWRITE, bPUB, bDATE, bSTATUS, sNAME);
+				list.add(dto);
 							
 			}
 		/*	if(rs.next()) {
@@ -415,7 +415,7 @@ public class BookDAOImpl implements BookDAO {
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return bookDTO;
+		return list;
 	}
 
 

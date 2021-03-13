@@ -107,7 +107,7 @@ public class BookController {
 	public static void bookSelectByWriter(String bWrite) {
 		try {
 			List<BookDTO> list = bookService.bookSelectByWriter(bWrite);
-			SuccessView.printOnlyBook(list);
+			SuccessView.printBooks(list);
 
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
@@ -118,7 +118,7 @@ public class BookController {
 	public static void bookSelectByPublisher(String bPub) {
 		try {
 			List<BookDTO> list = bookService.bookSelectByPublisher(bPub);
-			SuccessView.printOnlyBook(list);
+			SuccessView.printBooks(list);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
@@ -128,22 +128,20 @@ public class BookController {
 	public static void bookSelectBySname(String sName) {
 		try {
 			List<BookDTO> list = bookService.bookSelectBySname(sName);
-			SuccessView.printOnlyBook(list);
+			SuccessView.printBooks(list);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
 
 	}
 
-	public static BookDTO bookSelectByBname(String bName) {
+	public static void bookSelectByBname(String bName) {
 		try {
-			BookDTO bookDTO = bookService.bookSelectByBname(bName);
-			SuccessView.printOnlyBook(bookDTO);
-			return bookDTO;
+			List<BookDTO> list = bookService.bookSelectByBname(bName);
+			SuccessView.printBooks(list);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-		return null;
 	}
 
 }
