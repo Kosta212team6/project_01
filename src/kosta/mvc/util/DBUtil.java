@@ -24,6 +24,7 @@ public class DBUtil {
 		try {
 			//외부 properteis파일 로딩하기
 			proFile.load(new FileInputStream("resources/dbInfo.properties"));
+			proFile.load(new FileInputStream("resources/book.properties"));
 			//proFile.load(new FileInputStream("board.properties"));
 			
 			Class.forName(proFile.getProperty("driverName"));

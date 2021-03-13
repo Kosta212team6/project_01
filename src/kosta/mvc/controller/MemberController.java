@@ -32,6 +32,9 @@ public class MemberController {
 		}
 	}
 	
+	/**
+	 * 회원 전체 출력
+	 */
 	public static void memberSelectAll() {
 		try {
 			List<MemberDTO> list = memberService.memberSelectAll();
@@ -41,10 +44,35 @@ public class MemberController {
 		}
 	}
 
+	/**
+	 * 연체 회원 출력
+	 */
 	public static void overdueMember() {
 		try {
 			List<MemberDTO> list = memberService.overdueMember();
 			SuccessView.selectPrintAll(list);
+		} catch (SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
+	}
+	
+	/**
+	 * 아이디 중복체크
+	 */
+	public static boolean checkIDMember(String NowID) {
+		try {
+			boolean result = memberService.checkIDMember(NowID);
+			return result;
+		} catch (SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return false;
+	}
+
+	public static void createMember(MemberDTO memberDTO) {
+		try {
+			memberService.createMember(memberDTO);
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}

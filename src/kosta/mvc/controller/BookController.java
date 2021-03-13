@@ -1,6 +1,7 @@
 package kosta.mvc.controller;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dto.BookDTO;
@@ -103,53 +104,44 @@ public class BookController {
 		return null;
 	}
 
-	public static BookDTO bookSelectByWriter(String bWrite) {
+	public static void bookSelectByWriter(String bWrite) {
 		try {
-			BookDTO bookDTO = bookService.bookSelectByWriter(bWrite);
-			SuccessView.printOnlyBook(bookDTO);
-			return bookDTO;
+			List<BookDTO> list = bookService.bookSelectByWriter(bWrite);
+			SuccessView.printBooks(list);
+
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-		return null;
 
 	}
 
-	public static BookDTO bookSelectByPublisher(String bPub) {
+	public static void bookSelectByPublisher(String bPub) {
 		try {
-			BookDTO bookDTO = bookService.bookSelectByPublisher(bPub);
-			SuccessView.printOnlyBook(bookDTO);
-			return bookDTO;
+			List<BookDTO> list = bookService.bookSelectByPublisher(bPub);
+			SuccessView.printBooks(list);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-		return null;
 
 	}
 
-	public static BookDTO bookSelectBySname(String sName) {
+	public static void bookSelectBySname(String sName) {
 		try {
-			BookDTO bookDTO = bookService.bookSelectBySname(sName);
-			SuccessView.printOnlyBook(bookDTO);
-			return bookDTO;
+			List<BookDTO> list = bookService.bookSelectBySname(sName);
+			SuccessView.printBooks(list);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-		return null;
+
 	}
-	
-	public static BookDTO bookSelectByBname(String bName) {
+
+	public static void bookSelectByBname(String bName) {
 		try {
-			BookDTO bookDTO = bookService.bookSelectByBname(bName);
-			SuccessView.printOnlyBook(bookDTO);
-			return bookDTO;
+			List<BookDTO> list = bookService.bookSelectByBname(bName);
+			SuccessView.printBooks(list);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-		return null;
 	}
-
-
-	
 
 }

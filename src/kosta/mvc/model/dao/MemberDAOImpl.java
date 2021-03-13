@@ -105,4 +105,54 @@ public class MemberDAOImpl implements MemberDAO {
 		return list;
 	}
 
+	@Override
+	public boolean checkIDMember(String NowID) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT MID FROM MEMBER WHERE MID=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, NowID);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				return true;
+			}
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return false;
+	}
+
+	@Override
+	public int createMember(MemberDTO memberDTO) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		int result = 0;
+		String sql = "INSERT INTO MEMBER(MID, MNAME, MPHONE, MPWD, MABLE, MSTATUS, NCODE) "
+				+ "VALUES(?, ?, ?, ?, SYSDATE, 1, 10)";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, memberDTO.getmID());
+			ps.setString(2, memberDTO.getmName());
+			ps.setString(3, memberDTO.getmPhone());
+			ps.setString(4, memberDTO.getmPwd());
+			
+			result = ps.executeUpdate();
+			
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+	
 }

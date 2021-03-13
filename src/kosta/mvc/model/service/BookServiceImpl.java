@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dao.BookDAO;
@@ -90,39 +91,38 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
-	public BookDTO bookSelectByWriter(String bWrite) throws SQLException, NotFoundException {
-		BookDTO bookDTO = bookDAO.bookSelectByWriter(bWrite);
-		if(bookDTO==null) {
+	public List<BookDTO> bookSelectByWriter(String bWrite) throws SQLException, NotFoundException {
+		List<BookDTO> list = bookDAO.bookSelectByWriter(bWrite);
+		if(list==null||list.isEmpty()) {
 			throw new NotFoundException("해당 저자에 해당하는 책이 없습니다");
 		}
-		return bookDTO;
+		return list;
 	}
 	
 	@Override
-	public BookDTO bookSelectByPublisher(String bPub) throws SQLException, NotFoundException {
-		BookDTO bookDTO = bookDAO.bookSelectByPublisher(bPub);
-		if(bookDTO==null) {
+	public List<BookDTO> bookSelectByPublisher(String bPub) throws SQLException, NotFoundException {
+		List<BookDTO> list = bookDAO.bookSelectByPublisher(bPub);
+		if(list==null || list.isEmpty()) {
 			throw new NotFoundException("해당 출판사에 해당하는 책이 없습니다");
 		}
-		return bookDTO;
+	
+		return list;
 	}
 
 	@Override
-	public BookDTO bookSelectBySname(String sName) throws SQLException, NotFoundException {
-		BookDTO bookDTO = bookDAO.bookSelectBySname(sName);
-		if(bookDTO==null) {
-			throw new NotFoundException("해당 분야에 해당하는 책이 없습니다");
-		}
-		return bookDTO;
+	public List<BookDTO> bookSelectBySname(String sName) throws SQLException, NotFoundException {
+		List<BookDTO> list = bookDAO.bookSelectBySname(sName);
+		if(list==null || list.isEmpty()) throw new NotFoundException("해당 분야에 해당하는 책이 없습니다");
+		return list;
 	}
 
 	@Override
-	public BookDTO bookSelectByBname(String bName) throws SQLException, NotFoundException {
-		BookDTO bookDTO = bookDAO.bookSelectByBname(bName);
-		if(bookDTO==null) {
+	public List<BookDTO> bookSelectByBname(String bName) throws SQLException, NotFoundException {
+		List<BookDTO> list = bookDAO.bookSelectByBname(bName);
+		if(list==null||list.isEmpty()) {
 			throw new NotFoundException("해당 도서명에 해당하는 책이 없습니다");
 		}
-		return bookDTO;
+		return list;
 	}
 
 
