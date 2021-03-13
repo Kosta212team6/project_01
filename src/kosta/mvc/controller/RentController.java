@@ -2,7 +2,10 @@ package kosta.mvc.controller;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
+import kosta.mvc.exception.StringFormatException;
+import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.dto.RentDTO;
 import kosta.mvc.model.service.RentService;
 import kosta.mvc.view.FailView;
@@ -12,13 +15,13 @@ public class RentController {
 	/**
 	 * 대여하기
 	 */
-	public static void insertRents (Connection con, RentDTO rentDTO) {
+	public static void insertRents (List<BookDTO> list, String mID) {
 		try {
-			rentService.insertRents(con, rentDTO);
-		} catch (SQLException e) {
+			rentService.insertRents(list, mID);
+		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
-		}
 	}
 	
 	
+}
 }

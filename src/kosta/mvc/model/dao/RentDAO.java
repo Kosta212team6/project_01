@@ -38,11 +38,11 @@ public interface RentDAO {
 	/**
 	 * 대여테이블에 넣어주기
 	 */
-	int RentInsert(Connection con, RentDTO rentDTO)throws SQLException; 
+	public int insertRents(List<BookDTO> list, String mID) throws SQLException; 
 	
 	/**
 	 * 대여한 도서 상태 0으로 변경하기
 	 */
-	public int[] switchBstatus(Connection con, List<BookDTO> list) throws SQLException;
+	public int switchBstatus(Connection con, int bISBN) throws SQLException;
 	
 }

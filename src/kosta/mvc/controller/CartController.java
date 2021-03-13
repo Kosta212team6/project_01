@@ -1,22 +1,27 @@
 package kosta.mvc.controller;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import kosta.mvc.exception.DuplicatedException;
+import kosta.mvc.exception.StringFormatException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.service.BookService;
 import kosta.mvc.model.service.BookServiceImpl;
+import kosta.mvc.model.service.RentService;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.FailView;
+import kosta.mvc.view.MenuView;
 import kosta.mvc.view.SuccessView;
 
 
 public class CartController {
 	private static BookService bookService = new BookServiceImpl();
+	private static RentService rentService = new RentService();
 	/**
 	 * 책바구니에 책 집어넣기
 	 * @param mID
@@ -32,6 +37,9 @@ public class CartController {
 			if(bookDTO.getbStatus()==0) {
 				throw new SQLException("해당 도서는 이미 대출중이므로"
 						+ "책바구니에 담을 수 없습니다.");
+				/**
+				 * 여기다가 예약하시겠습니까??메뉴 호출해줘야함
+				 */
 			}
 			//mID에 해당하는 세션찾기
 			SessionSet ss = SessionSet.getInstance();
@@ -82,7 +90,7 @@ public class CartController {
 	 * 책바구니 보기
 	 * @param mID
 	 */
-	public static void viewCart(String mID) {
+	public static void viewCart(String mID) throws StringFormatException {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
 		
@@ -91,6 +99,14 @@ public class CartController {
 			FailView.errorMessage("책바구니가 비었습니다.");
 		} else {
 			SuccessView.printViewCart(mID, cart);
+			MenuView.rentForSure(mID);
+			//getBookDTOInCart(mID);
+		}	
+			//try {
+//				MenuView2.rentForSure(mID);
+//			} catch(StringFormatException e) {
+//				FailView.errorMessage(e.getMessage());
+//			}
 		}
 		
 		//if(OldISBN =) {
@@ -106,27 +122,30 @@ public class CartController {
 		
 		
 		
-	}
+	
 	/**
 	 * 대여하기 전에 책바구니 안에 있는 책 리턴해주는 메소드
 	 * @param mID
 	 * @return
 	 */
 	public static List<BookDTO> getBookDTOInCart(String mID) {
-		List<BookDTO> list = null;
+		List<BookDTO> list = new ArrayList<BookDTO>();
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
 		
 		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
 		for(BookDTO bookDTO : cart.keySet()) {
-//			int bISBN = bookDTO.getbIsbn(); //ISBN
-//			String bName = bookDTO.getbName(); //책 이름
+			int bISBN = bookDTO.getbIsbn(); //ISBN
+			String bName = bookDTO.getbName(); //책 이름
 			
 			list.add(new BookDTO(bookDTO.getbIsbn(), bookDTO.getbName()));
 		}
 				
 		return list;
 	}
+	/**
+	 * 대여 실행하는 메소드
+	 */
 	
 	
 }

@@ -1,10 +1,13 @@
 package kosta.mvc.view;
 
+import java.util.List;
 import java.util.Scanner;
 
 import kosta.mvc.controller.BookController;
 import kosta.mvc.controller.CartController;
 import kosta.mvc.controller.MemberController;
+import kosta.mvc.controller.RentController;
+import kosta.mvc.exception.StringFormatException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
@@ -106,9 +109,14 @@ public class MenuView {
 				case 3:
 					System.out.println("책바구니에 책을 담습니다");
 					printPutCart(mID);
+					break;
 				case 4:
 					System.out.println("책바구니에 담은 책을 봅니다");
-					CartController.viewCart(mID);
+					try {
+						CartController.viewCart(mID);
+					} catch (StringFormatException e) {
+						FailView.errorMessage(e.getMessage());
+					}
 					break;
 				case 5:
 					System.out.println("마이서재를 엽니다");
@@ -232,7 +240,24 @@ public class MenuView {
 		int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
 
 		CartController.putCart(mID, bISBN);
-
+	}
+	/**
+	 * 대여여부 묻는 메뉴
+	 */
+	public static void rentForSure(String mID) throws StringFormatException {
+		
+		List<BookDTO> list = CartController.getBookDTOInCart(mID);
+		
+		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n");
+		String rent = sc.nextLine();
+		if(rent.equals("y")) {
+			RentController.insertRents(list, mID);
+		} else if(rent.equals("n")) {
+			printUserMenu(mID);
+		} else {
+			throw new StringFormatException("[ yes or no ] 로 입력해주세요");
+		}
+		
 	}
 
 	/**
