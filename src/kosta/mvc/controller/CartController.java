@@ -47,24 +47,28 @@ public class CartController {
 			}
 			
 			// 중복된 도서 추가하지 않기
+			// 1. 내가 선택한 bookDTO의 ISBN 먼저 가져온다
+			// -> bookDTO.getbISBN();
+			// 2. 기존의 카트에 있는 책들의 ISBN을 가져온다
+			// -> 
+			// 3. 둘을 비교하여 같은지 다른지 비교한다
+			// 4. 카트에 같은게 존재하면 추가하지 않는다
+			
+			// 중복된 도서 추가하지 않기
+				Integer qty = cart.get(bookDTO);
+//				if(bookDTO != null) {
+//					throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
+//				}
 
-			
-
-//			if(bookDTO != null) {
-//				throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
-//			}
-			// 세션에서 꺼내와서
-			// isbn이 겹치면 튕겨내기
-			
-			
-			cart.put(bookDTO, bStatus);
-			SuccessView.printMessage("책바구니에 책을 담았습니다.");
+				cart.put(bookDTO, bStatus);
+				SuccessView.printMessage("책바구니에 책을 담았습니다.");
 			
 		} 
 //		catch (DuplicatedException e) {
 //			FailView.errorMessage(e.getMessage());
 //		} 
 		catch (Exception e) {
+			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}

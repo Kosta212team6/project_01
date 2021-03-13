@@ -192,7 +192,7 @@ public class MenuView {
 			System.out.println(ss.getSet());
 			System.out.println(mID+"님 관리자로 로그인 하셨습니다.");
 			
-			System.out.println("1. 전체회원보기   2. 연체회원보기");
+			System.out.println("1. 전체회원보기   2. 연체회원보기   9. 뒤로가기");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -202,6 +202,7 @@ public class MenuView {
 					break;
 				case 2:
 					System.out.println("현재 연체중인 회원을 출력합니다");
+					printOverdueMember();
 					break;
 				case 9:
 					System.out.println("이전 메뉴를 불러옵니다");
