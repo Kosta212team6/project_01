@@ -3,6 +3,7 @@ package kosta.mvc.view;
 import java.util.Scanner;
 
 import kosta.mvc.controller.BookController;
+import kosta.mvc.controller.CartController;
 import kosta.mvc.controller.MemberController;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.session.Session;
@@ -105,6 +106,7 @@ public class MenuView {
 					System.out.println("책바구니에 책을 담습니다");
 				case 4:
 					System.out.println("책바구니에 담은 책을 봅니다");
+					CartController.viewCart(mID);
 					break;
 				case 5:
 					System.out.println("마이서재를 엽니다");
