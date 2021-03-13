@@ -7,7 +7,8 @@ public class BookDTO {
 	private String bPub;
 	private String bDate;
 	private int bStatus;
-	private int sCode; //fk
+	private int sCode;
+	private String sName; //fk
 	
 	public BookDTO() {}
 	
@@ -21,15 +22,24 @@ public class BookDTO {
 		this.bName = bName;
 	}
 	
-	public BookDTO(int bISBN, String bName, String bWrite, String bPub, String bDate, int bStatus, int sCode) {
+	public BookDTO(int bISBN, String bName, String bWrite, String bPub, String bDate, int bStatus) {
 		this(bISBN, bName);
 		this.bWrite = bWrite;
 		this.bPub = bPub;
 		this.bDate = bDate;
 		this.bStatus = bStatus;
-		this.sCode = sCode;
 	}
 
+	public BookDTO(int bISBN, String bName, String bWrite, String bPub, String bDate, int bStatus, int sCode) {
+		this(bISBN, bName, bWrite, bPub, bDate, bStatus);
+		this.sCode=sCode;
+	}
+	
+	public BookDTO(int bISBN, String bName, String bWrite, String bPub, String bDate, int bStatus, String sName) {
+		this(bISBN, bName, bWrite, bPub, bDate, bStatus);
+		this.sName=sName;
+	}
+	
 	public int getbIsbn() {
 		return bISBN;
 	}
@@ -85,10 +95,18 @@ public class BookDTO {
 	public void setsCode(int sCode) {
 		this.sCode = sCode;
 	}
-	
+
+	public String getsName() {
+		return sName;
+	}
+
+	public void setsName(String sName) {
+		this.sName = sName;
+	}
+
 	@Override
 	public String toString() {
-		return bISBN + " | " + bName + " | " +  bWrite + " | " +  bPub + " | " +  bDate + " | " +  bStatus + " | " +  sCode;
+		return bISBN + " | " + bName + " | " +  bWrite + " | " +  bPub + " | " +  bDate + " | " +  bStatus + " | " +  sName;
 	}
 	
 }

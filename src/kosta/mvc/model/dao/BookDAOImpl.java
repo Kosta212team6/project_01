@@ -215,7 +215,8 @@ public class BookDAOImpl implements BookDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		BookDTO bookDTO = null;
-		String sql = "select * from book where bisbn = ?";
+		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE BISBN=?";
 				
 		try {
 			con = DBUtil.getConnection();
@@ -224,7 +225,15 @@ public class BookDAOImpl implements BookDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				bookDTO = new BookDTO(rs.getInt(1));
+				bookDTO = new BookDTO(
+						rs.getInt(1), 
+						rs.getString(2), 
+						rs.getString(3), 
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getString(7)
+						);
 			}
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
