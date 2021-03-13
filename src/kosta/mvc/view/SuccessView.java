@@ -20,8 +20,11 @@ public class SuccessView {
 	/**
 	 * 책 정보 한 권만 출력하기
 	 */
-	public static void printOnlyBook(BookDTO bookDTO) {
-		System.out.println(bookDTO);
+	public static void printOnlyBook(List<BookDTO> list) {
+		for(BookDTO dto : list) {
+			System.out.println(dto);
+		}
+		System.out.println();
 	}
 	
 	/**
@@ -49,5 +52,7 @@ public class SuccessView {
 			System.out.println(bISBN + " : " + bName); //ISBA : 책이름 출력
 		}
 	}
+
+	
 	
 }

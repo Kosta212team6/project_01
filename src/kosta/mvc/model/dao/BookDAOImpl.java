@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.util.DBUtil;
 
 public class BookDAOImpl implements BookDAO {
+	private Properties proFile = DBUtil.getProFile();
 	
 	// INSERT INTO BOOK(BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SCODE) VALUES(?, ?, ?, ?, ?, 1, ?);
 	@Override
@@ -245,11 +248,12 @@ public class BookDAOImpl implements BookDAO {
 	 * bWrite으로 도서 검색
 	 * */
 	@Override
-	public BookDTO bookSelectByWriter(String bWrite) throws SQLException {
+	public List<BookDTO> bookSelectByWriter(String bWrite) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		BookDTO bookDTO = null;
+		List<BookDTO> list = new ArrayList<BookDTO>();
 		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
 				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bWrite=?";
 				
@@ -259,33 +263,35 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(1, bWrite);
 			rs = ps.executeQuery();
 			
-			if(rs.next()) {
-				bookDTO = new BookDTO(
-						rs.getInt(1), 
-						rs.getString(2), 
-						rs.getString(3), 
-						rs.getString(4),
-						rs.getString(5),
-						rs.getInt(6),
-						rs.getString(7)
-						);
+			while(rs.next()) {
+				int bISBN = rs.getInt(1);
+				String bNAME = rs.getString(2);
+				String bWRITE =rs.getString(3);
+				String bPUB = rs.getString(4);
+				String bDATE = rs.getString(5);
+				int bSTATUS = rs.getInt(6);
+				String sNAME =rs.getString(7);
+				
+				BookDTO dto = new BookDTO(bISBN, bNAME, bWRITE, bPUB, bDATE, bSTATUS, sNAME);
+				list.add(dto);
 			}
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return bookDTO;
+		return list;
 	}
 	
 	/**
 	 * bPub으로 도서 검색
 	 * */
-	public BookDTO bookSelectByPublisher(String bPub) throws SQLException {
+	public List<BookDTO> bookSelectByPublisher(String bPub) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		BookDTO bookDTO = null;
+		List<BookDTO> list = new ArrayList<BookDTO>();
 		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
-				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bPub=?";
+				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bPub like %?%";
 				
 		try {
 			con = DBUtil.getConnection();
@@ -293,21 +299,22 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(1, bPub);
 			rs = ps.executeQuery();
 			
-			if(rs.next()) {
-				bookDTO = new BookDTO(
-						rs.getInt(1), 
-						rs.getString(2), 
-						rs.getString(3), 
-						rs.getString(4),
-						rs.getString(5),
-						rs.getInt(6),
-						rs.getString(7)
-						);
+			while(rs.next()) {
+				int bISBN = rs.getInt(1);
+				String bNAME = rs.getString(2);
+				String bWRITE =rs.getString(3);
+				String bPUB = rs.getString(4);
+				String bDATE = rs.getString(5);
+				int bSTATUS = rs.getInt(6);
+				String sNAME =rs.getString(7);
+				
+				BookDTO dto = new BookDTO(bISBN, bNAME, bWRITE, bPUB, bDATE, bSTATUS, sNAME);
+				list.add(dto);
 			}
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return bookDTO;
+		return list;
 	}
 	
 	
@@ -316,13 +323,16 @@ public class BookDAOImpl implements BookDAO {
 	 * */
 
 	@Override
-	public BookDTO bookSelectBySname(String sName) throws SQLException {
+	public List<BookDTO> bookSelectBySname(String sName) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		BookDTO bookDTO = null;
-		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
-				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE sName=?";
+		List<BookDTO> list = new ArrayList<BookDTO>();
+		String sql = proFile.getProperty("book.SelectBySname");
+		
+		//String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+			//	+ "FROM BOOK JOIN SORT USING(SCODE) WHERE sName=?";
 				
 		try {
 			con = DBUtil.getConnection();
@@ -330,7 +340,19 @@ public class BookDAOImpl implements BookDAO {
 			ps.setString(1, sName);
 			rs = ps.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
+				int bISBN = rs.getInt(1);
+				String bNAME = rs.getString(2);
+				String bWRITE =rs.getString(3);
+				String bPUB = rs.getString(4);
+				String bDATE = rs.getString(5);
+				int bSTATUS = rs.getInt(6);
+				String sNAME =rs.getString(7);
+				
+				BookDTO dto = new BookDTO(bISBN, bNAME, bWRITE, bPUB, bDATE, bSTATUS, sNAME);
+				list.add(dto);
+			}
+			/*if(rs.next()) {
 				bookDTO = new BookDTO(
 						rs.getInt(1), 
 						rs.getString(2), 
@@ -340,11 +362,11 @@ public class BookDAOImpl implements BookDAO {
 						rs.getInt(6),
 						rs.getString(7)
 						);
-			}
+			} */
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
-		return bookDTO;
+		return list;
 	}
 
 
@@ -359,16 +381,26 @@ public class BookDAOImpl implements BookDAO {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		BookDTO bookDTO = null;
-		String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
-				+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bName=?";
+		String sql = proFile.getProperty("book.selectBybName");
+		//String sql = "SELECT BISBN, BNAME, BWRITE, BPUB, BDATE, BSTATUS, SNAME "
+		//		+ "FROM BOOK JOIN SORT USING(SCODE) WHERE bName=?";
 				
 		try {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			ps.setString(1, bName);
 			rs = ps.executeQuery();
-			
-			if(rs.next()) {
+			while(rs.next()) {
+				 rs.getInt(1);
+				 rs.getString(2);
+				rs.getString(3);
+				rs.getString(4);
+				rs.getString(5);
+				rs.getInt(6);
+				rs.getString(7);
+							
+			}
+		/*	if(rs.next()) {
 				bookDTO = new BookDTO(
 						rs.getInt(1), 
 						rs.getString(2), 
@@ -379,6 +411,7 @@ public class BookDAOImpl implements BookDAO {
 						rs.getString(7)
 						);
 			}
+			*/
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}

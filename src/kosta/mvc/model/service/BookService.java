@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dto.BookDTO;
@@ -60,16 +61,16 @@ public interface BookService {
 	/**
 	 *bWrite으로 도서검색
 	 */
-	public BookDTO bookSelectByWriter(String bWrite) throws SQLException, NotFoundException;
+	public List<BookDTO> bookSelectByWriter(String bWrite) throws SQLException, NotFoundException;
 	
 	/**
 	 *bPub으로 도서검색
 	 */
-	public BookDTO bookSelectByPublisher(String bPub) throws SQLException, NotFoundException;
+	public List<BookDTO> bookSelectByPublisher(String bPub) throws SQLException, NotFoundException;
 	/**
 	 *sName으로 도서검색
 	 */
-	public BookDTO bookSelectBySname(String sName) throws SQLException, NotFoundException;
+	public List<BookDTO> bookSelectBySname(String sName) throws SQLException, NotFoundException;
 	/**
 	 *bName으로 도서검색
 	 */
