@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dao.BookDAO;
 import kosta.mvc.model.dao.BookDAOImpl;
 import kosta.mvc.model.dto.BookDTO;
@@ -78,31 +79,16 @@ public class BookServiceImpl implements BookService {
 		}
 		
 	}
-	
-	/**
-	 * bISBN으로 도서 검색
-	 */
+
 	@Override
-	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		BookDTO bookDTO = null;
-		String sql = "select * from book where bisbn = ?";
-				
-		try {
-			con = DBUtil.getConnection();
-			ps = con.prepareStatement(sql);
-			ps.setInt(1, bISBN);
-			rs = ps.executeQuery();
-			
-			if(rs.next()) {
-				bookDTO = new BookDTO(rs.getInt(1));
-			}
-		} finally {
-			DBUtil.dbClose(con, ps, rs);
+	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException, NotFoundException {
+		BookDTO bookDTO = bookDAO.bookSelectByBisbn(bISBN);
+		if(bookDTO==null) {
+			throw new NotFoundException("해당 ISBN에 해당하는 책이 없습니다");
 		}
 		return bookDTO;
 	}
+	
+
 
 }

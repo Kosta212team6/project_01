@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.util.DBUtil;
 
@@ -53,6 +54,6 @@ public interface BookService {
 	/**
 	 * bISBN으로 도서 검색
 	 */
-	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException;
+	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException, NotFoundException;
 	
 }

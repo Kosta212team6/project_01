@@ -2,6 +2,7 @@ package kosta.mvc.controller;
 
 import java.sql.SQLException;
 
+import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.service.BookService;
 import kosta.mvc.model.service.BookServiceImpl;
@@ -84,6 +85,17 @@ public class BookController {
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
+	}
+	
+	public static BookDTO bookSelectByBisbn(int bISBN) {
+		try {
+			BookDTO bookDTO = bookService.bookSelectByBisbn(bISBN);
+			SuccessView.printOnlyBook(bookDTO);
+			return bookDTO;
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return null;
 	}
 
 }

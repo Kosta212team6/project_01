@@ -21,4 +21,6 @@ public interface BookDAO {
 	int UpdateBookCode(BookDTO bookDTO) throws SQLException;
 
 	int DeleteBook(int bISBN) throws SQLException;
+	
+	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException;
 }

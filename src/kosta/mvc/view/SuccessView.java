@@ -18,6 +18,13 @@ public class SuccessView {
 	}
 	
 	/**
+	 * 책 정보 한 권만 출력하기
+	 */
+	public static void printOnlyBook(BookDTO bookDTO) {
+		System.out.println(bookDTO);
+	}
+	
+	/**
 	 * 전체 검색 출력하기
 	 */
 	public static void selectPrintAll(List<MemberDTO> list) {

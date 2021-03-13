@@ -101,9 +101,11 @@ public class MenuView {
 					return;
 				case 2:
 					System.out.println("책을 검색합니다");
+					printSelectByISBN();
 					break;
 				case 3:
 					System.out.println("책바구니에 책을 담습니다");
+					printPutCart(mID);
 				case 4:
 					System.out.println("책바구니에 담은 책을 봅니다");
 					CartController.viewCart(mID);
@@ -120,6 +122,27 @@ public class MenuView {
 				System.out.println("숫자만 입력해주세요");
 			}
 		}
+	}
+	
+	/**
+	 * 도서 검색
+	 */
+	public static void printSelectByISBN() {
+		System.out.print(" > ");
+		int bISBN = Integer.parseInt(sc.nextLine());
+		BookController.bookSelectByBisbn(bISBN);
+	}
+	
+	/**
+	 * 책바구니 담기 
+	 */
+	public static void printPutCart(String mID) {
+		System.out.print("ISBN > ");
+		int bISBN = Integer.parseInt(sc.nextLine());
+		
+		int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
+		
+		CartController.putCart(mID, bISBN, bStatus);
 	}
 	
 	/**
@@ -160,6 +183,7 @@ public class MenuView {
 			}
 		}
 	}
+
 	
 	/**
 	 * 관리자용 회원 관리 메뉴

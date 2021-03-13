@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import kosta.mvc.exception.DuplicatedException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.service.BookService;
 import kosta.mvc.model.service.BookServiceImpl;
@@ -12,6 +13,7 @@ import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.SuccessView;
+import sun.util.resources.ext.CalendarData_th;
 
 public class CartController {
 	private static BookService bookService = new BookServiceImpl();
@@ -44,10 +46,17 @@ public class CartController {
 				session.setAttribute("cart", cart);
 			}
 			
+			// 중복된 도서 추가하지 않기
+			Integer qty = cart.get(bookDTO);
+			if(bookDTO != null) {
+				throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
+			}
+			
 			cart.put(bookDTO, bStatus);
 			SuccessView.printMessage("책바구니에 책을 담았습니다.");
 			
-			
+		} catch (DuplicatedException e) {
+			FailView.errorMessage(e.getMessage());
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
@@ -60,7 +69,7 @@ public class CartController {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
 		
-		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
+		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>) session.getAttribute("cart");
 		if(cart==null) {
 			FailView.errorMessage("책바구니가 비었습니다.");
 		} else {
