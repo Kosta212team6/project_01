@@ -66,8 +66,7 @@ public class MemberDTO {
 	}
 	@Override
 	public String toString() {
-		return mID + " | " + mName + " | " + mPhone + " | " + mPwd + " | " + mAble
-				+ " | " + mStatus + " | " + nCode;
+		return mID + " | " + mName + " | " + mPhone + " | " + mAble + " | " + nCode;
 	}
 
 }

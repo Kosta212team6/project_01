@@ -49,7 +49,7 @@ public class MemberDAOImpl implements MemberDAO {
 		ResultSet rs = null;
 		
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
-		String sql = "select * from member";
+		String sql = "SELECT MID, MNAME, MPHONE, MABLE, NCODE FROM MEMBER WHERE MSTATUS=1";
 		
 		try {
 			con = DBUtil.getConnection();
@@ -61,17 +61,46 @@ public class MemberDAOImpl implements MemberDAO {
 				String mName = rs.getString("mname");
 				String mPhone = rs.getString("mphone");
 				String mAble = rs.getString("mable");
-				int mStatus = rs.getInt("mstatus");
 				int nCode = rs.getInt("ncode");
 				
-				MemberDTO memberDTO = new MemberDTO(mID, mName, mPhone, null, mAble, mStatus, nCode);
+				MemberDTO memberDTO = new MemberDTO(mID, mName, mPhone, null, mAble, 0, nCode);
 				list.add(memberDTO);
 			}
 			
 		} finally {
 			DBUtil.dbClose(con, ps, rs);
 		}
+		return list;
+	}
+
+	@Override
+	public List<MemberDTO> overdueMember() throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+		String sql = "SELECT MID, MNAME, MPHONE, MABLE, NCODE FROM MEMBER WHERE MSTATUS=1";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String mID = rs.getString("mid");
+				String mName = rs.getString("mname");
+				String mPhone = rs.getString("mphone");
+				String mAble = rs.getString("mable");
+				int nCode = rs.getInt("ncode");
+				
+				MemberDTO memberDTO = new MemberDTO(mID, mName, mPhone, null, mAble, 0, nCode);
+				list.add(memberDTO);
+			}
+			
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
 		return list;
 	}
 

@@ -47,5 +47,13 @@ public class MemberServiceImpl implements MemberService{
 		}
 		return list;
 	}
+
+	public List<MemberDTO> overdueMember() throws SQLException {
+		List<MemberDTO> list = memberDAO.overdueMember();
+		if(list==null) {
+			throw new SQLException("오류 : 연체 회원이 존재하지 않습니다");
+		}
+		return list;
+	}
 	
 }

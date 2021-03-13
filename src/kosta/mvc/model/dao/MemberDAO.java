@@ -15,4 +15,9 @@ public interface MemberDAO {
 	 * 관리자 : 전체 회원 조회
 	 */
 	List<MemberDTO> memberSelectAll() throws SQLException;
+
+	/**
+	 * 관리자 : 연체회원 조회 
+	 */
+	List<MemberDTO> overdueMember() throws SQLException;
 }

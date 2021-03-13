@@ -33,13 +33,22 @@ public class MemberController {
 	}
 	
 	public static void memberSelectAll() {
-		
 		try {
 			List<MemberDTO> list = memberService.memberSelectAll();
 			SuccessView.selectPrintAll(list);
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
+	}
+
+	public static void overdueMember() {
+		try {
+			List<MemberDTO> list = memberService.overdueMember();
+			SuccessView.selectPrintAll(list);
+		} catch (SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
 	}
 
 }

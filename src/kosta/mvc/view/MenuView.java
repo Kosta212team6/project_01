@@ -126,7 +126,7 @@ public class MenuView {
 	public static void printAdminMenu(String mID) {
 		while(true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+			//System.out.println(ss.getSet());
 			System.out.println(mID+"님 관리자로 로그인 하셨습니다.");
 			System.out.println("1. 로그아웃   2. 도서검색   3. 도서관리   4. 회원관리");
 			
@@ -142,10 +142,11 @@ public class MenuView {
 					break;
 				case 3:
 					System.out.println("도서관리를 선택하셨습니다");
-					TestView.printAdminBookDMLMenu(mID);
+					MenuView.printAdminBookDMLMenu(mID);
 					break;
 				case 4:
 					System.out.println("회원관리를 선택하셨습니다");
+					printAdminMemberMenu(mID);
 					break;
 				default:
 					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
@@ -159,45 +160,95 @@ public class MenuView {
 	}
 	
 	/**
+	 * 관리자용 회원 관리 메뉴
+	 */
+	public static void printAdminMemberMenu(String mID) {
+		while(true) {
+			SessionSet ss = SessionSet.getInstance();
+			System.out.println(ss.getSet());
+			System.out.println(mID+"님 관리자로 로그인 하셨습니다.");
+			
+			System.out.println("1. 전체회원보기   2. 연체회원보기");
+			try {
+				int menu = Integer.parseInt(sc.nextLine());
+				switch (menu) {
+				case 1:
+					System.out.println("전체회원을 출력합니다");
+					printMemberSelectAll();
+					break;
+				case 2:
+					System.out.println("현재 연체중인 회원을 출력합니다");
+					break;
+				case 9:
+					System.out.println("이전 메뉴를 불러옵니다");
+					return;
+				default:
+					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
+					break;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력해주세요");
+			}
+		}
+	}
+	
+	/**
+	 * 전체회원 출력
+	 */
+	public static void printMemberSelectAll() {
+		MemberController.memberSelectAll();
+	}
+	
+	/**
+	 * 현재 연체중인 회원 출력
+	 */
+	public static void printOverdueMember() {
+		MemberController.overdueMember();
+	}
+	
+	/**
 	 * 관리자용 도서 관리 메뉴
 	 */
 	public static void printAdminBookDMLMenu(String mID) {
-		SessionSet ss = SessionSet.getInstance();
-		System.out.println(ss.getSet());
-		System.out.println(mID+"님 관리자로 로그인 하셨습니다.");
-		
-		System.out.println("1. 도서추가   2. 도서정보 수정   3. 도서정보 삭제   9. 뒤로가기");
-
-		try {
-			int menu = Integer.parseInt(sc.nextLine());
-			switch (menu) {
-			case 1:
-				System.out.println("도서를 추가합니다");
-				printAdminInsertBook();
-				break;
-			case 2:
-				System.out.println("도서정보를 수정합니다");
-				break;
-			case 3:
-				System.out.println("도서정보를 삭제합니다");
-				break;
-			case 9:
-				System.out.println("이전 메뉴를 불러옵니다");
-				return;
-			default:
-				System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
-				break;
-			}
-		} catch (NumberFormatException e) {
-			System.out.println("숫자만 입력해주세요");
-		}	
+		while(true) {
+			SessionSet ss = SessionSet.getInstance();
+			System.out.println(ss.getSet());
+			System.out.println(mID+"님 관리자로 로그인 하셨습니다.");
+			
+			System.out.println("1. 도서추가   2. 도서정보 수정   3. 도서정보 삭제   9. 뒤로가기");
+	
+			try {
+				int menu = Integer.parseInt(sc.nextLine());
+				switch (menu) {
+				case 1:
+					System.out.println("도서를 추가합니다");
+					printAdminInsertBook();
+					break;
+				case 2:
+					System.out.println("도서정보를 수정합니다");
+					printAdminUpdateBook();
+					break;
+				case 3:
+					System.out.println("도서정보를 삭제합니다");
+					printAdminDeleteBook();
+					break;
+				case 9:
+					System.out.println("이전 메뉴를 불러옵니다");
+					return;
+				default:
+					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
+					break;
+				}
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력해주세요");
+			}	
+		}
 	}
 	
 	/**
 	 * 도서추가
 	 */
 	public static void printAdminInsertBook() {
-		System.out.println("도서를 추가합니다");
 		System.out.print("ISBN > ");
 		int bISBN = Integer.parseInt(sc.nextLine());
 		System.out.print("도서 제목 > ");
@@ -232,13 +283,27 @@ public class MenuView {
 			switch (menu) {
 			case 1:
 				System.out.println("ISBN을 수정합니다");
-				printAdminInsertBook();
+				printAdminUpdateBookISBN(bISBN);
 				break;
 			case 2:
-				System.out.println("도서정보를 수정합니다");
+				System.out.println("도서명을 수정합니다");
+				printAdminUpdateBookName(bISBN);
 				break;
 			case 3:
-				System.out.println("도서정보를 삭제합니다");
+				System.out.println("저자를 수정합니다");
+				printAdminUpdateBookWrite(bISBN);
+				break;
+			case 4:
+				System.out.println("출판사를 수정합니다");
+				printAdminUpdateBookPub(bISBN);
+				break;
+			case 5:
+				System.out.println("발행년월일을 수정합니다");
+				printAdminUpdateBookDate(bISBN);
+				break;
+			case 6:
+				System.out.println("분류코드를 수정합니다");
+				printAdminUpdateBookCode(bISBN);
 				break;
 			case 9:
 				System.out.println("이전 메뉴를 불러옵니다");
@@ -253,9 +318,86 @@ public class MenuView {
 	}
 	
 	/**
+	 * ISBN 수정
+	 */
+	public static void printAdminUpdateBookISBN(int bISBN) {
+		try {
+			System.out.print("ISBN > ");
+			int newISBN = Integer.parseInt(sc.nextLine());
+			BookController.UpdateBookISBN(bISBN,newISBN);
+		} catch (NumberFormatException e) {
+			System.out.println("ISBN은 숫자만 입력 가능합니다");
+		}
+	}
+	
+	/**
+	 * 도서명 수정
+	 */
+	public static void printAdminUpdateBookName(int bISBN) {
+		System.out.print("도서명 > ");
+		String bName = sc.nextLine();
+		BookDTO bookDTO = new BookDTO(bISBN, bName, null, null, null, 0, 0);
+		BookController.UpdateBookName(bookDTO);
+	}
+	
+	/**
+	 * 저자 수정
+	 */
+	public static void printAdminUpdateBookWrite(int bISBN) {
+		System.out.print("저자 > ");
+		String bWrite = sc.nextLine();
+		BookDTO bookDTO = new BookDTO(bISBN, null, bWrite, null, null, 0, 0);
+		BookController.UpdateBookWrite(bookDTO);
+	}
+	
+	/**
+	 * 출판사 수정
+	 */
+	public static void printAdminUpdateBookPub(int bISBN) {
+		System.out.print("출판사 > ");
+		String bPub = sc.nextLine();
+		BookDTO bookDTO = new BookDTO(bISBN, null, null, bPub, null, 0, 0);
+		BookController.UpdateBookPub(bookDTO);
+	}
+	
+	/**
+	 * 발행년월일 수정
+	 */
+	public static void printAdminUpdateBookDate(int bISBN) {
+		System.out.print("발행년월일 > ");
+		String bDate = sc.nextLine();
+		BookDTO bookDTO = new BookDTO(bISBN, null, null, null, bDate, 0, 0);
+		BookController.UpdateBookDate(bookDTO);
+	}
+	
+	/**
+	 * 분류코드 수정
+	 */
+	public static void printAdminUpdateBookCode(int bISBN) {
+		try {
+			System.out.print("분류코드 > ");
+			int sCode = Integer.parseInt(sc.nextLine());
+			BookDTO bookDTO = new BookDTO(bISBN, null, null, null, null, 0, sCode);
+			BookController.UpdateBookCode(bookDTO);
+		} catch (NumberFormatException e) {
+			System.out.println("분류코드는 숫자만 입력 가능합니다");
+		}
+
+	}
+	
+	/**
 	 * 도서정보 삭제
 	 */
 	public static void printAdminDeleteBook() {
+		try {
+			System.out.println("삭제 할 도서의 ISBN을 입력하세요");
+			System.out.print(" > ");
+			int bISBN=Integer.parseInt(sc.nextLine());
+			BookController.deleteBook(bISBN);
+			
+		} catch (NumberFormatException e) {
+			System.out.println("ISBN은 숫자만 입력 가능합니다");
+		}
 		
 	}
 
