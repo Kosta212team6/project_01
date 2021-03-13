@@ -181,7 +181,7 @@ public class MenuView {
 				}
 
 			} catch (NumberFormatException e) {
-				System.out.println("숫자만 입력해주세요");
+				System.out.println("숫자만 입력해주세요!");
 			}
 		}
 	}
