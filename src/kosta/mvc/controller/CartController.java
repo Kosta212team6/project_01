@@ -14,6 +14,8 @@ import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.SuccessView;
 
+
+
 public class CartController {
 	private static BookService bookService = new BookServiceImpl();
 	/**
@@ -40,26 +42,16 @@ public class CartController {
 			Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
 			
 			//책바구니가 없으면 책바구니 생성해주기
-			if(cart == null) {
-				cart = new HashMap<BookDTO, Integer>();
-				session.setAttribute("cart", cart);
-			}
-			
 			// 중복된 도서 추가하지 않기
-			Integer OldISBN = cart.get(bookDTO);
-//			if(OldISBN =) {
-//				System.out.println("이미 책바구니에 있는 책입니다.");
+//			Integer qty = cart.get(bookDTO);
+//			if(bookDTO != null) {
+//				throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
 //			}
+//			cart.put(bookDTO, bISBN);
+//			SuccessView.printMessage("책바구니에 책을 담았습니다.");
+//
 			
-			cart.put(bookDTO, bISBN);
-			SuccessView.printMessage("책바구니에 책을 담았습니다.");
-			
-//		} catch (DuplicatedException e) {
-//			FailView.errorMessage(e.getMessage());
-		} catch (Exception e) {
-			FailView.errorMessage(e.getMessage());
-		}
-	}
+}
 	/**
 	 * 책바구니 보기
 	 * @param mID
@@ -74,6 +66,20 @@ public class CartController {
 		} else {
 			SuccessView.printViewCart(mID, cart);
 		}
+		
+		//if(OldISBN =) {
+//			System.out.println("이미 책바구니에 있는 책입니다.");
+//		}
+//		if(bookDTO != null) {
+//			throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
+//		}
+		// 세션에서 꺼내와서
+		// isbn이 겹치면 튕겨내기
+		
+		
+		
+		
+		
 	}
 	/**
 	 * 대여하기 전에 책바구니 안에 있는 책 리턴해주는 메소드
