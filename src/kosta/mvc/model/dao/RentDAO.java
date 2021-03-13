@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.dto.RentDTO;
 
 public interface RentDAO {
@@ -40,9 +41,8 @@ public interface RentDAO {
 	int RentInsert(Connection con, RentDTO rentDTO)throws SQLException; 
 	
 	/**
-	 * mID로 대여한 도서 검색하기
+	 * 대여한 도서 상태 0으로 변경하기
 	 */
-	List<RentDTO> selectRentByUserId(String mID)throws SQLException;
-	
+	public int[] switchBstatus(Connection con, List<BookDTO> list) throws SQLException;
 	
 }
