@@ -97,5 +97,19 @@ public class BookController {
 		}
 		return null;
 	}
+	public static BookDTO bookSelectByWriter(String bWrite) {
+		try {
+			BookDTO bookDTO = bookService.bookSelectByWriter(bWrite);
+			SuccessView.printOnlyBook(bookDTO);
+			return bookDTO;
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return null;
+		
+	}
+	
+		
+	}
 
 }

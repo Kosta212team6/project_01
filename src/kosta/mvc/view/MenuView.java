@@ -127,6 +127,13 @@ public class MenuView {
 	/**
 	 * 도서 검색
 	 */
+	
+	public static void printSelectByWriter() {
+		System.out.print("저자를 입력하세요 >");
+		String bWrite = sc.nextLine();
+		BookController.bookSelectByWriter(bWrite);
+	}
+	
 	public static void printSelectByISBN() {
 		System.out.print(" > ");
 		int bISBN = Integer.parseInt(sc.nextLine());

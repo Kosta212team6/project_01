@@ -89,6 +89,13 @@ public class BookServiceImpl implements BookService {
 		return bookDTO;
 	}
 	
-
+	@Override
+	public BookDTO bookSelectByWriter(String bWrite) throws SQLException, NotFoundException {
+		BookDTO bookDTO = bookDAO.bookSelectByWriter(bWrite);
+		if(bookDTO==null) {
+			throw new NotFoundException("해당 저자에 해당하는 책이 없습니다");
+		}
+		return bookDTO;
+	}
 
 }

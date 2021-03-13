@@ -23,4 +23,6 @@ public interface BookDAO {
 	int DeleteBook(int bISBN) throws SQLException;
 	
 	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException;
+
+	public BookDTO bookSelectByWriter(String bWrite) throws SQLException;
 }
