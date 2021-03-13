@@ -139,9 +139,7 @@ public class MenuView {
 	public static void printPutCart(String mID) {
 		System.out.print("ISBN > ");
 		int bISBN = Integer.parseInt(sc.nextLine());
-		
 		int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
-		
 		CartController.putCart(mID, bISBN, bStatus);
 	}
 	

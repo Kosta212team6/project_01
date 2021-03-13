@@ -13,7 +13,7 @@ import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.SuccessView;
-import sun.util.resources.ext.CalendarData_th;
+
 
 public class CartController {
 	private static BookService bookService = new BookServiceImpl();
@@ -47,17 +47,24 @@ public class CartController {
 			}
 			
 			// 중복된 도서 추가하지 않기
-			Integer qty = cart.get(bookDTO);
-			if(bookDTO != null) {
-				throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
-			}
+
+			
+
+//			if(bookDTO != null) {
+//				throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
+//			}
+			// 세션에서 꺼내와서
+			// isbn이 겹치면 튕겨내기
+			
 			
 			cart.put(bookDTO, bStatus);
 			SuccessView.printMessage("책바구니에 책을 담았습니다.");
 			
-		} catch (DuplicatedException e) {
-			FailView.errorMessage(e.getMessage());
-		} catch (Exception e) {
+		} 
+//		catch (DuplicatedException e) {
+//			FailView.errorMessage(e.getMessage());
+//		} 
+		catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
