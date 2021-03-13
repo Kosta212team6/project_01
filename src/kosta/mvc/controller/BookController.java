@@ -12,11 +12,12 @@ import kosta.mvc.view.SuccessView;
 public class BookController {
 
 	private static BookService bookService = new BookServiceImpl();
+
 	/**
 	 * 도서추가
 	 */
 	public static void InsertBook(BookDTO bookDTO) {
-		
+
 		try {
 			bookService.InsertBook(bookDTO);
 			SuccessView.printMessage("도서가 등록되었습니다.");
@@ -25,8 +26,9 @@ public class BookController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+
 	public static void UpdateBookISBN(int bISBN, int newISBN) {
-		
+
 		try {
 			bookService.UpdateBookISBN(bISBN, newISBN);
 			SuccessView.printMessage("책의 ISBN이 수정되었습니다");
@@ -34,25 +36,26 @@ public class BookController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
-	
+
 	public static void UpdateBookName(BookDTO bookDTO) {
 		try {
 			bookService.UpdateBookName(bookDTO);
 			SuccessView.printMessage("도서명이 수정되었습니다");
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
-		}	
+		}
 	}
-	
+
 	public static void UpdateBookWrite(BookDTO bookDTO) {
 		try {
 			bookService.UpdateBookWrite(bookDTO);
 			SuccessView.printMessage("저자가 수정되었습니다");
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
-		}	
-		
+		}
+
 	}
+
 	public static void UpdateBookPub(BookDTO bookDTO) {
 		try {
 			bookService.UpdateBookPub(bookDTO);
@@ -61,7 +64,7 @@ public class BookController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
-	
+
 	public static void UpdateBookDate(BookDTO bookDTO) {
 		try {
 			bookService.UpdateBookDate(bookDTO);
@@ -70,6 +73,7 @@ public class BookController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+
 	public static void UpdateBookCode(BookDTO bookDTO) {
 		try {
 			bookService.UpdateBookCode(bookDTO);
@@ -78,15 +82,16 @@ public class BookController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+
 	public static void deleteBook(int bISBN) {
 		try {
 			bookService.DeleteBook(bISBN);
-			SuccessView.printMessage("도서정보가 삭제되었습니다");
+			SuccessView.printMessage("도서정보가 삭제되었습니다 !");
 		} catch (SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
-	
+
 	public static BookDTO bookSelectByBisbn(int bISBN) {
 		try {
 			BookDTO bookDTO = bookService.bookSelectByBisbn(bISBN);
@@ -97,6 +102,7 @@ public class BookController {
 		}
 		return null;
 	}
+
 	public static BookDTO bookSelectByWriter(String bWrite) {
 		try {
 			BookDTO bookDTO = bookService.bookSelectByWriter(bWrite);
@@ -106,10 +112,44 @@ public class BookController {
 			FailView.errorMessage(e.getMessage());
 		}
 		return null;
-		
+
+	}
+
+	public static BookDTO bookSelectByPublisher(String bPub) {
+		try {
+			BookDTO bookDTO = bookService.bookSelectByPublisher(bPub);
+			SuccessView.printOnlyBook(bookDTO);
+			return bookDTO;
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return null;
+
+	}
+
+	public static BookDTO bookSelectBySname(String sName) {
+		try {
+			BookDTO bookDTO = bookService.bookSelectBySname(sName);
+			SuccessView.printOnlyBook(bookDTO);
+			return bookDTO;
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return null;
 	}
 	
-		
+	public static BookDTO bookSelectByBname(String bName) {
+		try {
+			BookDTO bookDTO = bookService.bookSelectByBname(bName);
+			SuccessView.printOnlyBook(bookDTO);
+			return bookDTO;
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		return null;
 	}
+
+
+	
 
 }

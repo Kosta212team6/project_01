@@ -97,5 +97,34 @@ public class BookServiceImpl implements BookService {
 		}
 		return bookDTO;
 	}
+	
+	@Override
+	public BookDTO bookSelectByPublisher(String bPub) throws SQLException, NotFoundException {
+		BookDTO bookDTO = bookDAO.bookSelectByPublisher(bPub);
+		if(bookDTO==null) {
+			throw new NotFoundException("해당 출판사에 해당하는 책이 없습니다");
+		}
+		return bookDTO;
+	}
 
+	@Override
+	public BookDTO bookSelectBySname(String sName) throws SQLException, NotFoundException {
+		BookDTO bookDTO = bookDAO.bookSelectBySname(sName);
+		if(bookDTO==null) {
+			throw new NotFoundException("해당 분야에 해당하는 책이 없습니다");
+		}
+		return bookDTO;
+	}
+
+	@Override
+	public BookDTO bookSelectByBname(String bName) throws SQLException, NotFoundException {
+		BookDTO bookDTO = bookDAO.bookSelectByBname(bName);
+		if(bookDTO==null) {
+			throw new NotFoundException("해당 도서명에 해당하는 책이 없습니다");
+		}
+		return bookDTO;
+	}
+
+
+	
 }
