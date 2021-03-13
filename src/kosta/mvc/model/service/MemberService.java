@@ -18,4 +18,14 @@ public interface MemberService {
 	 * 관리자 : 전체 회원 조회
 	 */
 	List<MemberDTO> memberSelectAll() throws SQLException;
+	
+	/**
+	 * 아이디 중복 체크
+	 */
+	boolean checkIDMember(String NowID) throws SQLException;
+	
+	/**
+	 * 아이디 생성
+	 */
+	void createMember(MemberDTO memberDTO) throws SQLException;
 }

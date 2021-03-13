@@ -20,4 +20,14 @@ public interface MemberDAO {
 	 * 관리자 : 연체회원 조회 
 	 */
 	List<MemberDTO> overdueMember() throws SQLException;
+
+	/**
+	 * 아이디 중복체크
+	 */
+	boolean checkIDMember(String NowID) throws SQLException;
+	
+	/**
+	 * 회원가입
+	 */
+	int createMember(MemberDTO memberDTO) throws SQLException;
 }
