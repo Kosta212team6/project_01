@@ -191,15 +191,9 @@ public class MenuView {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
-<<<<<<< HEAD
-			
 			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제"
 							 + "3. 책바구니 비우기   4. 뒤로 가기");
-=======
 
-			System.out.println("메뉴 목록 적으세요");
-
->>>>>>> refs/remotes/origin/main
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -416,13 +410,8 @@ public class MenuView {
 	public static void rentForSure(String mID) throws StringFormatException {
 
 		List<BookDTO> list = CartController.getBookDTOInCart(mID);
-<<<<<<< HEAD
 		
 		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n   >   ");
-=======
-
-		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n");
->>>>>>> refs/remotes/origin/main
 		String rent = sc.nextLine();
 		if (rent.equals("y")) {
 			RentController.insertRents(list, mID);
