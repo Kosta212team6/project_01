@@ -37,7 +37,7 @@ public class RentDAOImpl implements RentDAO {
 				
 				for(BookDTO bookDTO :list) {
 					ps = con.prepareStatement(sql);
-					ps.setInt(1, bookDTO.getbIsbn());
+					ps.setInt(1, bookDTO.getbISBN());
 					ps.setString(2, mID);
 					
 					result = ps.executeUpdate();
@@ -46,7 +46,7 @@ public class RentDAOImpl implements RentDAO {
 						throw new SQLException("대여에 실패하였습니다.");
 					}
 					
-					switchBstatus(con, bookDTO.getbIsbn());
+					switchBstatus(con, bookDTO.getbISBN());
 				}
 			
 			} finally {
@@ -77,16 +77,4 @@ public class RentDAOImpl implements RentDAO {
 		
 		return result;
 	}
-	/**
-	 * 책바구니 비우기
-	 */
-	@Override
-	public int clearRents(String mID) throws SQLException {
-	
-		
-		int result = 0;
-		
-		return result;
-	}
-
 }

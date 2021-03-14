@@ -30,7 +30,7 @@ public class BookDAOImpl implements BookDAO {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
-			ps.setInt(1, bookDTO.getbIsbn());
+			ps.setInt(1, bookDTO.getbISBN());
 			ps.setString(2, bookDTO.getbName());
 			ps.setString(3, bookDTO.getbWrite());
 			ps.setString(4, bookDTO.getbPub());
@@ -85,7 +85,7 @@ public class BookDAOImpl implements BookDAO {
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, bookDTO.getbName());
-			ps.setInt(2, bookDTO.getbIsbn());
+			ps.setInt(2, bookDTO.getbISBN());
 			
 			result = ps.executeUpdate();
 			
@@ -109,7 +109,7 @@ public class BookDAOImpl implements BookDAO {
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, bookDTO.getbWrite());
-			ps.setInt(2, bookDTO.getbIsbn());
+			ps.setInt(2, bookDTO.getbISBN());
 			
 			result = ps.executeUpdate();
 			
@@ -132,7 +132,7 @@ public class BookDAOImpl implements BookDAO {
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, bookDTO.getbPub());
-			ps.setInt(2, bookDTO.getbIsbn());
+			ps.setInt(2, bookDTO.getbISBN());
 			
 			result = ps.executeUpdate();
 			
@@ -155,7 +155,7 @@ public class BookDAOImpl implements BookDAO {
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, bookDTO.getbDate());
-			ps.setInt(2, bookDTO.getbIsbn());
+			ps.setInt(2, bookDTO.getbISBN());
 			
 			result = ps.executeUpdate();
 			
@@ -178,7 +178,7 @@ public class BookDAOImpl implements BookDAO {
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, bookDTO.getsCode());
-			ps.setInt(2, bookDTO.getbIsbn());
+			ps.setInt(2, bookDTO.getbISBN());
 			
 			result = ps.executeUpdate();
 			

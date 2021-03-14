@@ -46,7 +46,7 @@ public class CartController {
 			Session session = ss.get(mID);
 			
 			//세션에서 책바구니 찾기
-			Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
+			Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>)session.getAttribute("cart");
 			//책바구니가 없으면 책바구니 생성해주기
 			// 중복된 도서 추가하지 않기
 
@@ -63,27 +63,40 @@ public class CartController {
 //					throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
 //				}
 			if(cart == null) { 
-				cart = new HashMap<>(); 
+				cart = new HashMap<Integer, BookDTO>(); 
 				session.setAttribute("cart", cart); // String, Object 두개를 파라미터로 전달
 			}
 			
-			if(!cart.containsValue(bISBN) ) {
-				cart.put(bookDTO, bISBN);
+			if(!cart.containsKey(bISBN) ) {
+				cart.put(bISBN, bookDTO);
 				SuccessView.printMessage("책바구니에 책을 담았습니다.");
 			} else {
 				FailView.errorMessage("이미 책바구니에 책이 있습니다.");
 			}
 			
 		} 
-//		catch (DuplicatedException e) {
-//			FailView.errorMessage(e.getMessage());
-//		} 
 		catch (Exception e) {
 			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}
-
+	/**
+	 * 책바구니 선택삭제 해주는 메소드
+	 */
+	public static void deleteCart(String mID, int bISBN) {
+		SessionSet ss = SessionSet.getInstance();
+		Session session = ss.get(mID);
+		Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>)session.getAttribute("cart");
+		
+			BookDTO bookDTO = cart.remove(bISBN);
+			if(bookDTO==null) {
+				MenuView.failToDeleteMenu(mID);
+			} else {
+				SuccessView.printMessage("해당 책이 책바구니에서 삭제되었습니다.");
+			}
+	}
+		
+	
 	/**
 	 * 책바구니 보기
 	 * @param mID
@@ -116,7 +129,7 @@ public class CartController {
 		// 세션에서 꺼내와서
 		// isbn이 겹치면 튕겨내기
 	/**
-	 * 대여하기 전에 책바구니 안에 있는 책 리턴해주는 메소드
+	 * 대여 / 삭제하기 전에 책바구니 안에 있는 책 리턴해주는 메소드
 	 * @param mID
 	 * @return
 	 */
@@ -127,10 +140,10 @@ public class CartController {
 		
 		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
 		for(BookDTO bookDTO : cart.keySet()) {
-			int bISBN = bookDTO.getbIsbn(); //ISBN
+			int bISBN = bookDTO.getbISBN(); //ISBN
 			String bName = bookDTO.getbName(); //책 이름
 			
-			list.add(new BookDTO(bookDTO.getbIsbn(), bookDTO.getbName()));
+			list.add(new BookDTO(bookDTO.getbISBN(), bookDTO.getbName()));
 		}
 				
 		return list;
