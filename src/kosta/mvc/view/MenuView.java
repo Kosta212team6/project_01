@@ -91,40 +91,37 @@ public class MenuView {
 		String mName = sc.nextLine();
 		System.out.print("phone > ");
 		String mPhone = sc.nextLine();
-		
+
 		MemberDTO memberDTO = new MemberDTO(mId, mName, mPhone, mPwd, "sysdate", 1, 10);
 		MemberController.createMember(memberDTO);
-		System.out.println("\""+memberDTO.getmID()+"\" 아이디로 가입되었습니다");
+		System.out.println("\"" + memberDTO.getmID() + "\" 아이디로 가입되었습니다");
 	}
-	
+
 	/**
 	 * 아이디 유효성체크
 	 */
 	public static void printCheckIDMember(String NowID) {
 		boolean result = MemberController.checkIDMember(NowID);
-		if(result==true) {
+		if (result == true) {
 			// 아이디 중복체크
 			System.out.println("다른 아이디를 입력해주세요");
 			register();
-		}
-		else if (NowID.length() < 3) {
+		} else if (NowID.length() < 3) {
 			// 아이디 자릿수체크
 			System.out.println("아이디는 3자 이상 입력해주세요");
 			register();
-		}
-		else {
+		} else {
 			System.out.println("사용 가능한 아이디입니다");
 		}
 	}
-	
+
 	/**
 	 * 비밀번호 재확인
 	 */
 	public static void printCheckPwd(String pwd, String pwd2) {
-		if(pwd.equals(pwd2)) {
+		if (pwd.equals(pwd2)) {
 			System.out.println("비밀번호가 일치합니다");
-		}
-		else {
+		} else {
 			System.out.println("비밀번호가 일치하지 않습니다. 처음부터 다시 작성해주세요");
 			register();
 		}
@@ -186,17 +183,23 @@ public class MenuView {
 			}
 		}
 	}
-	
+
 	/**
 	 * 책바구니 보기 메뉴
 	 */
 	public static void printBookCartMenu(String mId) {
-		while(true) {
+		while (true) {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
+<<<<<<< HEAD
 			
 			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제"
 							 + "3. 책바구니 비우기   4. 뒤로 가기");
+=======
+
+			System.out.println("메뉴 목록 적으세요");
+
+>>>>>>> refs/remotes/origin/main
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -231,7 +234,7 @@ public class MenuView {
 	public static void printBookSearchMenu(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			//System.out.println(ss.getSet());
+			// System.out.println(ss.getSet());
 			System.out.println("1. 분야별 검색  2. 도서명 검색  3. 저자검색  4. 출판사 검색   5. 뒤로가기");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
@@ -253,11 +256,10 @@ public class MenuView {
 					System.out.println("출판사 검색합니다.");
 					printSelectByPublisher();
 					break;
-					
+
 				case 5:
 					System.out.println("뒤로가기...");
 					return;
-	
 
 				default:
 					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
@@ -271,27 +273,100 @@ public class MenuView {
 		}
 	}
 
-	
-	
 	/**
 	 * 도서명 검색
 	 */
 	public static void printSelectByBname() {
 		System.out.print("도서명을 입력하세요 >");
+
 		String bName = sc.nextLine();
 		BookController.bookSelectByBname(bName);
 
 	}
-	
-	
+
 	/**
 	 * 분야별 검색
 	 */
-	public static void printSelectBySname() {
-		System.out.print("분야를 입력하세요 >");
-		String sName = sc.nextLine();
-		BookController.bookSelectBySname(sName);
+	public static void printSelectBySname( ) {
+		while (true) {
+			System.out.println("분야를 선택하세요 >");
+			System.out.println(
+					"1.총류  2. 철학  3. 종교   4. 사회과학    5. 자연과학  6. 기술과학   7. 예술   8. 언어   9.문학   10. 역사   0. 뒤로가기");
+			String sName = null;
+			try {
+				int menu = Integer.parseInt(sc.nextLine());
+				switch (menu) {
+				case 1:
+					System.out.println("총류로 검색합니다.");
+					sName = "총류";
+					BookController.bookSelectBySname(sName);
+					break;
+				case 2:
+					System.out.println("철학으로 검색합니다..");
+					sName = "철학";
+					BookController.bookSelectBySname(sName);
+					break;
+				case 3:
+					System.out.println("종교로 검색합니다..");
+					sName = "종교";
+					BookController.bookSelectBySname(sName);
+					break;
+				case 4:
+					System.out.println("사회과학으로 검색합니다..");
+					sName = "사회과학";
+					BookController.bookSelectBySname(sName);
+					break;
 
+				case 5:
+					System.out.println("자연과학으로 검색합니다..");
+					sName = "자연과학";
+					BookController.bookSelectBySname(sName);
+					break;
+
+				case 6:
+					System.out.println("기술과학으로 검색합니다..");
+					sName = "기술과학";
+					BookController.bookSelectBySname(sName);
+					break;
+
+				case 7:
+					System.out.println("예술로 검색합니다..");
+					sName = "예술";
+					BookController.bookSelectBySname(sName);
+					break;
+
+				case 8:
+					System.out.println("언어로 검색합니다..");
+					sName = "언어";
+					BookController.bookSelectBySname(sName);
+					break;
+
+				case 9:
+					System.out.println("문학으로 검색합니다..");
+					sName = "문학";
+					BookController.bookSelectBySname(sName);
+					break;
+
+				case 10:
+					System.out.println("역사로 검색합니다..");
+					sName = "역사";
+					BookController.bookSelectBySname(sName);
+					break;
+
+				case 0:
+					System.out.println("뒤로가기...");
+					return;
+
+				default:
+					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
+					break;
+
+				}
+
+			} catch (NumberFormatException e) {
+				System.out.println("숫자만 입력해주세요");
+			}
+		}
 	}
 
 	/**
@@ -334,23 +409,29 @@ public class MenuView {
 
 		CartController.putCart(mID, bISBN);
 	}
+
 	/**
 	 * 책바구니 안에 있는 도서 목록 대여여부 묻는 메뉴
 	 */
 	public static void rentForSure(String mID) throws StringFormatException {
-		
+
 		List<BookDTO> list = CartController.getBookDTOInCart(mID);
+<<<<<<< HEAD
 		
 		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n   >   ");
+=======
+
+		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n");
+>>>>>>> refs/remotes/origin/main
 		String rent = sc.nextLine();
-		if(rent.equals("y")) {
+		if (rent.equals("y")) {
 			RentController.insertRents(list, mID);
-		} else if(rent.equals("n")) {
+		} else if (rent.equals("n")) {
 			printUserMenu(mID);
 		} else {
 			throw new StringFormatException("[ yes or no ] 로 입력해주세요");
 		}
-		
+
 	}
 	/**
 	 * 책바구니 안에 있는 도서 목록 비우기 여부 묻는 메뉴
