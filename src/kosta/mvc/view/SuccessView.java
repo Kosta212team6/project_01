@@ -5,6 +5,8 @@ import java.util.Map;
 
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.dto.MemberDTO;
+import kosta.mvc.model.dto.RentDTO;
+import kosta.mvc.model.dto.RsvDTO;
 
 public class SuccessView {
 	public static void printMessage(String message) {
@@ -62,4 +64,25 @@ public class SuccessView {
 
 	}
 
+	/**
+	 * 대여 내역 출력
+	 */
+	public static void printRentHistory(List<RentDTO> list) {
+		System.out.println("검색결과 : "+list.size()+"개");
+		for(RentDTO rentDTO:list) {
+			System.out.println(rentDTO);
+		}
+		System.out.println();
+	}
+	
+	/**
+	 * 예약 내역 출력
+	 */
+	public static void printRsvHistory(List<RsvDTO> list) {
+		System.out.println("검색결과 : "+list.size()+"개");
+		for(RsvDTO rsvDTO:list) {
+			System.out.println(rsvDTO);
+		}
+		System.out.println();
+	}
 }

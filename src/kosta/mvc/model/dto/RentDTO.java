@@ -9,13 +9,15 @@ public class RentDTO {
 	private String mID; // fk
 
 	public RentDTO() {}
-	public RentDTO(int rNum, String rDate, String rExDate, int rStatus, int bISBN, String mID) {
-		super();
+	public RentDTO(int rNum, int bISBN) {
 		this.rNum = rNum;
+		this.bISBN = bISBN;
+	}
+	public RentDTO(int rNum, String rDate, String rExDate, int rStatus, int bISBN, String mID) {
+		this(rNum, bISBN);
 		this.rDate = rDate;
 		this.rExDate = rExDate;
 		this.rStatus = rStatus;
-		this.bISBN = bISBN;
 		this.mID = mID;
 	}
 	public int getrNum() {
