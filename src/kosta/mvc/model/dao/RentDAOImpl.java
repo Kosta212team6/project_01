@@ -84,11 +84,46 @@ public class RentDAOImpl implements RentDAO {
 	public int clearRents(String mID) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
-		String sql = ""
+		String sql = "";
 		
 		int result = 0;
 		
 		return result;
 	}
 
+	/**
+	 * 대여중인 도서목록 출력
+	 * */
+	@Override
+	public List<RentDTO> printRentBookList(String mID) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<RentDTO> list = new ArrayList<RentDTO>();
+		String sql = "select rNum, rDate, rExDate, rstatus, bISBN, mID, bName from book natural join rent where mid = ? and rstatus = 1 order by rNum asc";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mID);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				int rNum = rs.getInt(1);
+				String rDate = rs.getString(2);
+				String rExDate = rs.getString(3);
+				int rStatus = rs.getInt(4);
+				int bISBN = rs.getInt(5);
+				String ID= rs.getString(6);
+				String bName= rs.getString(7);
+				
+				RentDTO dto = new RentDTO(rNum, rDate, rExDate, rStatus, bISBN, ID,bName);
+				list.add(dto);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
+	
 }

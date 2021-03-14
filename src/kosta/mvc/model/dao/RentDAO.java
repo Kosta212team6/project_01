@@ -49,5 +49,9 @@ public interface RentDAO {
 	 * 책바구니 비우기
 	 */
 	public int clearRents(String mID) throws SQLException;
+
+	public List<RentDTO> printRentBookList(String mID) throws SQLException;
+
+
 	
 }

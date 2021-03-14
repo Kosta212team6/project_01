@@ -3,6 +3,7 @@ package kosta.mvc.controller;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.service.MemberServiceImpl;
 import kosta.mvc.view.FailView;
@@ -78,5 +79,51 @@ public class MemberController {
 		}
 		
 	}
+
+	public static void myInfo(String mID) {
+		try {
+			List<MemberDTO> list = memberService.myInFo(mID);
+			SuccessView.selectPrintMyInfo(list);
+		}catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
+	}
+	
+	public static void loginForChangeInfo(String mID, String mPwd) {
+		try {
+			MemberDTO memberDTO = memberService.login(mID, mPwd);
+			if(memberDTO.getmPwd().contentEquals(mPwd))
+				// 개인정보 변경 진입
+				MenuView.printModifyMyInFo(mID);
+
+		} catch (Exception e) {
+//			e.printStackTrace();
+			FailView.errorMessage(e.getMessage());
+			MenuView.printMyLibary(mID); // 서재로 돌아가기
+		}
+	}
+
+	public static void UpdatePassWord(MemberDTO memberDTO) {
+		try {
+			memberService.UpdatePassWord(memberDTO);
+			SuccessView.printMessage("비밀번호 변경 성공!");
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
+	}
+
+	public static void UpdatePhoneNumber(MemberDTO memberDTO) {
+		try {
+		memberService.UpdatePhoneNumber(memberDTO);
+		SuccessView.printMessage("전화번호 변경 성공!");
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
+	}
+
+
 
 }

@@ -3,9 +3,11 @@ package kosta.mvc.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dao.RentDAO;
 import kosta.mvc.model.dao.RentDAOImpl;
 import kosta.mvc.model.dto.BookDTO;
+import kosta.mvc.model.dto.RentDTO;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 
@@ -34,4 +36,13 @@ public class RentService {
 		}
 		
 	}
+	public List<RentDTO> printRentBookList(String mID) throws SQLException, NotFoundException {
+		SessionSet ss = SessionSet.getInstance();
+		List<RentDTO> list = rentDAO.printRentBookList(mID);
+		if(list == null || list.isEmpty()) {
+			throw new NotFoundException("대여하신 도서가 없습니다.");
+		}
+		return list;
+	}
+
 }
