@@ -47,8 +47,6 @@ public class CartController {
 			
 			//세션에서 책바구니 찾기
 			Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
-			
-			
 			//책바구니가 없으면 책바구니 생성해주기
 			// 중복된 도서 추가하지 않기
 
@@ -143,9 +141,7 @@ public class CartController {
 				
 		return list;
 	}
-	/**
-	 * 대여 실행하는 메소드
-	 */
+	
 	
 	
 }

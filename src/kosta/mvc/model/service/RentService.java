@@ -21,12 +21,17 @@ public class RentService {
 		if(session.getAttribute("cart")==null) {
 			throw new SQLException("책바구니가 비었습니다.");
 		}
-		
-		
-		
 		rentDAO.insertRents(list, mID);
+	}
+	/**
+	 * 비우기
+	 */
+	public void clearRents(String mID) throws SQLException {
+		SessionSet ss = SessionSet.getInstance();
+		Session session = ss.get(mID);
+		if(session.getAttribute("cart")==null) {
+			throw new SQLException("현재 [ " + mID + " ] 님의 장바구니가 비었습니다.");
+		}
 		
 	}
-	
-	
 }

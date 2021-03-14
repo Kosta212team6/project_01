@@ -77,5 +77,18 @@ public class RentDAOImpl implements RentDAO {
 		
 		return result;
 	}
+	/**
+	 * 책바구니 비우기
+	 */
+	@Override
+	public int clearRents(String mID) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = ""
+		
+		int result = 0;
+		
+		return result;
+	}
 
 }

@@ -188,15 +188,15 @@ public class MenuView {
 	}
 	
 	/**
-	 * 책바구니 담기 메뉴
+	 * 책바구니 보기 메뉴
 	 */
 	public static void printBookCartMenu(String mId) {
 		while(true) {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
 			
-			System.out.println("메뉴 목록 적으세요");
-			
+			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제"
+							 + "3. 책바구니 비우기   4. 뒤로 가기");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -207,8 +207,16 @@ public class MenuView {
 						System.out.println("y 또는 n만 입력하세요");
 					}
 					break;
-
+				case 2:
+					System.out.println("");
+					break;
+				case 3:
+					break;
+				case 4:
+					printUserMenu(mId);
+					break;
 				default:
+					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
 					break;
 				}
 			} catch (NumberFormatException e) {
@@ -327,18 +335,36 @@ public class MenuView {
 		CartController.putCart(mID, bISBN);
 	}
 	/**
-	 * 대여여부 묻는 메뉴
+	 * 책바구니 안에 있는 도서 목록 대여여부 묻는 메뉴
 	 */
 	public static void rentForSure(String mID) throws StringFormatException {
 		
 		List<BookDTO> list = CartController.getBookDTOInCart(mID);
 		
-		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n");
+		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n   >   ");
 		String rent = sc.nextLine();
 		if(rent.equals("y")) {
 			RentController.insertRents(list, mID);
 		} else if(rent.equals("n")) {
 			printUserMenu(mID);
+		} else {
+			throw new StringFormatException("[ yes or no ] 로 입력해주세요");
+		}
+		
+	}
+	/**
+	 * 책바구니 안에 있는 도서 목록 비우기 여부 묻는 메뉴
+	 */
+	public static void clearForSure(String mID) throws StringFormatException {
+		
+		List<BookDTO> list = CartController.getBookDTOInCart(mID);
+		
+		System.out.println("책바구니를 모두 비우시겠습니까? y | n   >   ");
+		String clear = sc.nextLine();
+		if(clear.equals("y")) {
+			RentController.clearRents(mID);
+		} else if(clear.equals("n")) {
+			
 		} else {
 			throw new StringFormatException("[ yes or no ] 로 입력해주세요");
 		}

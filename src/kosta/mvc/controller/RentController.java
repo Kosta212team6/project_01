@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.classfile.ExceptionTable;
+
 import kosta.mvc.exception.StringFormatException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.dto.RentDTO;
@@ -20,8 +22,17 @@ public class RentController {
 			rentService.insertRents(list, mID);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
+		}
 	}
 	
-	
-}
+	/**
+	 * 비우기
+	 */
+	public static void clearRents (String mID) {
+		try {
+			
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+	}
 }
