@@ -1,7 +1,11 @@
 package kosta.mvc.session;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import kosta.mvc.controller.CartController;
+import kosta.mvc.model.dto.BookDTO;
 
 /**
  * 사용자 객체
@@ -30,11 +34,46 @@ public class Session {
 		return attributes.get(name);
 	}
 	
-	//제거(장바구니를 비울대 사용한다)
+	//제거(책바구니를 비울대 사용한다)
 	public void removeAttribute(String name) {//cart
 		attributes.remove(name);
 	}
 	
+	/**
+	 * 책바구니 안 품목 List로 리턴해주는 메소드
+	 */
+	public List<BookDTO> booksInCart(Map<String, Object> map, String mID) {
+		SessionSet ss = SessionSet.getInstance();
+		Session session = ss.get(mID);
+		
+		List<BookDTO> list = (List<BookDTO>) session.getAttribute(mID);
+		
+		for(BookDTO bookDTO : list) {
+			list.add(bookDTO);
+		}
+		
+		return list;
+	}
+	
+	/**
+	 * 책바구니 안 품목 개별삭제 메소드
+	 */
+	public void removeItem(List<Object> list , String mID, int bISBN) {
+		SessionSet ss = SessionSet.getInstance();
+		Session session = ss.get(mID);
+		
+		
+//		List<BookDTO> bookList = session.booksInCart(attributes, mID);
+		List<BookDTO> bookList = CartController.getBookDTOInCart(mID);
+		
+		
+		for(BookDTO bookDTO : bookList) {
+			if(bookDTO.getbIsbn()==bISBN) {
+				bookList.remove(bookDTO);
+			}
+		}
+		
+	}
 	
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;

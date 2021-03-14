@@ -115,12 +115,6 @@ public class CartController {
 //		}
 		// 세션에서 꺼내와서
 		// isbn이 겹치면 튕겨내기
-		
-		
-		
-		
-		
-	
 	/**
 	 * 대여하기 전에 책바구니 안에 있는 책 리턴해주는 메소드
 	 * @param mID
@@ -142,6 +136,34 @@ public class CartController {
 		return list;
 	}
 	
+	/**
+	 * bISBN으로 책바구니 목록 선택삭제 해주는 메소드
+	 */
+//	public static void deleteCart(String mID) {
+//		BookDTO bookDTO = new BookDTO();
+//		SessionSet ss = SessionSet.getInstance();
+//		Session session = ss.get(mID);
+//		session
+//		
+//	}
+	
+	/*
+		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute(mID);
+		
+		cart.remove*/
 	
 	
+	
+	
+	
+	/**
+	 * 책바구니 안에 있는 목록 모두 지워주는(비워주는) 메소드
+	 */
+	public static void clearCart(String mID) {
+		SessionSet ss = SessionSet.getInstance();
+		Session session = ss.get(mID);
+		
+		session.removeAttribute("cart");
+	}
 }
+
