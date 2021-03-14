@@ -366,7 +366,7 @@ public class MenuView {
 		} else if(clear.equals("n")) {
 			
 		} else {
-			throw new StringFormatException("[ yes or no ] 로 입력해주세요");
+			throw new StringFormatException("[ yes or no ] 로 입력해주세요 ");
 		}
 		
 	}
