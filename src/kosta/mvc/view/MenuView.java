@@ -1,5 +1,6 @@
 package kosta.mvc.view;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -191,28 +192,24 @@ public class MenuView {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
-//<<<<<<< HEAD
 
 			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제" + "3. 책바구니 비우기   4. 뒤로 가기");
-//=======
 
 			System.out.println("메뉴 목록 적으세요");
 
-//>>>>>>> refs/remotes/origin/main
+			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   " + "3. 책바구니 비우기   4. 뒤로 가기");
+
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
 				case 1:
-					try {
-						rentForSure(mId);
-					} catch (StringFormatException e) {
-						System.out.println("y 또는 n만 입력하세요");
-					}
+					rentForSure(mId);
 					break;
 				case 2:
-					System.out.println("");
+					deleteForSure(mId);
 					break;
 				case 3:
+					clearForSure(mId);
 					break;
 				case 4:
 					printUserMenu(mId);
@@ -240,11 +237,11 @@ public class MenuView {
 				switch (menu) {
 				case 1:
 					System.out.println("분야별 검색합니다.");
-				//	printSelectBySname();
+					// printSelectBySname();
 					break;
 				case 2:
 					System.out.println("도서명 검색합니다.");
-				//	printSelectByBname();
+					// printSelectByBname();
 
 					break;
 				case 3:
@@ -382,11 +379,11 @@ public class MenuView {
 				switch (menu) {
 				case 1:
 					System.out.println("대여한 도서보기");
-					//RentController.rentBookList(mID);
+					// RentController.rentBookList(mID);
 					break;
 				case 2:
 					System.out.println("예약한 도서보기");
-				//	RsvController.reservBookList(mID);
+					// RsvController.reservBookList(mID);
 
 					break;
 				case 3:
@@ -418,17 +415,13 @@ public class MenuView {
 		}
 
 	}
-	
+
 	public static void loginForChangeMyInFo(String mID) {
 		System.out.print("PW : ");
 		String mPwd = sc.nextLine();
 
 		MemberController.loginForChangeInfo(mID, mPwd);
 	}
-	
-	
-	
-	
 
 	/**
 	 * 내 정보 수정
@@ -470,25 +463,25 @@ public class MenuView {
 	public static void printMyInFo(String mID) {
 		MemberController.myInfo(mID);
 	}
-	
+
 	/**
 	 * 비밀번호 변경
-	 * */
+	 */
 	public static void changePassWord(String mID) {
 		System.out.print("새로운 비밀번호를 입력하세요 > ");
 		String mPwd = sc.nextLine();
-		MemberDTO memberDTO = new MemberDTO(mID,null,null,mPwd,null,0,0);
+		MemberDTO memberDTO = new MemberDTO(mID, null, null, mPwd, null, 0, 0);
 		MemberController.UpdatePassWord(memberDTO);
-		
+
 	}
-	
+
 	/**
 	 * 전화번호 변경
-	 * */
+	 */
 	public static void changePhoneNumber(String mID) {
 		System.out.println("새로운 전화번호를 입력하세요 > ");
 		String mPhone = sc.nextLine();
-		MemberDTO memberDTO = new MemberDTO(mID,null,mPhone,null,null,0,0);
+		MemberDTO memberDTO = new MemberDTO(mID, null, mPhone, null, null, 0, 0);
 		MemberController.UpdatePhoneNumber(memberDTO);
 	}
 
@@ -536,18 +529,57 @@ public class MenuView {
 	/**
 	 * 책바구니 안에 있는 도서 목록 대여여부 묻는 메뉴
 	 */
-	public static void rentForSure(String mID) throws StringFormatException {
+	public static void rentForSure(String mID) {
 
 		List<BookDTO> list = CartController.getBookDTOInCart(mID);
 
 		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n   >   ");
+
+		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n  ▷  ");
+
 		String rent = sc.nextLine();
 		if (rent.equals("y")) {
 			RentController.insertRents(list, mID);
 		} else if (rent.equals("n")) {
 			printUserMenu(mID);
 		} else {
-			throw new StringFormatException("[ yes or no ] 로 입력해주세요");
+			System.out.println("[ yes or no ] 로 입력해주세요");
+			rentForSure(mID);
+		}
+
+	}
+
+	/**
+	 * 책바구니 안에 있는 도서 bISBN으로 선택해서 삭제 여부 묻는 메뉴
+	 */
+	public static void deleteForSure(String mID) {
+		System.out.println("목록에서 삭제할 책의 ISBN을 입력해 주세요  ▷  ");
+		int bISBN = Integer.parseInt(sc.nextLine());
+		if (bISBN == RentController.deleteCart(mID)) {
+			System.out.println("해당 책이 목록에서) 삭제되었습니다.");
+			printUserMenu(mID);
+		} else {
+			failToDeleteMenu(mID);
+		}
+
+	}
+
+	/**
+	 * 책바구니 안에 있는 도서 삭제 실패시 보여주는 메뉴
+	 */
+	public static void failToDeleteMenu(String mID) {
+		System.out.println("┌※ 해당 책이 책바구니 내에 존재하지 않습니다. ※┐");
+		System.out.println("│                                                │");
+		System.out.println("└────메인메뉴로 돌아가시겠습니까 ? ─────┘");
+		System.out.println("				y | n  ▷ ");
+		String answer = sc.nextLine();
+		if (answer.equals("y")) {
+			printUserMenu(mID);
+		} else if (answer.equals("n")) {
+			deleteForSure(mID);
+		} else {
+			System.out.println("[ yes or no ] 로 입력해주세요");
+			failToDeleteMenu(mID);
 		}
 
 	}
@@ -555,20 +587,44 @@ public class MenuView {
 	/**
 	 * 책바구니 안에 있는 도서 목록 비우기 여부 묻는 메뉴
 	 */
+
 	public static void clearForSure(String mID) throws StringFormatException {
 
 		List<BookDTO> list = CartController.getBookDTOInCart(mID);
 
 		System.out.println("책바구니를 모두 비우시겠습니까? y | n   >   ");
+
+	public static void clearForSure(String mID) {
+
+//		List<BookDTO> list = CartController.getBookDTOInCart(mID);
+		SessionSet ss = SessionSet.getInstance();
+		Session session = ss.get(mID);
+		if (session.getAttribute("cart") == null) {
+			System.out.println("책바구니가 비었습니다.");
+			printBookCartMenu(mID);
+		}
+		System.out.println("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
+
 		String clear = sc.nextLine();
+
 		if (clear.equals("y")) {
 			RentController.clearRents(mID);
 		} else if (clear.equals("n")) {
 
-		} else {
-			throw new StringFormatException("[ yes or no ] 로 입력해주세요 ");
-		}
+			if (clear.equals("y")) {
+				RentController.clearCart(mID);
+				System.out.println("책바구니 목록이 비워졌습니다.");
+				printUserMenu(mID);
+			} else if (clear.equals("n")) {
+				System.out.println("회원메뉴로 돌아갑니다");
+				printUserMenu(mID);
 
+			} else {
+				System.out.println("[ yes or no ] 로 입력해주세요 ");
+				clearForSure(mID);
+			}
+
+		}
 	}
 
 	/**

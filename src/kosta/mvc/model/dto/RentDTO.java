@@ -9,13 +9,16 @@ public class RentDTO {
 	private String mID; // fk
 	private String bName;
 
-	public RentDTO(int rNum, String rDate, String rExDate, int rStatus, int bISBN, String mID) {
-		super();
+	public RentDTO() {}
+	public RentDTO(int rNum, int bISBN) {
 		this.rNum = rNum;
+		this.bISBN = bISBN;
+	}
+	public RentDTO(int rNum, String rDate, String rExDate, int rStatus, int bISBN, String mID) {
+		this(rNum, bISBN);
 		this.rDate = rDate;
 		this.rExDate = rExDate;
 		this.rStatus = rStatus;
-		this.bISBN = bISBN;
 		this.mID = mID;
 	}
 	
@@ -77,9 +80,7 @@ public class RentDTO {
 	@Override
 	public String toString() {
 		return rNum + " | " + bName + " | " + bISBN +" | " +rDate + " | " + rExDate + " | " + rStatus + " | " + mID ;
-			//	rNum + " | " + rDate + " | " + rExDate + " | " + rStatus + " | "
-			//	+ bName + " | " + bISBN + " | " + mID ;
-		
+			
 		
 		
 		

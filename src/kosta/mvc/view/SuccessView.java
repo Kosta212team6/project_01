@@ -64,6 +64,7 @@ public class SuccessView {
 
 	}
 
+
 	public static void printRentBookList(List<RentDTO> list) {
 		System.out.println("----------대여 목록---------");
 		for(RentDTO dto : list) {
@@ -89,6 +90,29 @@ public class SuccessView {
 		}
 		System.out.println();
 		
+	}
+
+
+	/**
+	 * 대여 내역 출력
+	 */
+	public static void printRentHistory(List<RentDTO> list) {
+		System.out.println("검색결과 : "+list.size()+"개");
+		for(RentDTO rentDTO:list) {
+			System.out.println(rentDTO);
+		}
+		System.out.println();
+	}
+	
+	/**
+	 * 예약 내역 출력
+	 */
+	public static void printRsvHistory(List<RsvDTO> list) {
+		System.out.println("검색결과 : "+list.size()+"개");
+		for(RsvDTO rsvDTO:list) {
+			System.out.println(rsvDTO);
+		}
+		System.out.println();
 	}
 
 }

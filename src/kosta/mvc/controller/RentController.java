@@ -26,13 +26,21 @@ public class RentController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+	/**
+	 *bISBN으로 책바구니 목록 선택삭제 하기 
+	 */
+	public static int deleteCart (String mID) {
+		int bISBN = 0;
+		
+		return bISBN;
+	}
 	
 	/**
 	 * 비우기
 	 */
-	public static void clearRents (String mID) {
+	public static void clearCart (String mID) {
 		try {
-			
+			rentService.clearCart(mID);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
