@@ -49,7 +49,7 @@ public class SuccessView {
 		System.out.println("------책바구니 내용------");
 
 		for (BookDTO bookDTO : cart.keySet()) {
-			int bISBN = bookDTO.getbIsbn(); // ISBN
+			int bISBN = bookDTO.getbISBN(); // ISBN
 			String bName = bookDTO.getbName(); // 책 이름
 
 			System.out.println(bISBN + " : " + bName); // ISBA : 책이름 출력

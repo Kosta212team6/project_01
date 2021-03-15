@@ -40,11 +40,11 @@ public class BookDTO {
 		this.sName=sName;
 	}
 	
-	public int getbIsbn() {
+	public int getbISBN() {
 		return bISBN;
 	}
 
-	public void setbIsbn(int bISBN) {
+	public void setbISBN(int bISBN) {
 		this.bISBN = bISBN;
 	}
 

@@ -18,12 +18,10 @@ import kosta.mvc.view.FailView;
 public class RentDAOImpl implements RentDAO {
 	//private static CartController cartController = new CartController();
 	//private static BookDTO bookDTO = new BookDTO();
-	/**
-	 *DB상에서는 bStatus가 1인데 책바구니 담을때 튕겼다!!! >> 이건 무슨 이슈일까 ?!?!?!?!!?!!?!?!!??
-	 * 
-	 */
 	private static SessionSet ss = SessionSet.getInstance();
-	
+	/**
+	 * 책바구니에 있는 도서목록 일괄대여
+	 */
 	@Override
 	public int insertRents(List<BookDTO> list, String mID) throws SQLException {
 		Connection con = null;
@@ -37,7 +35,7 @@ public class RentDAOImpl implements RentDAO {
 				
 				for(BookDTO bookDTO :list) {
 					ps = con.prepareStatement(sql);
-					ps.setInt(1, bookDTO.getbIsbn());
+					ps.setInt(1, bookDTO.getbISBN());
 					ps.setString(2, mID);
 					
 					result = ps.executeUpdate();
@@ -46,7 +44,7 @@ public class RentDAOImpl implements RentDAO {
 						throw new SQLException("대여에 실패하였습니다.");
 					}
 					
-					switchBstatus(con, bookDTO.getbIsbn());
+					switchBstatus(con, bookDTO.getbISBN());
 				}
 			
 			} finally {
@@ -75,18 +73,6 @@ public class RentDAOImpl implements RentDAO {
 		}
 		
 		
-		return result;
-	}
-	/**
-	 * 책바구니 비우기
-	 */
-	@Override
-	public int clearRents(String mID) throws SQLException {
-
-		Connection con = null;
-		PreparedStatement ps = null;
-		String sql = "";
-		int result = 0;
 		return result;
 	}
 
@@ -124,5 +110,4 @@ public class RentDAOImpl implements RentDAO {
 		return list;
 	}
 
-	
 }
