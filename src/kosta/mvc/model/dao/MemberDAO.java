@@ -39,13 +39,15 @@ public interface MemberDAO {
 	/**
 	 * 비밀번호 변경
 	 * */
-	int UpdatePassword(MemberDTO memberDTO) throws SQLException;
+	int UpdatePassword(String mID, String mPwd) throws SQLException;
 
 	/**
 	 * 전화번호 변경
 	 * */
-	int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException;
+	int UpdatePhoneNumber(String mID, String mPhone) throws SQLException;
 
 	int cancelAccount(String mID, String mPwd)throws SQLException;
+
+
 
 }

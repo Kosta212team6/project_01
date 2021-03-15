@@ -106,9 +106,9 @@ public class MemberController {
 		}
 	}
 
-	public static void UpdatePassWord(MemberDTO memberDTO) {
+	public static void UpdatePassWord(String mID, String mPwd) {
 		try {
-			memberService.UpdatePassWord(memberDTO);
+			memberService.UpdatePassWord(mID, mPwd);
 			SuccessView.printMessage("비밀번호 변경 성공!");
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
@@ -116,9 +116,9 @@ public class MemberController {
 		
 	}
 
-	public static void UpdatePhoneNumber(MemberDTO memberDTO) {
+	public static void UpdatePhoneNumber(String mID, String mPhone) {
 		try {
-		memberService.UpdatePhoneNumber(memberDTO);
+		memberService.UpdatePhoneNumber(mID, mPhone);
 		SuccessView.printMessage("전화번호 변경 성공!");
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());

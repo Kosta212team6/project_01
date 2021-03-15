@@ -77,16 +77,16 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-	public void UpdatePassWord(MemberDTO memberDTO) throws SQLException {
-		int result = memberDAO.UpdatePassword(memberDTO);
+	public void UpdatePassWord(String mID, String mPwd) throws SQLException {
+		int result = memberDAO.UpdatePassword(mID, mPwd);
 		if (result == 0) {
 			throw new SQLException("오류 : 비밀번호 변경 실패");
 		}
 
 	}
 
-	public void UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException {
-		int result = memberDAO.UpdatePhoneNumber(memberDTO);
+	public void UpdatePhoneNumber(String mID, String mPhone) throws SQLException {
+		int result = memberDAO.UpdatePhoneNumber(mID, mPhone);
 		if (result == 0) {
 			throw new SQLException("오류 : 전화번호 변경 실패");
 		}
@@ -102,6 +102,7 @@ public class MemberServiceImpl implements MemberService {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
 		ss.remove(session); //세선 끊기
+		MenuView.menu();
 
 	}
 }
