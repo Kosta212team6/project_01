@@ -51,7 +51,7 @@ public interface MemberDAO {
 
 
 
-=======
+==========
 	
 	public List<MemberDTO> myInFo(String mID) throws SQLException;
 	
