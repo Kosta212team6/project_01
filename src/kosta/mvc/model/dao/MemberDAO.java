@@ -30,7 +30,6 @@ public interface MemberDAO {
 	 * 회원가입
 	 */
 	int createMember(MemberDTO memberDTO) throws SQLException;
-<<<<<<< HEAD
 	/**
 	 * 내정보 조회
 	 * */
@@ -45,18 +44,8 @@ public interface MemberDAO {
 	/**
 	 * 전화번호 변경
 	 * */
-	int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException;
+
 
 	int cancelAccount(String mID, String mPwd)throws SQLException;
 
-
-
-==========
-	
-	public List<MemberDTO> myInFo(String mID) throws SQLException;
-	
-	public int UpdatePassword(MemberDTO memberDTO) throws SQLException ;
-	
-	public int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException;
->>>>>>> branch 'main' of https://github.com/Kosta212team6/project_01.git
 }

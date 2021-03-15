@@ -178,36 +178,6 @@ public class MenuView {
 	 * 책바구니 보기 메뉴
 	 */
 	public static void printBookCartMenu(String mId) {
-<<<<<<< HEAD
-		while (true) {
-			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
-
-			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제" + "3. 책바구니 비우기   4. 뒤로 가기");
-
-			System.out.println("메뉴 목록 적으세요");
-
-			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   " + "3. 책바구니 비우기   4. 뒤로 가기");
-
-			try {
-				int menu = Integer.parseInt(sc.nextLine());
-				switch (menu) {
-				case 1:
-					rentForSure(mId);
-					break;
-				case 2:
-					deleteForSure(mId);
-					break;
-				case 3:
-				//	clearForSure(mId);
-					break;
-				case 4:
-					printUserMenu(mId);
-					break;
-				default:
-					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
-					break;
-======
 		if(RentController.isEmptyCart(mId)) {
 			while (true) {
 				SessionSet ss = SessionSet.getInstance();
@@ -238,7 +208,6 @@ public class MenuView {
 					}
 				} catch (NumberFormatException e) {
 					System.out.println("숫자만 입력해주세요");
->>>>>>> branch 'main' of https://github.com/Kosta212team6/project_01.git
 				}
 			}
 		} else {
@@ -396,7 +365,7 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
-			System.out.println("1. 대여한 도서보기   2. 예약한 도서보기   3. 반납하기   4. 내 회원정보 열람  5. 내정보 수정   0. 뒤로가기");
+			System.out.println("1. 대여한 도서보기   2. 예약한 도서보기   3. 반납하기   4. 내 회원정보 열람  5. 내정보 수정   6.탈퇴하기");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -421,7 +390,9 @@ public class MenuView {
 					System.out.println("내 정보 수정");
 					loginForChangeMyInFo(mID);
 					break;
-
+				case 6:
+					System.out.println("탈퇴하기 ");
+					break;
 				case 0:
 					System.out.println("뒤로가기.. ");
 					return;
@@ -436,18 +407,14 @@ public class MenuView {
 		}
 
 	}
-/**
- * 정보수정전 비밀번호 확인
- * */
+
 	public static void loginForChangeMyInFo(String mID) {
 		System.out.print("PW : ");
 		String mPwd = sc.nextLine();
 
 		MemberController.loginForChangeInfo(mID, mPwd);
 	}
-	
-	
-	
+
 	/**
 	 * 내 정보 수정
 	 */
@@ -457,25 +424,19 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
-			System.out.println("1. 비밀번호 변경   2. 전화번호 변경   3. 탈퇴하기   4. 뒤로가기");
+			System.out.println("1. 비밀번호 변경   2. 전화번호 변경   3. 뒤로가기 ");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
 				case 1:
 					System.out.println("비밀번호 변경");
 					changePassWord(mID);
-					break;
 				case 2:
 					System.out.println("전화번호 변경");
 					changePhoneNumber(mID);
 					break;
-					
-				case 3:
-					System.out.println("탈퇴하기");
-					cancelMyAccount(mID);
-					return;
 
-				case 4:
+				case 3:
 					System.out.println("뒤로가기..");
 					return;
 				default:
@@ -488,28 +449,6 @@ public class MenuView {
 		}
 	}
 
-/**
- * 탈퇴하기
- * */
-	
-	public static void cancelMyAccount(String mID) {
-		System.out.println(mID + "계정 탈퇴 하시겠습니까? (Y / N)");
-		String ans = sc.nextLine();
-		if(ans.equalsIgnoreCase("y")) {
-			System.out.println("비밀번호를 입력하세요 > ");
-			String mPwd = sc.nextLine();
-			MemberController.cancelAccount(mID, mPwd);
-		}else if(ans.equalsIgnoreCase("n")) {
-			printModifyMyInFo(mID);
-		} else {
-			System.out.println("올바르지 않은 답변입니다. 처음부터 다시 진행하세요");
-			printMyLibary(mID);
-		}
-	
-
-		
-	}
-	
 	/**
 	 * 내 정보 열람
 	 */
@@ -640,20 +579,7 @@ public class MenuView {
 	/**
 	 * 책바구니 안에 있는 도서 목록 비우기 여부 묻는 메뉴
 	 */
-	/*
 
-<<<<<<< HEAD
-	public static void clearForSure(String mID)  {
-=======
->>>>>>> branch 'main' of https://github.com/Kosta212team6/project_01.git
-
-
-<<<<<<< HEAD
-		System.out.println("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
-	}
-=======
-
->>>>>>> branch 'main' of https://github.com/Kosta212team6/project_01.git
 	public static void clearForSure(String mID) {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
@@ -671,46 +597,10 @@ public class MenuView {
 				System.out.println("[ yes or no ] 로 입력해주세요 ");
 				clearForSure(mID);
 			}
-<<<<<<< HEAD
-
-		}
-	}
-*/
-=======
 			
 		} 
 	}	
-		
-//		else {
-//			FailView.errorMessage("책바구니가 비었습니다.");
-//		if (session.getAttribute("cart") == null) {
-//			System.out.println("책바구니가 비었습니다.");
-//			printBookCartMenu(mID);
-//		}
-//		System.out.println("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
-//
-//		String clear = sc.nextLine();
-//
-//		if (clear.equals("y")) {
-//			RentController.clearRents(mID);
-//		} else if (clear.equals("n")) {
-//
-//			if (clear.equals("y")) {
-//				RentController.clearCart(mID);
-//				System.out.println("책바구니 목록이 비워졌습니다.");
-//				printUserMenu(mID);
-//			} else if (clear.equals("n")) {
-//				System.out.println("회원메뉴로 돌아갑니다");
-//				printUserMenu(mID);
-//
-//			} else {
-//				System.out.println("[ yes or no ] 로 입력해주세요 ");
-//				clearForSure(mID);
-//			}
-//		}
-//	}
 
->>>>>>> branch 'main' of https://github.com/Kosta212team6/project_01.git
 	/**
 	 * 관리자용 메인메뉴
 	 */
