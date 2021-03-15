@@ -38,6 +38,13 @@ public interface MemberDAO {
 	int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException;
 
 	int cancelAccount(String mID, String mPwd)throws SQLException;
+<<<<<<< HEAD
+=======
+
+
+
+==========
+>>>>>>> branch 'main' of https://github.com/Kosta212team6/project_01.git
 	
 	public List<MemberDTO> myInFo(String mID) throws SQLException;
 	

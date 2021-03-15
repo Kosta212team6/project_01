@@ -178,6 +178,39 @@ public class MenuView {
 	 * 책바구니 보기 메뉴
 	 */
 	public static void printBookCartMenu(String mId) {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		while (true) {
+			SessionSet ss = SessionSet.getInstance();
+			System.out.println(ss.getSet());
+
+			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제" + "3. 책바구니 비우기   4. 뒤로 가기");
+
+			System.out.println("메뉴 목록 적으세요");
+
+			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   " + "3. 책바구니 비우기   4. 뒤로 가기");
+
+			try {
+				int menu = Integer.parseInt(sc.nextLine());
+				switch (menu) {
+				case 1:
+					rentForSure(mId);
+					break;
+				case 2:
+					deleteForSure(mId);
+					break;
+				case 3:
+				//	clearForSure(mId);
+					break;
+				case 4:
+					printUserMenu(mId);
+					break;
+				default:
+					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
+					break;
+======
+>>>>>>> branch 'main' of https://github.com/Kosta212team6/project_01.git
 		if(RentController.isEmptyCart(mId)) {
 			while (true) {
 				SessionSet ss = SessionSet.getInstance();
