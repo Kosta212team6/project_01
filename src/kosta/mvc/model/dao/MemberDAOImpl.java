@@ -224,6 +224,30 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return result;
 	}
+
+	@Override
+	public int cancelAccount(String mID, String mPwd) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE MEMBER SET MSTATUS=0 WHERE MID=? AND MPWD=?";
+		int result = 0;
+		
+		try {
+			con= DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, mID);
+			ps.setString(2, mPwd);
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+		
+	}
+
+
 	
 	
 }
