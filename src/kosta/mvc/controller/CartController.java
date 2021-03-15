@@ -95,7 +95,6 @@ public class CartController {
 				SuccessView.printMessage("해당 책이 책바구니에서 삭제되었습니다.");
 			}
 	}
-		
 	
 	/**
 	 * 책바구니 보기
@@ -110,24 +109,9 @@ public class CartController {
 			FailView.errorMessage("책바구니가 비었습니다.");
 		} else {
 			SuccessView.printViewCart(mID, cart);
-//			MenuView.rentForSure(mID);
-			//getBookDTOInCart(mID);
 		}	
-			//try {
-//				MenuView2.rentForSure(mID);
-//			} catch(StringFormatException e) {
-//				FailView.errorMessage(e.getMessage());
-//			}
-		}
-		
-		//if(OldISBN =) {
-//			System.out.println("이미 책바구니에 있는 책입니다.");
-//		}
-//		if(bookDTO != null) {
-//			throw new DuplicatedException("동일한 도서가 이미 책바구니에 있습니다");
-//		}
-		// 세션에서 꺼내와서
-		// isbn이 겹치면 튕겨내기
+	}
+	
 	/**
 	 * 대여 / 삭제하기 전에 책바구니 안에 있는 책 리턴해주는 메소드
 	 * @param mID
@@ -149,39 +133,6 @@ public class CartController {
 				
 		return list;
 	}
-	
-//	public static List<BookDTO> getBookDTOInCart(String mID) {
-//		List<BookDTO> list = new ArrayList<BookDTO>();
-//		SessionSet ss = SessionSet.getInstance();
-//		Session session = ss.get(mID);
-//		
-//		Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>)session.getAttribute("cart");
-//		
-//		
-//		public static void deleteCart(String mID, int bISBN) {
-//			SessionSet ss = SessionSet.getInstance();
-//			Session session = ss.get(mID);
-//			Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>)session.getAttribute("cart");
-//			
-//				BookDTO bookDTO = cart.remove(bISBN);
-//				if(bookDTO==null) {
-//					MenuView.failToDeleteMenu(mID);
-//				} else {
-//					SuccessView.printMessage("해당 책이 책바구니에서 삭제되었습니다.");
-//				}
-//		}		
-		
-		
-		
-//		for(Integer bISBN : cart.keyset()) {
-//			int bISBN = bookDTO.getbISBN(); //ISBN
-//			String bName = bookDTO.getbName(); //책 이름
-//			
-//			list.add(new BookDTO(bookDTO.getbISBN(), bookDTO.getbName()));
-//		}
-//		
-//		return list;
-//	}
 	
 	/**
 	 * 책바구니 안에 있는 목록 모두 지워주는(비워주는) 메소드

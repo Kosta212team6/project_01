@@ -80,16 +80,18 @@ public class ReturnDAOImpl implements ReturnDAO {
 				}
 				switchRentStatusFalse(con, rentDTO);
 				
-				String rsvID=checkBookRsv(rentDTO.getbISBN());
+				String rsvID=checkBookRsv(con, rentDTO.getbISBN());
 				if(rsvID==null) {
-					result=switchBStatusTrue(rentDTO.getbISBN());
+					result=switchBStatusTrue(con, rentDTO.getbISBN());
 					if(result==0) throw new SQLException("책 상태 변경 실패");
 				}
 				else {
-					result=switchNotifyCode(rsvID);
+					result=switchNotifyCode(con, rsvID);
 					if(result==0) throw new SQLException("알림 메세지 변경 실패");
-					result=rentRsvBook(rentDTO.getbISBN(), rsvID);
+					result=rentRsvBook(con, rentDTO.getbISBN(), rsvID);
 					if(result==0) throw new SQLException("예약도서의 대여 실패");
+					result=deleteDoneRsv(con, rentDTO.getbISBN());
+					if(result==0) throw new SQLException("예약내역 삭제 실패");
 				}
 			}
 
@@ -113,7 +115,6 @@ public class ReturnDAOImpl implements ReturnDAO {
 		List<RentDTO> list = new ArrayList<RentDTO>();
 		
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, mID);
@@ -146,7 +147,6 @@ public class ReturnDAOImpl implements ReturnDAO {
 		RentDTO rentDTO = null;
 		
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, bISBN);
@@ -175,7 +175,6 @@ public class ReturnDAOImpl implements ReturnDAO {
 		int result = 0;
 		
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, rentDTO.getbISBN());
@@ -191,8 +190,7 @@ public class ReturnDAOImpl implements ReturnDAO {
 	/**
 	 * 예약된 도서가 있는지 확인 : 날짜가 빠른 순서대로 정렬하여 1순위 컬럼만 가져오기
 	 */
-	public String checkBookRsv(int bISBN) throws SQLException {
-		Connection con = null;
+	public String checkBookRsv(Connection con, int bISBN) throws SQLException {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		
@@ -200,7 +198,6 @@ public class ReturnDAOImpl implements ReturnDAO {
 		String mID = null;
 		
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, bISBN);
@@ -210,7 +207,7 @@ public class ReturnDAOImpl implements ReturnDAO {
 				mID = rs.getString(1);
 			}
 		} finally {
-			DBUtil.dbClose(con, ps, rs);
+			DBUtil.dbClose(null, ps, rs);
 		}
 		return mID;
 	}
@@ -218,22 +215,20 @@ public class ReturnDAOImpl implements ReturnDAO {
 	/**
 	 * 도서 상태 업데이트
 	 */
-	public int switchBStatusTrue(int bISBN) throws SQLException {
-		Connection con = null;
+	public int switchBStatusTrue(Connection con, int bISBN) throws SQLException {
 		PreparedStatement ps = null;
 		
 		String sql = "UPDATE BOOK SET BSTATUS=1 WHERE BISBN=?";
 		int result = 0;
 		
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, bISBN); 
 			
 			result = ps.executeUpdate(); 
 		} finally {
-			DBUtil.dbClose(con, ps);
+			DBUtil.dbClose(null, ps);
 		}
 		return result;
 	}
@@ -241,22 +236,20 @@ public class ReturnDAOImpl implements ReturnDAO {
 	/**
 	 * 예약된 도서가 있는 경우 회원 알림코드를 20으로 변경하기
 	 */
-	public int switchNotifyCode(String mID) throws SQLException {
-		Connection con = null;
+	public int switchNotifyCode(Connection con, String mID) throws SQLException {
 		PreparedStatement ps = null;
 		
 		String sql = "UPDATE MEMBER SET NCODE=20 WHERE MID=?";
 		int result = 0;
 		
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setString(1, mID);
 			
 			result = ps.executeUpdate();
 		} finally {
-			DBUtil.dbClose(con, ps);
+			DBUtil.dbClose(null, ps);
 		}
 		return result;
 	}
@@ -264,8 +257,7 @@ public class ReturnDAOImpl implements ReturnDAO {
 	/**
 	 * 예약 도서를 바로 대출로 변경하기 
 	 */
-	public int rentRsvBook(int bISBN, String mID) throws SQLException {
-		Connection con = null;
+	public int rentRsvBook(Connection con, int bISBN, String mID) throws SQLException {
 		PreparedStatement ps = null;
 		
 		String sql = "INSERT INTO RENT(RNUM, RDATE, REXDATE, RSTATUS, BISBN, MID) "
@@ -273,7 +265,6 @@ public class ReturnDAOImpl implements ReturnDAO {
 		int result = 0;
 		
 		try {
-			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
 			ps.setInt(1, bISBN);
@@ -281,7 +272,7 @@ public class ReturnDAOImpl implements ReturnDAO {
 			
 			result = ps.executeUpdate();
 		} finally {
-			DBUtil.dbClose(con, ps);
+			DBUtil.dbClose(null, ps);
 		}
 		
 		return result;
@@ -290,6 +281,23 @@ public class ReturnDAOImpl implements ReturnDAO {
 	/**
 	 * 예약 레코드 삭제
 	 */
+	public int deleteDoneRsv(Connection con, int bISBN) throws SQLException {
+		PreparedStatement ps = null;
+		
+		String sql = "DELETE FROM RSV WHERE BISBN=?";
+		int result = 0;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setInt(1, bISBN);
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(null, ps);
+		}
+		return result;
+	}
 	
 	public static void main(String[] args)  {
 		ReturnDAOImpl returnDAO = new ReturnDAOImpl();

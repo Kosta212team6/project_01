@@ -6,6 +6,7 @@ import java.util.Scanner;
 import kosta.mvc.controller.BookController;
 import kosta.mvc.controller.CartController;
 import kosta.mvc.controller.MemberController;
+import kosta.mvc.controller.NotifyController;
 import kosta.mvc.controller.RentController;
 import kosta.mvc.exception.StringFormatException;
 import kosta.mvc.model.dto.BookDTO;
@@ -128,6 +129,7 @@ public class MenuView {
 	 * 메인메뉴
 	 */
 	public static void printMenu() {
+	
 		System.out.println("┌──── 도서관프로그램 ─────┐");
 		System.out.println("│ 1. 가입하기   2. 로그인  9. 종료 │");
 		System.out.println("└─────────────────┘");
@@ -141,6 +143,7 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
 			System.out.println(mID + "님 로그인 하셨습니다.");
+			printNmessage(mID);
 			System.out.println("1. 로그아웃   2. 검색하기   3. 책바구니 담기   4. 책바구니 보기   5. 마이서재");
 
 			try {
@@ -585,7 +588,7 @@ public class MenuView {
 		System.out.println("┌※ 해당 책이 책바구니 내에 존재하지 않습니다. ※┐");
 		System.out.println("│                                                │");
 		System.out.println("└────메인메뉴로 돌아가시겠습니까 ? ─────┘");
-		System.out.println("		y | n  ▷ ");
+		System.out.print("		y | n  ▷ ");
 		String answer = sc.nextLine();
 		if (answer.equals("y")) {
 			printUserMenu(mID);
@@ -605,8 +608,10 @@ public class MenuView {
 	public static void clearForSure(String mID) {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
-		if (RentController.isEmptyCart(mID)) {
-			System.out.println("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
+
+		if(RentController.isEmptyCart(mID)) {
+			System.out.print("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
+
 			String clear = sc.nextLine();
 			if (clear.equals("y")) {
 				RentController.clearCart(mID);
@@ -620,7 +625,9 @@ public class MenuView {
 				clearForSure(mID);
 			}
 
-		}
+			
+		} 
+
 	}
 
 	/**
@@ -904,6 +911,19 @@ public class MenuView {
 			System.out.println("ISBN은 숫자만 입력 가능합니다");
 		}
 
+	}
+	/**
+	 * 예약메시지 띄워주기
+	 */
+	public static void printNmessage(String mID) {
+		NotifyController notifyController =  new NotifyController();
+		try {
+			String message = notifyController.printMessage(mID);
+			System.out.println(message);
+		} catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
 	}
 
 }

@@ -8,6 +8,10 @@ import kosta.mvc.model.dto.RsvDTO;
 
 public interface ReturnService {
 
+//	public List<RentDTO> searchRentHistory(String mID) throws SQLException;
+		
+
+
 	/**
 	 * 대여 내역 검색
 	 */
@@ -21,5 +25,5 @@ public interface ReturnService {
 	/**
 	 * 반납하기
 	 */
-	void returnBooks(String mID, int bISBN) throws SQLException;
+	void returnBooks(String mID) throws SQLException;
 }

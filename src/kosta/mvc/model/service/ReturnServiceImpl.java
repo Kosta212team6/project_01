@@ -14,11 +14,19 @@ public class ReturnServiceImpl implements ReturnService{
 
 //	@Override
 //	public List<RentDTO> searchRentHistory(String mID) throws SQLException {
+
+////		List<RentDTO> list = returnDAO.searchRentHistory(mID);
+////		if(list==null) {
+////			throw new SQLException("대여한 내역이 없습니다");
+////		}
+////		return list;
+
 //		List<RentDTO> list = returnDAO.searchRentHistory(mID);
 //		if(list==null) {
 //			throw new SQLException("대여한 내역이 없습니다");
 //		}
 //		return list;
+
 //	}
 
 	@Override
@@ -31,10 +39,7 @@ public class ReturnServiceImpl implements ReturnService{
 	}
 
 	@Override
-	public void returnBooks(String mID, int bISBN) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+	public void returnBooks(String mID) throws SQLException {
+		int result = returnDAO.returnBooks(mID);
+	}	
 }
