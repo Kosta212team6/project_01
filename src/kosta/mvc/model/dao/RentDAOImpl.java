@@ -45,10 +45,10 @@ public class RentDAOImpl implements RentDAO {
 					}
 					
 					switchBstatus(con, bookDTO.getbISBN());
+					con.commit();
 				}
 			
 			} finally {
-				con.commit();
 				DBUtil.dbClose(con,ps);
 			}
 		return result;

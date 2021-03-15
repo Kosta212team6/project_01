@@ -7,7 +7,7 @@ import kosta.mvc.model.dto.RentDTO;
 import kosta.mvc.model.dto.RsvDTO;
 
 public interface ReturnService {
-	public List<RentDTO> searchRentHistory(String mID) throws SQLException;
+//	public List<RentDTO> searchRentHistory(String mID) throws SQLException;
 		
 
 	

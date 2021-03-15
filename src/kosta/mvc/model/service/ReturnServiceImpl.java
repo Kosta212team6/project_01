@@ -12,14 +12,14 @@ public class ReturnServiceImpl implements ReturnService{
 
 	private ReturnDAO returnDAO = new ReturnDAOImpl();
 
-	@Override
-	public List<RentDTO> searchRentHistory(String mID) throws SQLException {
-		List<RentDTO> list = returnDAO.searchRentHistory(mID);
-		if(list==null) {
-			throw new SQLException("대여한 내역이 없습니다");
-		}
-		return list;
-	}
+//	@Override
+//	public List<RentDTO> searchRentHistory(String mID) throws SQLException {
+////		List<RentDTO> list = returnDAO.searchRentHistory(mID);
+////		if(list==null) {
+////			throw new SQLException("대여한 내역이 없습니다");
+////		}
+////		return list;
+//	}
 
 	@Override
 	public List<RsvDTO> searchRsvHistory(String mID) throws SQLException {
