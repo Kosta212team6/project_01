@@ -1,7 +1,6 @@
 package kosta.mvc.view;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.sql.SQLException;import java.util.List;
 import java.util.Scanner;
 
 import kosta.mvc.controller.BookController;
@@ -69,6 +68,7 @@ public class MenuView {
 
 		SessionSet ss = SessionSet.getInstance();
 		ss.remove(session);
+		menu();
 	}
 
 	/**
@@ -149,7 +149,6 @@ public class MenuView {
 				case 1:
 					System.out.println("로그아웃 합니다");
 					logout(mID);
-					return;
 				case 2:
 					System.out.println("책을 검색합니다");
 					printBookSearchMenu(mID);
@@ -492,9 +491,9 @@ public class MenuView {
 	public static void changePhoneNumber(String mID) {
 		System.out.print("새로운 전화번호를 입력하세요 > ");
 		String mPhone = sc.nextLine();
-		if(mPhone.length() <11) {
-			System.out.println("전화번호가 너무 짧습니다 다시 입력하세요");
-			changePhoneNumber(mID);
+		if(mPhone.length() <11 || mPhone.length()>11) {
+			System.out.println("전화번호 길이에 문제가 있습니다.");
+			return;
 		}
 		MemberController.UpdatePhoneNumber(mID, mPhone);
 
