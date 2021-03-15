@@ -27,7 +27,7 @@ public interface ReturnDAO {
 	 * 대여 내역 검색
 	 * : 반납하기에서 쓸 때 rnum, bisbn 가져와야함
 	 */
-	List<RentDTO> searchRentHistory(String mID) throws SQLException;
+//	List<RentDTO> searchRentHistory(String mID) throws SQLException;
 	
 	/**
 	 * 예약 내역 검색
@@ -37,6 +37,6 @@ public interface ReturnDAO {
 	/**
 	 * 반납하기
 	 */
-	void returnBooks(String mID, int bISBN) throws SQLException;
+	int returnBooks(String mID) throws SQLException;
 
 }
