@@ -136,14 +136,12 @@ public class BookController {
 	}
 
 	public static void bookSelectByBname(String bName) {
-
 		try {
 			List<BookDTO> list = bookService.bookSelectByBname(bName);
 			SuccessView.printBooks(list);
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}
-
 	}
 
 }

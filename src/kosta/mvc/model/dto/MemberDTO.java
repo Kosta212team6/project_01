@@ -15,8 +15,6 @@ public class MemberDTO {
 		this.mPwd = mPwd;
 		this.mStatus = mStatus;
 	}
-	
-	
 	public MemberDTO(String mID, String mName, String mPhone, String mPwd, String mAble, int mStatus, int nCode) {
 		this(mID, mPwd, mStatus);
 		this.mName = mName;

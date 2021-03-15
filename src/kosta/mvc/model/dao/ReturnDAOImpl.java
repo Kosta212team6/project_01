@@ -154,7 +154,7 @@ public class ReturnDAOImpl implements ReturnDAO {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				int rnum=rs.getInt(1);
-				rentDTO=new RentDTO(rnum, bISBN);
+				rentDTO= new RentDTO(rnum, bISBN);
 			}
 			
 		} finally {

@@ -30,22 +30,10 @@ public interface MemberDAO {
 	 * 회원가입
 	 */
 	int createMember(MemberDTO memberDTO) throws SQLException;
-	/**
-	 * 내정보 조회
-	 * */
-
-	List<MemberDTO> myInFo(String mID) throws SQLException;
-
-	/**
-	 * 비밀번호 변경
-	 * */
-	int UpdatePassword(MemberDTO memberDTO) throws SQLException;
-
-	/**
-	 * 전화번호 변경
-	 * */
-	int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException;
-
-
-
+	
+	public List<MemberDTO> myInFo(String mID) throws SQLException;
+	
+	public int UpdatePassword(MemberDTO memberDTO) throws SQLException ;
+	
+	public int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException;
 }

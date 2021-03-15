@@ -18,9 +18,6 @@ public class MenuView {
 
 	private static Scanner sc = new Scanner(System.in);
 
-	/**
-	 * 외않돼!!!
-	 */
 	public static void menu() {
 		while (true) {
 			MenuView.printMenu();
@@ -158,17 +155,10 @@ public class MenuView {
 					printBookSearchMenu(mID);
 					break;
 				case 3:
-					System.out.println("책바구니에 책을 담습니다");
 					printPutCart(mID);
 					break;
 				case 4:
-					System.out.println("책바구니에 담은 책을 봅니다");
 					printBookCartMenu(mID);
-//					try {
-//						CartController.viewCart(mID);
-//					} catch (StringFormatException e) {
-//						FailView.errorMessage(e.getMessage());
-//					}
 					break;
 				case 5:
 					System.out.println("마이서재를 엽니다");
@@ -178,51 +168,53 @@ public class MenuView {
 					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
 					break;
 				}
-
 			} catch (NumberFormatException e) {
 				System.out.println("숫자만 입력해주세요!");
 			}
 		}
 	}
-
+	
 	/**
 	 * 책바구니 보기 메뉴
 	 */
 	public static void printBookCartMenu(String mId) {
-		while (true) {
-			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
-
-			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제" + "3. 책바구니 비우기   4. 뒤로 가기");
-
-			System.out.println("메뉴 목록 적으세요");
-
-			System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   " + "3. 책바구니 비우기   4. 뒤로 가기");
-
-			try {
-				int menu = Integer.parseInt(sc.nextLine());
-				switch (menu) {
-				case 1:
-					rentForSure(mId);
-					break;
-				case 2:
-					deleteForSure(mId);
-					break;
-				case 3:
-					clearForSure(mId);
-					break;
-				case 4:
-					printUserMenu(mId);
-					break;
-				default:
-					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
-					break;
+		if(RentController.isEmptyCart(mId)) {
+			while (true) {
+				SessionSet ss = SessionSet.getInstance();
+				System.out.println(ss.getSet());
+				
+				
+				System.out.println("책바구니에 담은 책을 봅니다");
+				System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   "
+								 + "3. 책바구니 비우기   4. 뒤로 가기");
+				try {
+					int menu = Integer.parseInt(sc.nextLine());
+					switch (menu) {
+					case 1:
+							rentForSure(mId);
+						break;
+					case 2:
+							deleteForSure(mId);
+						break;
+					case 3:
+							clearForSure(mId);
+						break;
+					case 4:
+							printUserMenu(mId);
+						break;
+					default:
+						System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
+						break;
+					}
+				} catch (NumberFormatException e) {
+					System.out.println("숫자만 입력해주세요");
 				}
-			} catch (NumberFormatException e) {
-				System.out.println("숫자만 입력해주세요");
 			}
+		} else {
+			FailView.errorMessage("먼저 책을 책바구니에 담고 다시 시도해주세요.");
+			printUserMenu(mId);
 		}
-	}
+	}	
 
 	/**
 	 * 도서 검색 메뉴
@@ -518,12 +510,15 @@ public class MenuView {
 	/**
 	 * 책바구니 담기
 	 */
+//	
+//}
 	public static void printPutCart(String mID) {
-		System.out.print("ISBN > ");
-		int bISBN = Integer.parseInt(sc.nextLine());
-		int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
-
-		CartController.putCart(mID, bISBN);
+			System.out.println("책바구니에 책을 담습니다");
+			System.out.print("ISBN > ");
+			int bISBN = Integer.parseInt(sc.nextLine());
+			int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
+			CartController.putCart(mID, bISBN);
+		
 	}
 
 	/**
@@ -533,13 +528,12 @@ public class MenuView {
 
 		List<BookDTO> list = CartController.getBookDTOInCart(mID);
 
-		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n   >   ");
-
 		System.out.print("현재 담겨져 있는 도서 목록을 대여하시겠습니까? y | n  ▷  ");
 
 		String rent = sc.nextLine();
 		if (rent.equals("y")) {
 			RentController.insertRents(list, mID);
+			SuccessView.printMessage("대여 성공!!!!!");
 		} else if (rent.equals("n")) {
 			printUserMenu(mID);
 		} else {
@@ -553,17 +547,15 @@ public class MenuView {
 	 * 책바구니 안에 있는 도서 bISBN으로 선택해서 삭제 여부 묻는 메뉴
 	 */
 	public static void deleteForSure(String mID) {
-		System.out.println("목록에서 삭제할 책의 ISBN을 입력해 주세요  ▷  ");
-		int bISBN = Integer.parseInt(sc.nextLine());
-		if (bISBN == RentController.deleteCart(mID)) {
-			System.out.println("해당 책이 목록에서) 삭제되었습니다.");
-			printUserMenu(mID);
+		if(RentController.isEmptyCart(mID)) {
+			System.out.println("목록에서 삭제할 책의 ISBN을 입력해 주세요  ▷  ");
+			int bISBN = Integer.parseInt(sc.nextLine());
+			RentController.deleteCart(mID, bISBN);
 		} else {
 			failToDeleteMenu(mID);
 		}
-
 	}
-
+		
 	/**
 	 * 책바구니 안에 있는 도서 삭제 실패시 보여주는 메뉴
 	 */
@@ -571,7 +563,7 @@ public class MenuView {
 		System.out.println("┌※ 해당 책이 책바구니 내에 존재하지 않습니다. ※┐");
 		System.out.println("│                                                │");
 		System.out.println("└────메인메뉴로 돌아가시겠습니까 ? ─────┘");
-		System.out.println("				y | n  ▷ ");
+		System.out.println("		y | n  ▷ ");
 		String answer = sc.nextLine();
 		if (answer.equals("y")) {
 			printUserMenu(mID);
@@ -588,44 +580,58 @@ public class MenuView {
 	 * 책바구니 안에 있는 도서 목록 비우기 여부 묻는 메뉴
 	 */
 
-	public static void clearForSure(String mID) throws StringFormatException {
 
-		List<BookDTO> list = CartController.getBookDTOInCart(mID);
 
-		System.out.println("책바구니를 모두 비우시겠습니까? y | n   >   ");
 
 	public static void clearForSure(String mID) {
-
-//		List<BookDTO> list = CartController.getBookDTOInCart(mID);
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
-		if (session.getAttribute("cart") == null) {
-			System.out.println("책바구니가 비었습니다.");
-			printBookCartMenu(mID);
-		}
-		System.out.println("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
-
-		String clear = sc.nextLine();
-
-		if (clear.equals("y")) {
-			RentController.clearRents(mID);
-		} else if (clear.equals("n")) {
-
-			if (clear.equals("y")) {
+		if(RentController.isEmptyCart(mID)) {
+			System.out.println("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
+			String clear = sc.nextLine();
+			if(clear.equals("y")) {
 				RentController.clearCart(mID);
 				System.out.println("책바구니 목록이 비워졌습니다.");
 				printUserMenu(mID);
-			} else if (clear.equals("n")) {
+			} else if(clear.equals("n")) {
 				System.out.println("회원메뉴로 돌아갑니다");
 				printUserMenu(mID);
-
 			} else {
 				System.out.println("[ yes or no ] 로 입력해주세요 ");
 				clearForSure(mID);
 			}
-
-		}
-	}
+			
+		} 
+	}	
+		
+//		else {
+//			FailView.errorMessage("책바구니가 비었습니다.");
+//		if (session.getAttribute("cart") == null) {
+//			System.out.println("책바구니가 비었습니다.");
+//			printBookCartMenu(mID);
+//		}
+//		System.out.println("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
+//
+//		String clear = sc.nextLine();
+//
+//		if (clear.equals("y")) {
+//			RentController.clearRents(mID);
+//		} else if (clear.equals("n")) {
+//
+//			if (clear.equals("y")) {
+//				RentController.clearCart(mID);
+//				System.out.println("책바구니 목록이 비워졌습니다.");
+//				printUserMenu(mID);
+//			} else if (clear.equals("n")) {
+//				System.out.println("회원메뉴로 돌아갑니다");
+//				printUserMenu(mID);
+//
+//			} else {
+//				System.out.println("[ yes or no ] 로 입력해주세요 ");
+//				clearForSure(mID);
+//			}
+//		}
+//	}
 
 	/**
 	 * 관리자용 메인메뉴
