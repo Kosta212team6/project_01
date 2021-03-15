@@ -44,7 +44,7 @@ public interface MemberDAO {
 	/**
 	 * 전화번호 변경
 	 * */
-
+	int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException;
 
 	int cancelAccount(String mID, String mPwd)throws SQLException;
 
