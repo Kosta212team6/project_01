@@ -31,10 +31,7 @@ public class ReturnServiceImpl implements ReturnService{
 	}
 
 	@Override
-	public void returnBooks(String mID, int bISBN) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
+	public void returnBooks(String mID) throws SQLException {
+		int result = returnDAO.returnBooks(mID);
+	}	
 }

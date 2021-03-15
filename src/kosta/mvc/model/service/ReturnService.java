@@ -21,5 +21,5 @@ public interface ReturnService {
 	/**
 	 * 반납하기
 	 */
-	void returnBooks(String mID, int bISBN) throws SQLException;
+	void returnBooks(String mID) throws SQLException;
 }
