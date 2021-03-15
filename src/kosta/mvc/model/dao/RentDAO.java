@@ -45,5 +45,8 @@ public interface RentDAO {
 	 */
 	public int switchBstatus(Connection con, int bISBN) throws SQLException;
 	
+
+	public List<RentDTO> printRentBookList(String mID) throws SQLException;
+
 	
 }

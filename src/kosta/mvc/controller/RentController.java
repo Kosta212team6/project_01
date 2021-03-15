@@ -3,12 +3,16 @@ package kosta.mvc.controller;
 import java.util.List;
 import java.util.Map;
 
+
 import kosta.mvc.exception.NotFoundException;
+import com.sun.org.apache.bcel.internal.classfile.ExceptionTable;
+import kosta.mvc.exception.StringFormatException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.service.RentService;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.FailView;
+import kosta.mvc.view.SuccessView;
 
 public class RentController {
 	private static RentService rentService = new RentService();
@@ -38,7 +42,10 @@ public class RentController {
 	public static boolean isEmptyCart (String mID) {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
-			if(session.getAttribute("cart")==null || ((Map<Integer, BookDTO>)session.getAttribute("cart")).isEmpty()) {
+			if(session.getAttribute("cart")==null)  {
+				return false;
+			}
+			if(((Map<Integer, BookDTO>)session.getAttribute("cart")).isEmpty()) {
 				return false;
 			}
 		return true;
@@ -55,4 +62,20 @@ public class RentController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+	
+	/**
+	 * 대여한 도서 출력
+	 * */
+/*
+	public static void rentBookList(String mID) {
+		try {
+			List<RentDTO> list = rentService.printRentBookList(mID);
+			SuccessView.printRentBookList(list);
+		} catch (Exception e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
+	}
+*/
+
 }

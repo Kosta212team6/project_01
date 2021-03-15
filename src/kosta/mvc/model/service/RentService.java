@@ -10,6 +10,7 @@ import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dao.RentDAO;
 import kosta.mvc.model.dao.RentDAOImpl;
 import kosta.mvc.model.dto.BookDTO;
+import kosta.mvc.model.dto.RentDTO;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 
@@ -27,15 +28,6 @@ public class RentService {
 	 * bISBN으로 책바구니 목록 선택삭제 하기
 	 */
 	public void deleteCart(String mID, int bISBN) throws NotFoundException {
-//		SessionSet ss = SessionSet.getInstance();
-//		Session session = ss.get(mID);
-//		if(session.getAttribute("cart")==null) {
-//			throw new NotFoundException("책바구니에 책을 담고 다시 시도해 주세요.");
-//		}
-//		
-//		if(((Map<Integer, BookDTO>)session.getAttribute("cart")).isEmpty()) {
-//			throw new NotFoundException("책바구니에 책을 담고 다시 시도해 주세요.");
-//		}
 		CartController.deleteCart(mID, bISBN);
 	}
 	
@@ -50,4 +42,13 @@ public class RentService {
 		}
 		CartController.clearCart(mID);
 	}
+	public List<RentDTO> printRentBookList(String mID) throws SQLException, NotFoundException {
+		SessionSet ss = SessionSet.getInstance();
+		List<RentDTO> list = rentDAO.printRentBookList(mID);
+		if(list == null || list.isEmpty()) {
+			throw new NotFoundException("대여하신 도서가 없습니다.");
+		}
+		return list;
+	}
+
 }

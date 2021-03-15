@@ -138,9 +138,10 @@ public class CartController {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
 		
-		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute("cart");
-		for(BookDTO bookDTO : cart.keySet()) {
-			int bISBN = bookDTO.getbISBN(); //ISBN
+		Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>)session.getAttribute("cart");
+		for(Integer bISBN : cart.keySet()) {
+			BookDTO bookDTO = cart.get(bISBN);
+			
 			String bName = bookDTO.getbName(); //책 이름
 			
 			list.add(new BookDTO(bookDTO.getbISBN(), bookDTO.getbName()));
@@ -149,25 +150,38 @@ public class CartController {
 		return list;
 	}
 	
-	/**
-	 * bISBN으로 책바구니 목록 선택삭제 해주는 메소드
-	 */
-//	public static void deleteCart(String mID) {
-//		BookDTO bookDTO = new BookDTO();
+//	public static List<BookDTO> getBookDTOInCart(String mID) {
+//		List<BookDTO> list = new ArrayList<BookDTO>();
 //		SessionSet ss = SessionSet.getInstance();
 //		Session session = ss.get(mID);
-//		session
 //		
-//	}
-	
-	/*
-		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>)session.getAttribute(mID);
+//		Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>)session.getAttribute("cart");
+//		
+//		
+//		public static void deleteCart(String mID, int bISBN) {
+//			SessionSet ss = SessionSet.getInstance();
+//			Session session = ss.get(mID);
+//			Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>)session.getAttribute("cart");
+//			
+//				BookDTO bookDTO = cart.remove(bISBN);
+//				if(bookDTO==null) {
+//					MenuView.failToDeleteMenu(mID);
+//				} else {
+//					SuccessView.printMessage("해당 책이 책바구니에서 삭제되었습니다.");
+//				}
+//		}		
 		
-		cart.remove*/
-	
-	
-	
-	
+		
+		
+//		for(Integer bISBN : cart.keyset()) {
+//			int bISBN = bookDTO.getbISBN(); //ISBN
+//			String bName = bookDTO.getbName(); //책 이름
+//			
+//			list.add(new BookDTO(bookDTO.getbISBN(), bookDTO.getbName()));
+//		}
+//		
+//		return list;
+//	}
 	
 	/**
 	 * 책바구니 안에 있는 목록 모두 지워주는(비워주는) 메소드

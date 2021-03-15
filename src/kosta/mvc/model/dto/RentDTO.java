@@ -7,16 +7,39 @@ public class RentDTO {
 	private int rStatus;
 	private int bISBN; // fk
 	private String mID; // fk
+	private String bName;
 
 	public RentDTO() {}
+	public RentDTO(int rNum, int bISBN) {
+		this.rNum = rNum;
+		this.bISBN = bISBN;
+	}
 	public RentDTO(int rNum, String rDate, String rExDate, int rStatus, int bISBN, String mID) {
-		super();
+		this(rNum, bISBN);
+		this.rDate = rDate;
+		this.rExDate = rExDate;
+		this.rStatus = rStatus;
+		this.mID = mID;
+	}
+	
+	public RentDTO(int rNum, String rDate, String rExDate, int rStatus, int bISBN, String mID, String bName) {
 		this.rNum = rNum;
 		this.rDate = rDate;
 		this.rExDate = rExDate;
 		this.rStatus = rStatus;
 		this.bISBN = bISBN;
 		this.mID = mID;
+		this.bName = bName;
+	}
+	
+
+
+
+	public String getbName() {
+		return bName;
+	}
+	public void setBname(String bName) {
+		this.bName = bName;
 	}
 	public int getrNum() {
 		return rNum;
@@ -56,8 +79,12 @@ public class RentDTO {
 	}
 	@Override
 	public String toString() {
-		return rNum + " | " + rDate + " | " + rExDate + " | " + rStatus + " | "
-				+ bISBN + " | " + mID;
+		return rNum + " | " + bName + " | " + bISBN +" | " +rDate + " | " + rExDate + " | " + rStatus + " | " + mID ;
+			
+		
+		
+		
+		
 	}
 	
 	

@@ -154,5 +154,76 @@ public class MemberDAOImpl implements MemberDAO {
 		}
 		return result;
 	}
+
+	@Override
+	public List<MemberDTO> myInFo(String mID) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<MemberDTO> list = new ArrayList<MemberDTO>();
+		String sql = "SELECT MID, MNAME, MPHONE, MABLE, NCODE FROM MEMBER WHERE mid=?";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mID);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				String ID = rs.getString("mid");
+				String mName = rs.getString("mname");
+				String mPhone = rs.getString("mphone");
+				String mAble = rs.getString("mable");
+				int nCode = rs.getInt("ncode");
+				
+				MemberDTO memberDTO = new MemberDTO(ID, mName, mPhone, null, mAble, 0, nCode);
+				list.add(memberDTO);
+			}
+			
+		} finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
+	@Override
+	public int UpdatePassword(MemberDTO memberDTO) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE member SET mpwd=? WHERE mid=?";
+		int result = 0;
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1,memberDTO.getmPwd());
+			ps.setString(2,memberDTO.getmID());
+			result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+		
+	}
+
+	@Override
+	public int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE member SET mPhone=? WHERE mid=?";
+		int result = 0;
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1,memberDTO.getmPhone());
+			ps.setString(2,memberDTO.getmID());
+			result = ps.executeUpdate();
+		}finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+	}
+	
 	
 }

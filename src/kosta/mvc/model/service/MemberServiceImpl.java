@@ -68,5 +68,34 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 	}
+
+	public List<MemberDTO> myInFo(String mID) throws SQLException, NotFoundException {
+		List<MemberDTO> list = memberDAO.myInFo(mID);
+		if(list == null) {
+			throw new NotFoundException("오류 : 회원정보 출력 불가");
+		}
+		return list;
+		
+	}
+
+
+
+public void UpdatePassWord(MemberDTO memberDTO) throws SQLException {
+	int result = memberDAO.UpdatePassword(memberDTO);
+	if(result ==0) {
+		throw new SQLException("오류 : 비밀번호 변경 실패");
+	}
+	
+}
+
+public void UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException {
+	int result = memberDAO.UpdatePhoneNumber(memberDTO);
+	if(result == 0) {
+		throw new SQLException("오류 : 전화번호 변경 실패");
+	}
+	
+}
+
+
 	
 }

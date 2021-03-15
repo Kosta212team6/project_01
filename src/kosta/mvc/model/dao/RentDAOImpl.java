@@ -18,12 +18,10 @@ import kosta.mvc.view.FailView;
 public class RentDAOImpl implements RentDAO {
 	//private static CartController cartController = new CartController();
 	//private static BookDTO bookDTO = new BookDTO();
-	/**
-	 *DB상에서는 bStatus가 1인데 책바구니 담을때 튕겼다!!! >> 이건 무슨 이슈일까 ?!?!?!?!!?!!?!?!!??
-	 * 
-	 */
 	private static SessionSet ss = SessionSet.getInstance();
-	
+	/**
+	 * 책바구니에 있는 도서목록 일괄대여
+	 */
 	@Override
 	public int insertRents(List<BookDTO> list, String mID) throws SQLException {
 		Connection con = null;
@@ -77,4 +75,39 @@ public class RentDAOImpl implements RentDAO {
 		
 		return result;
 	}
+
+	/**
+	 * 대여중인 도서목록 출력
+	 * */
+	@Override
+	public List<RentDTO> printRentBookList(String mID) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<RentDTO> list = new ArrayList<RentDTO>();
+		String sql = "select rNum, rDate, rExDate, rstatus, bISBN, mID, bName from book natural join rent where mid = ? and rstatus = 1 order by rNum asc";
+		
+		try {
+			con = DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, mID);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				int rNum = rs.getInt(1);
+				String rDate = rs.getString(2);
+				String rExDate = rs.getString(3);
+				int rStatus = rs.getInt(4);
+				int bISBN = rs.getInt(5);
+				String ID= rs.getString(6);
+				String bName= rs.getString(7);
+				
+				RentDTO dto = new RentDTO(rNum, rDate, rExDate, rStatus, bISBN, ID,bName);
+				list.add(dto);
+			}
+		}finally {
+			DBUtil.dbClose(con, ps, rs);
+		}
+		return list;
+	}
+
 }
