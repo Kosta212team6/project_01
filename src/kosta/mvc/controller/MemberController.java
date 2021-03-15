@@ -6,6 +6,8 @@ import java.util.List;
 import kosta.mvc.exception.NotFoundException;
 import kosta.mvc.model.dto.MemberDTO;
 import kosta.mvc.model.service.MemberServiceImpl;
+import kosta.mvc.session.Session;
+import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.FailView;
 import kosta.mvc.view.MenuView;
 import kosta.mvc.view.SuccessView;
@@ -104,9 +106,9 @@ public class MemberController {
 		}
 	}
 
-	public static void UpdatePassWord(MemberDTO memberDTO) {
+	public static void UpdatePassWord(String mID, String mPwd) {
 		try {
-			memberService.UpdatePassWord(memberDTO);
+			memberService.UpdatePassWord(mID, mPwd);
 			SuccessView.printMessage("비밀번호 변경 성공!");
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
@@ -114,10 +116,21 @@ public class MemberController {
 		
 	}
 
-	public static void UpdatePhoneNumber(MemberDTO memberDTO) {
+	public static void UpdatePhoneNumber(String mID, String mPhone) {
 		try {
-		memberService.UpdatePhoneNumber(memberDTO);
+		memberService.UpdatePhoneNumber(mID, mPhone);
 		SuccessView.printMessage("전화번호 변경 성공!");
+		}catch(SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+		
+	}
+
+	public static void cancelAccount(String mID, String mPwd) {
+		
+		try {
+			memberService.cancelAccount(mID, mPwd);
+		
 		}catch(SQLException e) {
 			FailView.errorMessage(e.getMessage());
 		}

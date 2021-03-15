@@ -176,34 +176,32 @@ public class MenuView {
 			}
 		}
 	}
-	
+
 	/**
 	 * 책바구니 보기 메뉴
 	 */
 	public static void printBookCartMenu(String mId) {
-		if(RentController.isEmptyCart(mId)) {
+		if (RentController.isEmptyCart(mId)) {
 			while (true) {
 				SessionSet ss = SessionSet.getInstance();
 				System.out.println(ss.getSet());
-				
-				
+
 				System.out.println("책바구니에 담은 책을 봅니다");
-				System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   "
-								 + "3. 책바구니 비우기   4. 뒤로 가기");
+				System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   " + "3. 책바구니 비우기   4. 뒤로 가기");
 				try {
 					int menu = Integer.parseInt(sc.nextLine());
 					switch (menu) {
 					case 1:
-							rentForSure(mId);
+						rentForSure(mId);
 						break;
 					case 2:
-							deleteForSure(mId);
+						deleteForSure(mId);
 						break;
 					case 3:
-							clearForSure(mId);
+						clearForSure(mId);
 						break;
 					case 4:
-							printUserMenu(mId);
+						printUserMenu(mId);
 						break;
 					default:
 						System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
@@ -217,7 +215,7 @@ public class MenuView {
 			FailView.errorMessage("먼저 책을 책바구니에 담고 다시 시도해주세요.");
 			printUserMenu(mId);
 		}
-	}	
+	}
 
 	/**
 	 * 도서 검색 메뉴
@@ -232,11 +230,11 @@ public class MenuView {
 				switch (menu) {
 				case 1:
 					System.out.println("분야별 검색합니다.");
-					// printSelectBySname();
+					printSelectBySname();
 					break;
 				case 2:
 					System.out.println("도서명 검색합니다.");
-					// printSelectByBname();
+					printSelectByBname();
 
 					break;
 				case 3:
@@ -368,7 +366,7 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
-			System.out.println("1. 대여한 도서보기   2. 예약한 도서보기   3. 반납하기   4. 내 회원정보 열람  5. 내정보 수정   6.탈퇴하기");
+			System.out.println("1. 대여한 도서보기   2. 예약한 도서보기   3. 반납하기   4. 내 회원정보 열람  5. 내정보 수정   0. 뒤로가기..");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
@@ -383,7 +381,7 @@ public class MenuView {
 					break;
 				case 3:
 					System.out.println("책반납하기");
-					printPutCart(mID);
+					// printPutCart(mID);
 					break;
 				case 4:
 					System.out.println("내 회원정보 열람");
@@ -392,9 +390,6 @@ public class MenuView {
 				case 5:
 					System.out.println("내 정보 수정");
 					loginForChangeMyInFo(mID);
-					break;
-				case 6:
-					System.out.println("탈퇴하기 ");
 					break;
 				case 0:
 					System.out.println("뒤로가기.. ");
@@ -412,7 +407,7 @@ public class MenuView {
 	}
 
 	public static void loginForChangeMyInFo(String mID) {
-		System.out.print("PW : ");
+		System.out.print("정보수정을 위해 비밀번호를 입력하세요: ");
 		String mPwd = sc.nextLine();
 
 		MemberController.loginForChangeInfo(mID, mPwd);
@@ -427,21 +422,27 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
-			System.out.println("1. 비밀번호 변경   2. 전화번호 변경   3. 뒤로가기 ");
+			System.out.println("1. 비밀번호 변경   2. 전화번호 변경   3. 탈퇴  4.뒤로가기 ");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
 				switch (menu) {
 				case 1:
 					System.out.println("비밀번호 변경");
 					changePassWord(mID);
+					break;
 				case 2:
 					System.out.println("전화번호 변경");
 					changePhoneNumber(mID);
 					break;
 
 				case 3:
-					System.out.println("뒤로가기..");
+					System.out.println("탈퇴하기.");
+					cancelMyAccount(mID);
 					return;
+
+				case 4:
+					return;
+
 				default:
 					System.out.println("메뉴번호에 해당하는 번호를 입력해주십시오.");
 					break;
@@ -450,6 +451,25 @@ public class MenuView {
 				System.out.println("숫자만 입력해주세요!");
 			}
 		}
+	}
+
+	/**
+	 * 탈퇴
+	 */
+	public static void cancelMyAccount(String mID) {
+		System.out.println(mID + "계정 탈퇴 하시겠습니까? (Y / N)");
+		String ans = sc.nextLine();
+		if (ans.equalsIgnoreCase("y")) {
+			System.out.println("비밀번호를 입력하세요 > ");
+			String mPwd = sc.nextLine();
+			MemberController.cancelAccount(mID, mPwd);
+		} else if (ans.equalsIgnoreCase("n")) {
+			printModifyMyInFo(mID);
+		} else {
+			System.out.println("올바르지 않은 답변입니다. 처음부터 다시 진행하세요");
+			printMyLibary(mID);
+		}
+
 	}
 
 	/**
@@ -465,8 +485,7 @@ public class MenuView {
 	public static void changePassWord(String mID) {
 		System.out.print("새로운 비밀번호를 입력하세요 > ");
 		String mPwd = sc.nextLine();
-		MemberDTO memberDTO = new MemberDTO(mID, null, null, mPwd, null, 0, 0);
-		MemberController.UpdatePassWord(memberDTO);
+		MemberController.UpdatePassWord(mID, mPwd);
 
 	}
 
@@ -474,10 +493,14 @@ public class MenuView {
 	 * 전화번호 변경
 	 */
 	public static void changePhoneNumber(String mID) {
-		System.out.println("새로운 전화번호를 입력하세요 > ");
+		System.out.print("새로운 전화번호를 입력하세요 > ");
 		String mPhone = sc.nextLine();
-		MemberDTO memberDTO = new MemberDTO(mID, null, mPhone, null, null, 0, 0);
-		MemberController.UpdatePhoneNumber(memberDTO);
+		if(mPhone.length() <11) {
+			System.out.println("전화번호가 너무 짧습니다 다시 입력하세요");
+			changePhoneNumber(mID);
+		}
+		MemberController.UpdatePhoneNumber(mID, mPhone);
+
 	}
 
 	/**
@@ -516,12 +539,12 @@ public class MenuView {
 //	
 //}
 	public static void printPutCart(String mID) {
-			System.out.println("책바구니에 책을 담습니다");
-			System.out.print("ISBN > ");
-			int bISBN = Integer.parseInt(sc.nextLine());
-			int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
-			CartController.putCart(mID, bISBN);
-		
+		System.out.println("책바구니에 책을 담습니다");
+		System.out.print("ISBN > ");
+		int bISBN = Integer.parseInt(sc.nextLine());
+		int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
+		CartController.putCart(mID, bISBN);
+
 	}
 
 	/**
@@ -550,7 +573,7 @@ public class MenuView {
 	 * 책바구니 안에 있는 도서 bISBN으로 선택해서 삭제 여부 묻는 메뉴
 	 */
 	public static void deleteForSure(String mID) {
-		if(RentController.isEmptyCart(mID)) {
+		if (RentController.isEmptyCart(mID)) {
 			System.out.println("목록에서 삭제할 책의 ISBN을 입력해 주세요  ▷  ");
 			int bISBN = Integer.parseInt(sc.nextLine());
 			RentController.deleteCart(mID, bISBN);
@@ -558,7 +581,7 @@ public class MenuView {
 			failToDeleteMenu(mID);
 		}
 	}
-		
+
 	/**
 	 * 책바구니 안에 있는 도서 삭제 실패시 보여주는 메뉴
 	 */
@@ -586,23 +609,27 @@ public class MenuView {
 	public static void clearForSure(String mID) {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
+
 		if(RentController.isEmptyCart(mID)) {
 			System.out.print("책바구니를 모두 비우시겠습니까? y | n   ▷  ");
+
 			String clear = sc.nextLine();
-			if(clear.equals("y")) {
+			if (clear.equals("y")) {
 				RentController.clearCart(mID);
 				System.out.println("책바구니 목록이 비워졌습니다.");
 				printUserMenu(mID);
-			} else if(clear.equals("n")) {
+			} else if (clear.equals("n")) {
 				System.out.println("회원메뉴로 돌아갑니다");
 				printUserMenu(mID);
 			} else {
 				System.out.println("[ yes or no ] 로 입력해주세요 ");
 				clearForSure(mID);
 			}
+
 			
 		} 
-	}	
+
+	}
 
 	/**
 	 * 관리자용 메인메뉴

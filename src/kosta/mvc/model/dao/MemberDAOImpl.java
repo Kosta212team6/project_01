@@ -187,7 +187,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int UpdatePassword(MemberDTO memberDTO) throws SQLException {
+	public int UpdatePassword(String mID, String mPwd) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = "UPDATE member SET mpwd=? WHERE mid=?";
@@ -196,8 +196,8 @@ public class MemberDAOImpl implements MemberDAO {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
-			ps.setString(1,memberDTO.getmPwd());
-			ps.setString(2,memberDTO.getmID());
+			ps.setString(1, mPwd);
+			ps.setString(2,mID);
 			result = ps.executeUpdate();
 		}finally {
 			DBUtil.dbClose(con, ps);
@@ -207,7 +207,7 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public int UpdatePhoneNumber(MemberDTO memberDTO) throws SQLException {
+	public int UpdatePhoneNumber(String mID, String mPhone) throws SQLException {
 		Connection con = null;
 		PreparedStatement ps = null;
 		String sql = "UPDATE member SET mPhone=? WHERE mid=?";
@@ -216,14 +216,38 @@ public class MemberDAOImpl implements MemberDAO {
 			con = DBUtil.getConnection();
 			ps = con.prepareStatement(sql);
 			
-			ps.setString(1,memberDTO.getmPhone());
-			ps.setString(2,memberDTO.getmID());
+			ps.setString(1, mPhone);
+			ps.setString(2,mID);
 			result = ps.executeUpdate();
 		}finally {
 			DBUtil.dbClose(con, ps);
 		}
 		return result;
 	}
+
+	@Override
+	public int cancelAccount(String mID, String mPwd) throws SQLException {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = "UPDATE MEMBER SET MSTATUS=0 WHERE MID=? AND MPWD=?";
+		int result = 0;
+		
+		try {
+			con= DBUtil.getConnection();
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, mID);
+			ps.setString(2, mPwd);
+			
+			result = ps.executeUpdate();
+		} finally {
+			DBUtil.dbClose(con, ps);
+		}
+		return result;
+		
+	}
+
+
 	
 	
 }
