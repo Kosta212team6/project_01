@@ -22,6 +22,7 @@ public class SuccessView {
 	 * 
 	 */
 	public static void printBooks(List<BookDTO> list) {
+		System.out.println("ISBN | 도서명 | 저자 | 출판사 | 발행년월일 | 재고량 | 분야");
 		for (BookDTO dto : list) {
 			System.out.println(dto);
 		}
@@ -60,6 +61,7 @@ public class SuccessView {
 	 * 책 정보 한 권만 출력하기
 	 */
 	public static void printOnlyBook(BookDTO bookDTO) {
+		System.out.println("ISBN | 도서명 | 저자 | 출판사 | 발행년월일 | 재고량 | 분야");
 		System.out.println(bookDTO);
 
 	}

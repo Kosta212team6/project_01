@@ -31,10 +31,7 @@ public interface RentDAO {
 		SELECT * FROM BOOK
 		WHERE BSTATUS = 1;
   */
-	
-	
-	
-	
+
 	/**
 	 * 대여테이블에 넣어주기
 	 */
@@ -45,8 +42,8 @@ public interface RentDAO {
 	 */
 	public int switchBstatus(Connection con, int bISBN) throws SQLException;
 	
-
-	public List<RentDTO> printRentBookList(String mID) throws SQLException;
-
-	
+	/**
+	 * 대여도서 목록 출력
+	 */
+	public List<RentDTO> printRentBookList(String mID) throws SQLException;	
 }

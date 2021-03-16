@@ -11,7 +11,7 @@ import kosta.mvc.exception.StringFormatException;
 import kosta.mvc.model.dto.BookDTO;
 import kosta.mvc.model.service.BookService;
 import kosta.mvc.model.service.BookServiceImpl;
-import kosta.mvc.model.service.RentService;
+import kosta.mvc.model.service.RentServiceImpl;
 import kosta.mvc.session.Session;
 import kosta.mvc.session.SessionSet;
 import kosta.mvc.view.FailView;
@@ -21,7 +21,7 @@ import kosta.mvc.view.SuccessView;
 
 public class CartController {
 	private static BookService bookService = new BookServiceImpl();
-	private static RentService rentService = new RentService();
+	private static RentServiceImpl rentService = new RentServiceImpl();
 	/**
 	 * 책바구니에 책 집어넣기
 	 * @param mID

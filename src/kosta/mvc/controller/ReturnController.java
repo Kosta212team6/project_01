@@ -13,15 +13,6 @@ public class ReturnController {
 
 	private static ReturnService returnService = new ReturnServiceImpl();
 	
-	public static void searchRsvHistory(String mID) {
-		try {
-			List<RsvDTO> list = returnService.searchRsvHistory(mID);
-			SuccessView.printRsvHistory(list);
-		} catch (SQLException e) {
-			FailView.errorMessage(e.getMessage());
-		}
-	}
-	
 	public static void returnBooks(String mID) {
 		try { 
 			returnService.returnBooks(mID);
