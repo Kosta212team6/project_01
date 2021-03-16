@@ -21,4 +21,13 @@ public class RsvController {
 			FailView.errorMessage(e.getMessage());
 		}
 	}
+	
+	public static void insertRsv(String mID, int bISBN) {
+		try {
+			rsvService.insertRsv(mID, bISBN);
+			System.out.println("ISBN : "+bISBN+" 도서의 예약이 성공하였습니다");
+		} catch (SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
+	}
 }

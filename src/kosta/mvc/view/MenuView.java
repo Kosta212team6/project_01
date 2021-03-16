@@ -57,10 +57,8 @@ public class MenuView {
 	public static void login() {
 		System.out.print("ID : ");
 		String mID = sc.nextLine();
-
 		System.out.print("PW : ");
 		String mPwd = sc.nextLine();
-
 		MemberController.login(mID, mPwd);
 	}
 
@@ -150,6 +148,7 @@ public class MenuView {
 					break;
 				case 5:
 					System.out.println("도서를 예약합니다");
+					printRsvMenu(mID);
 					break;
 				case 6:
 					System.out.println("마이서재를 엽니다");
@@ -318,7 +317,6 @@ public class MenuView {
 	/**
 	 * 저자로 검색
 	 */
-
 	public static void printSelectByWriter() {
 		System.out.print("저자를 입력하세요 > ");
 		String bWrite = sc.nextLine();
@@ -328,7 +326,6 @@ public class MenuView {
 	/**
 	 * 출판사 검색
 	 */
-
 	public static void printSelectByPublisher() {
 		System.out.print("출판사를 입력하세요 > ");
 		String bPub = sc.nextLine();
@@ -338,7 +335,6 @@ public class MenuView {
 	/**
 	 * ISBN으로 검색
 	 */
-
 	public static void printSelectByISBN() {
 		System.out.print(" > ");
 		int bISBN = Integer.parseInt(sc.nextLine());
@@ -449,7 +445,6 @@ public class MenuView {
 	/**
 	 * 책바구니 안에 있는 도서 목록 비우기 여부 묻는 메뉴
 	 */
-
 	public static void clearForSure(String mID) {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
@@ -468,6 +463,16 @@ public class MenuView {
 				clearForSure(mID);
 			}
 		} 
+	}
+	
+	/**
+	 * 도서 예약하기 메뉴 출력
+	 */
+	public static void printRsvMenu(String mID) {
+		System.out.println("예약할 도서의 ISBN을 입력해주세요");
+		System.out.print(" > ");
+		int bISBN = Integer.parseInt(sc.nextLine());
+		RsvController.insertRsv(mID, bISBN);
 	}
 
 	/**

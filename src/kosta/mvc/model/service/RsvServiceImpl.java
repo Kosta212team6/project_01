@@ -19,4 +19,13 @@ public class RsvServiceImpl implements RsvService {
 		}
 		return list;
 	}
+
+	@Override
+	public void insertRsv(String mID, int bISBN) throws SQLException {
+		int result = rsvDAO.insertRsv(mID, bISBN);
+		if(result==0) {
+			throw new SQLException("예약이 실패하였습니다");
+		}
+		
+	}
 }

@@ -11,4 +11,9 @@ public interface RsvService {
 	 * 예약 내역 검색
 	 */
 	List<RsvDTO> searchRsvHistory(String mID) throws SQLException;
+	
+	/**
+	 * 예약 등록하기
+	 */
+	void insertRsv(String mID, int bISBN) throws SQLException;
 }
