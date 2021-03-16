@@ -27,7 +27,7 @@ public class RentServiceImpl implements RentService {
 	/**
 	 * bISBN으로 책바구니 목록 선택삭제 하기
 	 */
-	public void deleteCart(String mID, int bISBN) throws NotFoundException {
+	public void deleteCart(String mID, int bISBN) throws NotFoundException { 
 		CartController.deleteCart(mID, bISBN);
 	}
 	
