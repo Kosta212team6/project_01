@@ -22,6 +22,12 @@ public class MenuView {
 
 	public static void menu() {
 		while (true) {
+			System.out.println("|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣| ");
+			System.out.println("|   도서관에 오신것을 환영합니다   |");
+			System.out.println("|＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿|");
+			System.out.println("　　          ᕱ ᕱ ||");
+			System.out.println("　           ( ･ω･)||");
+			System.out.println("  　         /　つΦ");
 			System.out.println("┌──── 도서관프로그램 ─────┐");
 			System.out.println("│ 1. 가입하기   2. 로그인  0. 종료 │");
 			System.out.println("└─────────────────┘");
@@ -582,7 +588,8 @@ public class MenuView {
 		System.out.print(" > ");
 		String ans = sc.nextLine();
 		if (ans.equalsIgnoreCase("y")) {
-			System.out.println("비밀번호를 입력하세요 > ");
+			System.out.print("비밀번호를 입력하세요");
+			System.out.print(" > ");
 			String mPwd = sc.nextLine();
 			MemberController.cancelAccount(mID, mPwd);
 		} else if (ans.equalsIgnoreCase("n")) {
