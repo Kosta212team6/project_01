@@ -83,18 +83,30 @@ public class ReturnDAOImpl implements ReturnDAO {
 				String rsvID=checkBookRsv(con, rentDTO.getbISBN());
 				if(rsvID==null) {
 					result=switchBStatusTrue(con, rentDTO.getbISBN());
-					if(result==0) throw new SQLException("책 상태 변경 실패");
+					if(result==0) {
+						con.rollback();
+						throw new SQLException("책 상태 변경 실패");
+					}
+
 				}
-				else {
+				else {   
 					result=switchNotifyCode(con, rsvID);
-					if(result==0) throw new SQLException("알림 메세지 변경 실패");
+					if(result==0) {
+						con.rollback(); 
+						throw new SQLException("알림 메세지 변경 실패");
+					}
 					result=rentRsvBook(con, rentDTO.getbISBN(), rsvID);
-					if(result==0) throw new SQLException("예약도서의 대여 실패");
+					if(result==0) {
+						con.rollback(); 
+						throw new SQLException("예약도서의 대여 실패");
+					}
 					result=deleteDoneRsv(con, rentDTO.getbISBN());
-					if(result==0) throw new SQLException("예약내역 삭제 실패");
+					if(result==0) { 
+						con.rollback(); 
+						throw new SQLException("예약내역 삭제 실패");
+					}
 				}
 			}
-
 			con.commit();
 		} finally {
 			DBUtil.dbClose(con, ps);

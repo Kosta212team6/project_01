@@ -43,11 +43,9 @@ public class RentDAOImpl implements RentDAO {
 						con.rollback();
 						throw new SQLException("대여에 실패하였습니다.");
 					}
-					
 					switchBstatus(con, bookDTO.getbISBN());
-					con.commit();
 				}
-			
+				con.commit();
 			} finally {
 				DBUtil.dbClose(con,ps);
 			}
