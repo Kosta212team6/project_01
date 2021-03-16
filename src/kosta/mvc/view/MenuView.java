@@ -120,7 +120,7 @@ public class MenuView {
 	public static void printUserMenu(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+			System.out.println(ss.getSet()); 
 			System.out.println(mID + "님 로그인 하셨습니다.");
 			printNmessage(mID);
 			System.out.println("────────────────────── 회원메뉴 ─────────────────────");
