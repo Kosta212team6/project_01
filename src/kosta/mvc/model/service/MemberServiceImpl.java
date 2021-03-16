@@ -92,7 +92,7 @@ public class MemberServiceImpl implements MemberService {
 		if (!pp.equals(mPhone)) {
 			int result = memberDAO.UpdatePhoneNumber(mID, mPhone);
 		} else {
-			throw new SQLException("현재 전화번호와 변경하려는 전화번호로는 변경할 수 없습니다.");
+			throw new SQLException("현재 전화번호와 변경하려는 전화번호가 같아 변경할 수 없습니다.");
 		}
 
 	}
