@@ -104,7 +104,7 @@ public class BookServiceImpl implements BookService {
 		if(list==null || list.isEmpty()) {
 			throw new NotFoundException("입력한 출판사에 해당하는 책이 없습니다");
 		}
-		return list;
+		return list;  
 	}
 
 	@Override
