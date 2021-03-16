@@ -28,7 +28,7 @@ public class CartController {
 	 * @param bISBN
 	 * @param bStatus
 	 */
-	public static void putCart(String mID, int bISBN) {
+	public static void putCart(String mID, int bISBN) throws SQLException {
 		
 		try {
 			//bISBN에 해당하는 책 찾기
