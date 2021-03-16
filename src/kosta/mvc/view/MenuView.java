@@ -349,11 +349,14 @@ public class MenuView {
 	 * 책바구니 담기
 	 */
 	public static void printPutCart(String mID) {
-		System.out.println("책바구니에 책을 담습니다");
 		System.out.print("ISBN > ");
 		int bISBN = Integer.parseInt(sc.nextLine());
 		int bStatus = (BookController.bookSelectByBisbn(bISBN)).getbStatus();
-		CartController.putCart(mID, bISBN);
+		try {
+			CartController.putCart(mID, bISBN);
+		} catch (SQLException e) {
+			FailView.errorMessage(e.getMessage());
+		}
 	}
 
 	/**
