@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="kosta.mvc.session.Session" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/session/Session.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1210" y="982"/>    
+    <position height="-1" width="-1" x="842" y="980"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="kosta.mvc.session.SessionSet" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/session/SessionSet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1215" y="665"/>    
+    <position height="-1" width="-1" x="796" y="686"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,192 +57,123 @@
   </class>  
   <class id="7" language="java" name="kosta.mvc.util.DBUtil" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/util/DBUtil.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1595" y="919"/>    
+    <position height="-1" width="-1" x="1188" y="1011"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="kosta.mvc.controller.MemberController" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/controller/MemberController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="854" y="686"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="9" language="java" name="kosta.mvc.controller.BookController" project="kosta212_team6" 
+  <class id="8" language="java" name="kosta.mvc.controller.BookController" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/controller/BookController.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1972" y="850"/>    
+    <position height="-1" width="-1" x="1566" y="902"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="10" language="java" name="kosta.mvc.model.dao.BookDAO" project="kosta212_team6" 
+  <interface id="9" language="java" name="kosta.mvc.model.dao.BookDAO" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/model/dao/BookDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1602" y="23"/>    
+    <position height="-1" width="-1" x="970" y="-37"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="11" language="java" name="kosta.mvc.model.dao.MemberDAO" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/model/dao/MemberDAO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1020" y="-29"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <class id="12" language="java" name="kosta.mvc.model.dao.MemberDAOImpl" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/model/dao/MemberDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1214" y="348"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="13" language="java" name="kosta.mvc.model.dao.BookDAOImpl" project="kosta212_team6" 
+  <class id="10" language="java" name="kosta.mvc.model.dao.BookDAOImpl" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/model/dao/BookDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1601" y="450"/>    
+    <position height="-1" width="-1" x="957" y="395"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="kosta.mvc.model.dto.BookDTO" project="kosta212_team6" 
+  <class id="11" language="java" name="kosta.mvc.model.dto.BookDTO" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/model/dto/BookDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2334" y="85"/>    
+    <position height="-1" width="-1" x="1899" y="99"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="kosta.mvc.model.dto.MemberDTO" project="kosta212_team6" 
+  <class id="12" language="java" name="kosta.mvc.model.dto.MemberDTO" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/model/dto/MemberDTO.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="2328" y="735"/>    
+    <position height="-1" width="-1" x="1933" y="744"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="kosta.mvc.model.service.BookServiceImpl" project="kosta212_team6" 
+  <class id="13" language="java" name="kosta.mvc.model.service.BookServiceImpl" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/model/service/BookServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1980" y="21"/>    
+    <position height="-1" width="-1" x="1465" y="-10"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="17" language="java" name="kosta.mvc.model.service.BookService" project="kosta212_team6" 
+  <interface id="14" language="java" name="kosta.mvc.model.service.BookService" project="kosta212_team6" 
     file="/kosta212_team6/src/kosta/mvc/model/service/BookService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1970" y="444"/>    
+    <position height="-1" width="-1" x="1443" y="406"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="18" language="java" name="kosta.mvc.model.service.MemberServiceImpl" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/model/service/MemberServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="836" y="335"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="19" language="java" name="kosta.mvc.model.service.MemberService" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/model/service/MemberService.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="577" y="637"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <association id="20">    
+  <association id="15">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="21" name="set">        
-        <position height="0" width="0" x="140" y="189"/>      
+      <attribute id="16" name="set">        
+        <position height="0" width="0" x="-228" y="187"/>      
       </attribute>      
-      <multiplicity id="22" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="140" y="189"/>      
+      <multiplicity id="17" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="-228" y="187"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="23">    
+  <realization id="18">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="9"/>  
+  </realization>  
+  <association id="19">    
     <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="24" name="memberService"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
+      <attribute id="20" name="bookService"/>      
+      <multiplicity id="21" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="18" navigable="true"/>    
+    <end type="TARGET" refId="14" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="26">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <realization id="27">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="11"/>  
-  </realization>  
-  <association id="28">    
-    <end type="SOURCE" refId="9" navigable="false">      
-      <attribute id="29" name="bookService"/>      
-      <multiplicity id="30" minimum="0" maximum="1"/>    
+  <association id="22">    
+    <end type="SOURCE" refId="13" navigable="false">      
+      <attribute id="23" name="bookDAO"/>      
+      <multiplicity id="24" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="17" navigable="true"/>    
+    <end type="TARGET" refId="9" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="31">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="32" name="bookDAO"/>      
-      <multiplicity id="33" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="10" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="34">    
+  <association id="25">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="35" name="ss">        
-        <position height="0" width="0" x="149" y="174"/>      
+      <attribute id="26" name="ss">        
+        <position height="0" width="0" x="-270" y="195"/>      
       </attribute>      
-      <multiplicity id="36" minimum="0" maximum="1">        
-        <position height="0" width="0" x="149" y="174"/>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-270" y="195"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="37">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="17"/>  
-  </realization>  
-  <association id="38">    
-    <end type="SOURCE" refId="18" navigable="false">      
-      <attribute id="39" name="memberDAO"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="11" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="41">    
-    <end type="SOURCE" refId="18"/>    
-    <end type="TARGET" refId="19"/>  
+  <realization id="28">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="14"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
