@@ -126,7 +126,7 @@ public class MenuView {
 			System.out.println(mID + "님 로그인 하셨습니다.");
 			printNmessage(mID);
 			System.out.println("────────────────────── 회원메뉴 ─────────────────────");
-			System.out.println("1. 로그아웃   2. 검색하기   3. 책바구니 담기   4. 책바구니 보기   5. 도서 예약하기   5. 마이서재");
+			System.out.println("1. 로그아웃   2. 검색하기   3. 책바구니 담기   4. 책바구니 보기   5. 도서 예약하기   6. 마이서재");
 			System.out.println("────────────────────────────────────────────────");
 			System.out.print(" > ");
 
