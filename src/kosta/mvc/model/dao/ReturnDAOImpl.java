@@ -36,7 +36,7 @@ public class ReturnDAOImpl implements ReturnDAO {
 			for(RentDTO rentDTO:list) {
 				ps = con.prepareStatement(sql);
 				
-				ps.setInt(1, getRentNumberByISBN(con, rentDTO.getbISBN()).getrNum());
+				ps.setInt(1, rentDTO.getrNum());
 				ps.setInt(2, rentDTO.getbISBN());
 				
 				result = ps.executeUpdate();
@@ -113,35 +113,6 @@ public class ReturnDAOImpl implements ReturnDAO {
 		}
 		return list;
 	}
-
-	/**
-	 * 대여테이블에서 bISBN으로 rnum 파라미터 받기
-	 */
-	public RentDTO getRentNumberByISBN(Connection con, int bISBN) throws SQLException {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		String sql = "SELECT RNUM FROM RENT WHERE BISBN=?";
-		RentDTO rentDTO = null;
-		
-		try {
-			ps = con.prepareStatement(sql);
-			
-			ps.setInt(1, bISBN);
-			
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				int rnum=rs.getInt(1);
-				rentDTO= new RentDTO(rnum, bISBN);
-			}
-			
-		} finally {
-			DBUtil.dbClose(null, ps, rs);
-		}
-		return rentDTO;
-	}
-	
-
 
 	/**
 	 * 대여상태 false로 변경

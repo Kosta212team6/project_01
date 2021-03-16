@@ -17,6 +17,7 @@ public class ReturnController {
 		try { 
 			returnService.returnBooks(mID);
 		} catch (SQLException e) {
+			e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}
