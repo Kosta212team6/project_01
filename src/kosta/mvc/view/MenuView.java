@@ -218,6 +218,10 @@ public class MenuView {
 				case 5:
 					System.out.println("회원메뉴로 돌아갑니다");
 					return;
+					
+				case 0:
+					return;
+					
 				default:
 					System.out.println("메뉴번호에 해당하는 번호를 입력해주세요");
 					break;

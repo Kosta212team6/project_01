@@ -3,7 +3,6 @@ package kosta.mvc.controller;
 import java.sql.SQLException;
 
 import kosta.mvc.model.service.NotifyServiceImpl;
-import kosta.mvc.view.FailView;
 
 public class NotifyController {
 	NotifyServiceImpl notifyService = new NotifyServiceImpl();
