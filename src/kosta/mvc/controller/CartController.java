@@ -100,11 +100,11 @@ public class CartController {
 	 * 책바구니 보기
 	 * @param mID
 	 */
-	public static void viewCart(String mID) throws StringFormatException {
+	public static void viewCart(String mID) {
 		SessionSet ss = SessionSet.getInstance();
 		Session session = ss.get(mID);
 		
-		Map<BookDTO, Integer> cart = (Map<BookDTO, Integer>) session.getAttribute("cart");
+		Map<Integer, BookDTO> cart = (Map<Integer, BookDTO>) session.getAttribute("cart");
 		if(cart==null) {
 			FailView.errorMessage("책바구니가 비었습니다.");
 		} else {

@@ -374,6 +374,7 @@ public class MenuView {
 				SessionSet ss = SessionSet.getInstance();
 				System.out.println(ss.getSet());
 				System.out.println("책바구니에 담은 책을 봅니다");
+				CartController.viewCart(mId);
 				System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   3. 책바구니 비우기   0. 뒤로 가기");
 				System.out.print(" > ");
 				try {
@@ -509,7 +510,7 @@ public class MenuView {
 					RsvController.searchRsvHistory(mID);
 					break;
 				case 3:
-					System.out.println("책반납하기");
+					System.out.println("도서 반납하기");
 					ReturnController.returnBooks(mID);
 					break;
 				case 4:
