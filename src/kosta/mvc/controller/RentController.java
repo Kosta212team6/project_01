@@ -24,6 +24,7 @@ public class RentController {
 	public static void insertRents (List<BookDTO> list, String mID) {
 		try {
 			rentService.insertRents(list, mID);
+			SuccessView.printMessage("대여가 완료되었습니다");
 		} catch (Exception e) {
 			FailView.errorMessage(e.getMessage());
 		}

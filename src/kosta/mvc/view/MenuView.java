@@ -408,7 +408,6 @@ public class MenuView {
 		String rent = sc.nextLine();
 		if (rent.equals("y")) {
 			RentController.insertRents(list, mID);
-			SuccessView.printMessage("대여가 완료되었습니다");
 		} else if (rent.equals("n")) {
 			printUserMenu(mID);
 		} else {

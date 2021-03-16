@@ -57,6 +57,7 @@ public class RsvDAOImpl implements RsvDAO {
 		
 		try {
 			con = DBUtil.getConnection();
+			con.setAutoCommit(false);
 			ps = con.prepareStatement(sql);
 			
 			status = isBookRented(con, bISBN);
@@ -67,6 +68,7 @@ public class RsvDAOImpl implements RsvDAO {
 			ps.setInt(2, bISBN);
 			
 			result = ps.executeUpdate();
+			con.commit();
 		} finally {
 			DBUtil.dbClose(con, ps);
 		}

@@ -33,6 +33,11 @@ public class RentDAOImpl implements RentDAO {
 				con = DBUtil.getConnection();
 				con.setAutoCommit(false);
 				
+				// 현재 날짜와 대여 가능일 확인하는 메소드 추가
+				String rentAble = isRentAble(con, mID);
+				if(rentAble!=null) {
+					throw new SQLException("연체로 인해 대여가 불가능합니다. "+rentAble+" 이후 대여가 가능합니다.");
+				}
 				for(BookDTO bookDTO :list) {
 					ps = con.prepareStatement(sql);
 					ps.setInt(1, bookDTO.getbISBN());
@@ -53,6 +58,32 @@ public class RentDAOImpl implements RentDAO {
 	}
 	
 	/**
+	 * 대여 가능한 회원인지 체크
+	 * @return : 연체한 회원이면 false, 대여 가능하면 true
+	 */
+	public String isRentAble(Connection con, String mID) throws SQLException {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		String sql="SELECT MABLE FROM MEMBER WHERE MID=? AND MSTATUS=1 AND SYSDATE < TO_CHAR(MABLE, 'YYYY-MM-DD')";
+		String rentAble = null;
+		
+		try {
+			ps = con.prepareStatement(sql);
+			
+			ps.setString(1, mID);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				rentAble=rs.getString(1);
+			}
+		} finally {
+			DBUtil.dbClose(null, ps, rs);
+		}
+		return rentAble;
+	}
+	
+	/**
 	 * 대여시 도서 대출가능여부 0으로 바꾸기
 	 */
 	@Override
@@ -69,8 +100,6 @@ public class RentDAOImpl implements RentDAO {
 		} finally {
 			DBUtil.dbClose(null, ps);
 		}
-		
-		
 		return result;
 	}
 
