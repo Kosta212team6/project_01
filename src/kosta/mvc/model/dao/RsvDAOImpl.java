@@ -89,7 +89,6 @@ public class RsvDAOImpl implements RsvDAO {
 			ps.setInt(1, bISBN);
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				rs.getInt(bStatus);
 				return true;
 			}
 			else {
