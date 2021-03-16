@@ -126,7 +126,7 @@ public class MenuView {
 	public static void printUserMenu(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet()); 
+//			System.out.println(ss.getSet());
 			System.out.println(mID + "님 로그인 하셨습니다.");
 			printNmessage(mID);
 			System.out.println("────────────────────── 회원메뉴 ─────────────────────");
@@ -199,7 +199,7 @@ public class MenuView {
 	public static void printBookSearchMenu(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+//			System.out.println(ss.getSet());
 			System.out.println("1. 분야별 검색  2. 도서명 검색  3. 저자검색  4. 출판사 검색   0. 뒤로가기");
 			System.out.print(" > ");
 			try {
@@ -372,7 +372,7 @@ public class MenuView {
 		if (RentController.isEmptyCart(mId)) {
 			while (true) {
 				SessionSet ss = SessionSet.getInstance();
-				System.out.println(ss.getSet());
+//				System.out.println(ss.getSet());
 				System.out.println("책바구니에 담은 책을 봅니다");
 				CartController.viewCart(mId);
 				System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   3. 책바구니 비우기   0. 뒤로 가기");
@@ -494,7 +494,7 @@ public class MenuView {
 	public static void printMyLibary(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+//			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
 			System.out.println("1. 대여한 도서보기   2. 예약한 도서보기   3. 반납하기   4. 내 회원정보 열람   5. 내정보 수정   0. 뒤로가기");
 			System.out.print(" > ");
@@ -549,7 +549,7 @@ public class MenuView {
 	public static void printModifyMyInFo(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+//			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
 			System.out.println("1. 비밀번호 변경   2. 전화번호 변경   3. 탈퇴  0. 뒤로가기 ");
 			System.out.print(" > ");
@@ -639,7 +639,7 @@ public class MenuView {
 	public static void printAdminMenu(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+//			System.out.println(ss.getSet());
 			System.out.println(mID + "님 관리자로 로그인 하셨습니다.");
 			System.out.println("1. 로그아웃   2. 도서검색   3. 도서관리   4. 회원관리");
 			System.out.print(" > ");
@@ -679,7 +679,7 @@ public class MenuView {
 	public static void printAdminMemberMenu(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+//			System.out.println(ss.getSet());
 			System.out.println(mID + "님 관리자로 로그인 하셨습니다.");
 			System.out.println("1. 전체회원보기   2. 연체회원보기   0. 뒤로가기");
 			System.out.print(" > ");
@@ -727,7 +727,7 @@ public class MenuView {
 	public static void printAdminBookDMLMenu(String mID) {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
-			System.out.println(ss.getSet());
+//			System.out.println(ss.getSet());
 			System.out.println(mID + "님 관리자로 로그인 하셨습니다.");
 			System.out.println("1. 도서추가   2. 도서정보 수정   3. 도서정보 삭제   0. 뒤로가기");
 			System.out.print(" > ");
