@@ -54,6 +54,7 @@ public class SuccessView {
 			String bName = bookDTO.getbName(); // 책 이름
 
 			System.out.println(bISBN + " : " + bName); // ISBA : 책이름 출력
+			System.out.println();
 		}
 	}
 
