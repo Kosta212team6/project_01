@@ -78,14 +78,13 @@ public class BookServiceImpl implements BookService {
 		if(result==0) {
 			throw new SQLException("오류 : 도서정보가 삭제되지 않았습니다");
 		}
-		
 	}
 
 	@Override
 	public BookDTO bookSelectByBisbn(int bISBN) throws SQLException, NotFoundException {
 		BookDTO bookDTO = bookDAO.bookSelectByBisbn(bISBN);
 		if(bookDTO==null) {
-			throw new NotFoundException("해당 ISBN에 해당하는 책이 없습니다");
+			throw new NotFoundException("입력한 ISBN에 해당하는 책이 없습니다");
 		}
 		return bookDTO;
 	}
@@ -94,7 +93,7 @@ public class BookServiceImpl implements BookService {
 	public List<BookDTO> bookSelectByWriter(String bWrite) throws SQLException, NotFoundException {
 		List<BookDTO> list = bookDAO.bookSelectByWriter(bWrite);
 		if(list==null||list.isEmpty()) {
-			throw new NotFoundException("해당 저자에 해당하는 책이 없습니다");
+			throw new NotFoundException("입력한 저자에 해당하는 책이 없습니다");
 		}
 		return list;
 	}
@@ -103,16 +102,15 @@ public class BookServiceImpl implements BookService {
 	public List<BookDTO> bookSelectByPublisher(String bPub) throws SQLException, NotFoundException {
 		List<BookDTO> list = bookDAO.bookSelectByPublisher(bPub);
 		if(list==null || list.isEmpty()) {
-			throw new NotFoundException("해당 출판사에 해당하는 책이 없습니다");
+			throw new NotFoundException("입력한 출판사에 해당하는 책이 없습니다");
 		}
-	
 		return list;
 	}
 
 	@Override
 	public List<BookDTO> bookSelectBySname(String sName) throws SQLException, NotFoundException {
 		List<BookDTO> list = bookDAO.bookSelectBySname(sName);
-		if(list==null || list.isEmpty()) throw new NotFoundException("해당 분야에 해당하는 책이 없습니다");
+		if(list==null || list.isEmpty()) throw new NotFoundException("입력한 분야에 해당하는 책이 없습니다");
 		return list;
 	}
 
@@ -120,11 +118,9 @@ public class BookServiceImpl implements BookService {
 	public List<BookDTO> bookSelectByBname(String bName) throws SQLException, NotFoundException {
 		List<BookDTO> list = bookDAO.bookSelectByBname(bName);
 		if(list==null||list.isEmpty()) {
-			throw new NotFoundException("해당 도서명에 해당하는 책이 없습니다");
+			throw new NotFoundException("입력한 도서명에 해당하는 책이 없습니다");
 		}
 		return list;
 	}
 
-
-	
 }

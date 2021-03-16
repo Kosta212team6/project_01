@@ -807,6 +807,8 @@ public class MenuView {
 				break;
 			case 6:
 				System.out.println("분류코드를 수정합니다");
+				System.out.println("총류 : 0 | 철학 : 100 | 종교 : 200 | 사회과학 : 300 | 자연과학 : 400"
+						+ " | 기술과학 : 500 | 예술 : 600 | 언어 : 700 | 문학 : 800 | 역사 : 900");
 				printAdminUpdateBookCode(bISBN);
 				break;
 			case 9:
