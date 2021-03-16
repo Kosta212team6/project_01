@@ -200,7 +200,9 @@ public class MenuView {
 		while (true) {
 			SessionSet ss = SessionSet.getInstance();
 //			System.out.println(ss.getSet());
+			System.out.println("──────────────── 도서검색 ────────────────");
 			System.out.println("1. 분야별 검색  2. 도서명 검색  3. 저자검색  4. 출판사 검색   0. 뒤로가기");
+			System.out.println("─────────────────────────────────────");
 			System.out.print(" > ");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
@@ -244,8 +246,9 @@ public class MenuView {
 	public static void printSelectBySname() {
 		while (true) {
 			System.out.println("분야를 선택하세요");
-			System.out.println(
-					"1. 총류  2. 철학  3. 종교  4. 사회과학  5. 자연과학  6. 기술과학  7. 예술  8. 언어  9. 문학  10. 역사  0. 뒤로가기");
+			System.out.println("─────────────────────────────────────────────────────────");
+			System.out.println("1. 총류  2. 철학  3. 종교  4. 사회과학  5. 자연과학  6. 기술과학  7. 예술  8. 언어  9. 문학  10. 역사  0. 뒤로가기");
+			System.out.println("─────────────────────────────────────────────────────────");
 			System.out.print(" > ");
 			String sName = null;
 			
@@ -375,7 +378,9 @@ public class MenuView {
 //				System.out.println(ss.getSet());
 				System.out.println("책바구니에 담은 책을 봅니다");
 				CartController.viewCart(mId);
+				System.out.println("────────────── 책바구니 보기 ──────────────");
 				System.out.println("1. 전체 대여   2. 책바구니 도서 삭제   3. 책바구니 비우기   0. 뒤로 가기");
+				System.out.println("────────────────────────────────────");
 				System.out.print(" > ");
 				try {
 					int menu = Integer.parseInt(sc.nextLine());
@@ -496,7 +501,9 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 //			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
+			System.out.println("──────────────────────── 마이서재 ────────────────────────");
 			System.out.println("1. 대여한 도서보기   2. 예약한 도서보기   3. 반납하기   4. 내 회원정보 열람   5. 내정보 수정   0. 뒤로가기");
+			System.out.println("─────────────────────────────────────────────────────");
 			System.out.print(" > ");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
@@ -551,7 +558,9 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 //			System.out.println(ss.getSet());
 			System.out.println(mID + "님 마이서재.");
+			System.out.println("─────────── 내 정보 수정 ───────────");
 			System.out.println("1. 비밀번호 변경   2. 전화번호 변경   3. 탈퇴  0. 뒤로가기 ");
+			System.out.println("─────────────────────────────");
 			System.out.print(" > ");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
@@ -641,7 +650,9 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 //			System.out.println(ss.getSet());
 			System.out.println(mID + "님 관리자로 로그인 하셨습니다.");
+			System.out.println("───────── 관리자용 메뉴 ──────────");
 			System.out.println("1. 로그아웃   2. 도서검색   3. 도서관리   4. 회원관리");
+			System.out.println("───────────────────────────");
 			System.out.print(" > ");
 
 			try {
@@ -681,7 +692,9 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 //			System.out.println(ss.getSet());
 			System.out.println(mID + "님 관리자로 로그인 하셨습니다.");
+			System.out.println("───────── 회원관리 ─────────");
 			System.out.println("1. 전체회원보기   2. 연체회원보기   0. 뒤로가기");
+			System.out.println("───────────────────────");
 			System.out.print(" > ");
 			try {
 				int menu = Integer.parseInt(sc.nextLine());
@@ -729,7 +742,9 @@ public class MenuView {
 			SessionSet ss = SessionSet.getInstance();
 //			System.out.println(ss.getSet());
 			System.out.println(mID + "님 관리자로 로그인 하셨습니다.");
+			System.out.println("───────────── 도서 관리 ─────────────");
 			System.out.println("1. 도서추가   2. 도서정보 수정   3. 도서정보 삭제   0. 뒤로가기");
+			System.out.println("────────────────────────────────");
 			System.out.print(" > ");
 
 			try {
@@ -775,9 +790,9 @@ public class MenuView {
 		System.out.print("발행년월일(yyyy-mm-dd) > ");
 		String bDate = sc.nextLine();
 		System.out.print("장르코드 > ");
-		System.out.println(
-				"총류 : 0 | 철학 : 100 | 종교 : 200 | 사회과학 : 300 | 자연과학 : 400"
-				+ " | 기술과학 : 500 | 예술 : 600 | 언어 : 700 | 문학 : 800 | 역사 : 900");
+		System.out.println("─────────────────────────────────────────────────────────────────────");
+		System.out.println("총류 : 0 | 철학 : 100 | 종교 : 200 | 사회과학 : 300 | 자연과학 : 400 | 기술과학 : 500 | 예술 : 600 | 언어 : 700 | 문학 : 800 | 역사 : 900");
+		System.out.println("─────────────────────────────────────────────────────────────────────");
 		int sCode = Integer.parseInt(sc.nextLine());
 		BookDTO bookDTO = new BookDTO(bISBN, bName, bWrite, bPub, bDate, 1, sCode);
 		BookController.InsertBook(bookDTO);
@@ -790,7 +805,9 @@ public class MenuView {
 		System.out.print("수정 할 도서의 ISBN은? > ");
 		int bISBN = Integer.parseInt(sc.nextLine());
 		System.out.println("수정 할 정보를 선택하세요");
+		System.out.println("────────────────────────────────────");
 		System.out.println("1. ISBN   2. 도서명   3. 저자   4. 출판사   5. 발행년월일   6. 분류코드");
+		System.out.println("────────────────────────────────────");
 
 		try {
 			int menu = Integer.parseInt(sc.nextLine());
@@ -817,8 +834,9 @@ public class MenuView {
 				break;
 			case 6:
 				System.out.println("분류코드를 수정합니다");
-				System.out.println("총류 : 0 | 철학 : 100 | 종교 : 200 | 사회과학 : 300 | 자연과학 : 400"
-						+ " | 기술과학 : 500 | 예술 : 600 | 언어 : 700 | 문학 : 800 | 역사 : 900");
+				System.out.println("─────────────────────────────────────────────────────────────────────");
+				System.out.println("총류 : 0 | 철학 : 100 | 종교 : 200 | 사회과학 : 300 | 자연과학 : 400 | 기술과학 : 500 | 예술 : 600 | 언어 : 700 | 문학 : 800 | 역사 : 900");
+				System.out.println("─────────────────────────────────────────────────────────────────────");
 				printAdminUpdateBookCode(bISBN);
 				break;
 			case 9:

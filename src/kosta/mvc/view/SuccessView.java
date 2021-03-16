@@ -47,13 +47,15 @@ public class SuccessView {
 	 * @param cart
 	 */
 	public static void printViewCart(String mID, Map<Integer, BookDTO> cart) {
-		System.out.println("------책바구니 내용------");
+		System.out.println("────────────── 책바구니 내용 ──────────────");
 
 		for (Integer bISBN : cart.keySet()) {
 			BookDTO bookDTO = cart.get(bISBN);
 			String bName = bookDTO.getbName(); // 책 이름
 			System.out.println(bISBN + " : " + bName); // ISBA : 책이름 출력
 		}
+		System.out.println("───────────────────────────────────");
+		System.out.println();
 	}
 
 	/**
@@ -67,28 +69,31 @@ public class SuccessView {
 
 
 	public static void printRentBookList(List<RentDTO> list) {
-		System.out.println("----------대여 목록---------");
+		System.out.println("────────────── 대여 목록 ──────────────");
 		for(RentDTO dto : list) {
 			System.out.println(dto);
 		}
+		System.out.println("─────────────────────────────────");
 		System.out.println();
 		
 	}
 
 	public static void printRsvBookList(List<RsvDTO> list) {
-		System.out.println("----------예약 목록---------");
+		System.out.println("────────────── 예약 목록 ──────────────");
 		for(RsvDTO dto : list) {
 			System.out.println(dto);
 		}
+		System.out.println("─────────────────────────────────");
 		System.out.println();
 		
 	}
 
 	public static void selectPrintMyInfo(List<MemberDTO> list) {
-		System.out.println("--------내 정보 ---------");
+		System.out.println("────────────── 내 정보 ──────────────");
 		for(MemberDTO dto : list) {
 			System.out.println(dto);
 		}
+		System.out.println("────────────────────────────────");
 		System.out.println();
 		
 	}
