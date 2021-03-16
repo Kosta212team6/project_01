@@ -87,6 +87,7 @@ public class RsvDAOImpl implements RsvDAO {
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setInt(1, bISBN);
+			rs = ps.executeQuery();
 			if(rs.next()) {
 				rs.getInt(bStatus);
 				return true;
@@ -98,4 +99,5 @@ public class RsvDAOImpl implements RsvDAO {
 			DBUtil.dbClose(null, ps, rs);
 		}
 	}
+	
 }
