@@ -1,81 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="kosta.mvc.view.MenuView" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/view/MenuView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="292" y="420"/>    
+  <interface id="1" language="java" name="kosta.mvc.model.dao.NotifyDAO" project="project_01" 
+    file="/project_01/src/kosta/mvc/model/dao/NotifyDAO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="968" y="199"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="2" language="java" name="kosta.mvc.model.dao.NotifyDAOImpl" project="project_01" 
+    file="/project_01/src/kosta/mvc/model/dao/NotifyDAOImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1302" y="202"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="kosta.mvc.view.StartView" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/view/StartView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="95" y="41"/>    
+  <class id="3" language="java" name="kosta.mvc.controller.NotifyController" project="project_01" 
+    file="/project_01/src/kosta/mvc/controller/NotifyController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="306" y="204"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="3" language="java" name="kosta.mvc.view.FailView" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/view/FailView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="855" y="455"/>    
+  <interface id="4" language="java" name="kosta.mvc.model.service.NotifyService" project="project_01" 
+    file="/project_01/src/kosta/mvc/model/service/NotifyService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="635" y="416"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="5" language="java" name="kosta.mvc.model.service.NotifyServiceImpl" project="project_01" 
+    file="/project_01/src/kosta/mvc/model/service/NotifyServiceImpl.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="634" y="204"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="kosta.mvc.view.SuccessView" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/view/SuccessView.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="594" y="546"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="5" language="java" name="kosta.mvc.session.Session" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/session/Session.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1070" y="793"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="6" language="java" name="kosta.mvc.session.SessionSet" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/session/SessionSet.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1066" y="491"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="kosta.mvc.util.DBUtil" project="kosta212_team6" 
-    file="/kosta212_team6/src/kosta/mvc/util/DBUtil.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1443" y="489"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <association id="8">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="9" name="ss"/>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
+  <realization id="6">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <association id="7">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="8" name="notifyDAO"/>      
+      <multiplicity id="9" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization id="10">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="4"/>  
+  </realization>  
   <association id="11">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="12" name="set"/>      
-      <multiplicity id="13" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="12" name="notifyService"/>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
