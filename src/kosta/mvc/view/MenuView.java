@@ -88,6 +88,7 @@ public class MenuView {
 		MemberDTO memberDTO = new MemberDTO(mId, mName, mPhone, mPwd, "sysdate", 1, 10);
 		MemberController.createMember(memberDTO);
 		System.out.println("\"" + memberDTO.getmID() + "\" 아이디로 가입되었습니다");
+		login();
 	}
 
 	/**
