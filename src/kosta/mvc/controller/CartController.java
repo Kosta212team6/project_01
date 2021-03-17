@@ -76,7 +76,7 @@ public class CartController {
 			
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			FailView.errorMessage(e.getMessage());
 		}
 	}
