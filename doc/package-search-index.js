@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"kosta.mvc.controller"},{"l":"kosta.mvc.exception"},{"l":"kosta.mvc.model.dao"},{"l":"kosta.mvc.model.dto"},{"l":"kosta.mvc.model.service"},{"l":"kosta.mvc.session"},{"l":"kosta.mvc.util"},{"l":"kosta.mvc.view"}];updateSearchResults();
