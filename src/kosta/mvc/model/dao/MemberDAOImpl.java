@@ -81,7 +81,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		List<MemberDTO> list = new ArrayList<MemberDTO>();
 		String sql = "SELECT MID, MNAME, MPHONE, MABLE, NCODE FROM MEMBER "
-				+ "WHERE MSTATUS=1 AND SYSDATE < TO_CHAR(MABLE, 'YYYYMMDD'); ";
+				+ "WHERE MSTATUS=1 AND SYSDATE < TO_CHAR(MABLE, 'YYYYMMDD')";
 		
 		try {
 			con = DBUtil.getConnection();
